@@ -13,6 +13,9 @@ ENV CODEBENDER_COMPILER_HOME $CODEBENDER_HOME/compiler
 ENV COMPOSER_HOME $CODEBENDER_COMPILER_HOME
 ENV CHIBITRONICS_HARDWARE_REPO https://github.com/xobs/arduino-esplanade.git
 
+# Key used by web clients
+ENV CODEBENDER_AUTHORIZATION_KEY key123
+
 RUN apt-get update \
     && apt-get install -y \
         php5-intl \
@@ -104,9 +107,6 @@ RUN set -ex \
     && rm -f master.zip \
     && cd $CODEBENDER_HOME/codebender-arduino-core-files/v167/hardware \
     && git clone $CHIBITRONICS_HARDWARE_REPO chibitronics
-
-# Key used by web clients
-ENV CODEBENDER_AUTHORIZATION_KEY key123
 
 # Change the authorization key
 RUN sed -i "s/$(grep authorizationKey $CODEBENDER_COMPILER_HOME/Symfony/app/config/parameters.yml | awk '{print $2}')/"$CODEBENDER_AUTHORIZATION_KEY/g $CODEBENDER_COMPILER_HOME/Symfony/app/config/parameters.yml
