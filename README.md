@@ -43,3 +43,7 @@ Build:
 Run:
 
     docker run -p 8082:80 -d --name ch-frontend xobs/ch-frontend:1.0
+
+Reload configuration:
+
+    docker kill -s HUP ch-frontend
