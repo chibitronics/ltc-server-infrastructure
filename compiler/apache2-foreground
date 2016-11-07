@@ -16,6 +16,7 @@ rm -f "$APACHE_PID_FILE"
 CODEBENDER_COMPILER_HOME=/opt/codebender/compiler
 if [ ! -z $CODEBENDER_AUTHORIZATION_KEY ]
 then
+	rm -rf /opt/codebender/compiler/Symfony/app/cache/*/*
 	sed -i "s/$(grep authorizationKey $CODEBENDER_COMPILER_HOME/Symfony/app/config/parameters.yml | awk '{print $2}')/"$CODEBENDER_AUTHORIZATION_KEY/g $CODEBENDER_COMPILER_HOME/Symfony/app/config/parameters.yml
 fi
 
