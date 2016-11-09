@@ -27,6 +27,7 @@ RUN apt-get update \
         php5-sqlite \
         acl \
         curl \
+        lame \
         git \
         unzip \
     && apt-get clean
