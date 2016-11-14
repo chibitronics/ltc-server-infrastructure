@@ -413,7 +413,7 @@ class CompilerV2Handler
 
         $this->logger_id = microtime(true) . "_" . substr($config['project_dir'], -6) . "_user:$user_id" . "_project:$sketch_id";
 
-        echo $this->logger_id . " - " . implode(" ", $req_elements) . "\n";
+//        echo $this->logger_id . " - " . implode(" ", $req_elements) . "\n";
 //        $this->compiler_logger->addInfo($this->logger_id . " - " . implode(" ", $req_elements));
 //        if ($should_archive)
 //            $this->compiler_logger->addInfo($this->logger_id . " - " . "Archive file: $archive_path");
@@ -1003,11 +1003,21 @@ class CompilerV2Handler
 
 function makeRequest()
 {
-	if (0 === strpos($_SERVER['CONTENT_TYPE'], 'application/x-www-form-urlencoded')) {
+	// Check for url-form-encoded
+
+//	if (0 === strpos($_SERVER['CONTENT_TYPE'], 'application/x-www-form-urlencoded')) {
 		$content = file_get_contents('php://input');
+		//parse_str($content, $data);
+		//echo "Re-parsed as [[[" . json_encode($data, 15) . "]]]\n";
 		$data = json_decode($content, true);
+		//echo "String [[[$content]]] parsed to [[[$data]]]\n";
+		//echo "Round trip: [[[" . json_encode(json_decode($content), 15) . "]]]\n";
 		return $data;
-	}
+//	}
+
+//	phpinfo();
+//	exit(0);
+//	return "";
 }
 
 $compiler = new CompilerV2Handler();
