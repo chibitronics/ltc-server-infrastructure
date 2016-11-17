@@ -1,0 +1,1363 @@
+managed-keys-zone: loaded serial 0
+zone 0.in-addr.arpa/IN: loaded serial 0
+zone localhost/IN: loaded serial 0
+zone localhost.localdomain/IN: loaded serial 0
+zone 1.0.0.127.in-addr.arpa/IN: loaded serial 0
+zone 1.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.ip6.arpa/IN: loaded serial 0
+all zones loaded
+running
+network unreachable resolving './DNSKEY/IN': 2001:7fd::1#53
+network unreachable resolving './NS/IN': 2001:7fd::1#53
+received control channel command 'reload'
+loading configuration from '/etc/named.conf'
+GeoIP Country (IPv4) (type 1) DB not available
+GeoIP Country (IPv6) (type 12) DB not available
+GeoIP City (IPv4) (type 2) DB not available
+GeoIP City (IPv4) (type 6) DB not available
+GeoIP City (IPv6) (type 30) DB not available
+GeoIP City (IPv6) (type 31) DB not available
+GeoIP Region (type 3) DB not available
+GeoIP Region (type 7) DB not available
+GeoIP ISP (type 4) DB not available
+GeoIP Org (type 5) DB not available
+GeoIP AS (type 9) DB not available
+GeoIP Domain (type 11) DB not available
+GeoIP NetSpeed (type 10) DB not available
+using default UDP/IPv4 port range: [1024, 65535]
+using default UDP/IPv6 port range: [1024, 65535]
+sizing zone task pool based on 6 zones
+automatic empty zone: 10.IN-ADDR.ARPA
+automatic empty zone: 16.172.IN-ADDR.ARPA
+automatic empty zone: 17.172.IN-ADDR.ARPA
+automatic empty zone: 18.172.IN-ADDR.ARPA
+automatic empty zone: 19.172.IN-ADDR.ARPA
+automatic empty zone: 20.172.IN-ADDR.ARPA
+automatic empty zone: 21.172.IN-ADDR.ARPA
+automatic empty zone: 22.172.IN-ADDR.ARPA
+automatic empty zone: 23.172.IN-ADDR.ARPA
+automatic empty zone: 24.172.IN-ADDR.ARPA
+automatic empty zone: 25.172.IN-ADDR.ARPA
+automatic empty zone: 26.172.IN-ADDR.ARPA
+automatic empty zone: 27.172.IN-ADDR.ARPA
+automatic empty zone: 28.172.IN-ADDR.ARPA
+automatic empty zone: 29.172.IN-ADDR.ARPA
+automatic empty zone: 30.172.IN-ADDR.ARPA
+automatic empty zone: 31.172.IN-ADDR.ARPA
+automatic empty zone: 168.192.IN-ADDR.ARPA
+automatic empty zone: 64.100.IN-ADDR.ARPA
+automatic empty zone: 65.100.IN-ADDR.ARPA
+automatic empty zone: 66.100.IN-ADDR.ARPA
+automatic empty zone: 67.100.IN-ADDR.ARPA
+automatic empty zone: 68.100.IN-ADDR.ARPA
+automatic empty zone: 69.100.IN-ADDR.ARPA
+automatic empty zone: 70.100.IN-ADDR.ARPA
+automatic empty zone: 71.100.IN-ADDR.ARPA
+automatic empty zone: 72.100.IN-ADDR.ARPA
+automatic empty zone: 73.100.IN-ADDR.ARPA
+automatic empty zone: 74.100.IN-ADDR.ARPA
+automatic empty zone: 75.100.IN-ADDR.ARPA
+automatic empty zone: 76.100.IN-ADDR.ARPA
+automatic empty zone: 77.100.IN-ADDR.ARPA
+automatic empty zone: 78.100.IN-ADDR.ARPA
+automatic empty zone: 79.100.IN-ADDR.ARPA
+automatic empty zone: 80.100.IN-ADDR.ARPA
+automatic empty zone: 81.100.IN-ADDR.ARPA
+automatic empty zone: 82.100.IN-ADDR.ARPA
+automatic empty zone: 83.100.IN-ADDR.ARPA
+automatic empty zone: 84.100.IN-ADDR.ARPA
+automatic empty zone: 85.100.IN-ADDR.ARPA
+automatic empty zone: 86.100.IN-ADDR.ARPA
+automatic empty zone: 87.100.IN-ADDR.ARPA
+automatic empty zone: 88.100.IN-ADDR.ARPA
+automatic empty zone: 89.100.IN-ADDR.ARPA
+automatic empty zone: 90.100.IN-ADDR.ARPA
+automatic empty zone: 91.100.IN-ADDR.ARPA
+automatic empty zone: 92.100.IN-ADDR.ARPA
+automatic empty zone: 93.100.IN-ADDR.ARPA
+automatic empty zone: 94.100.IN-ADDR.ARPA
+automatic empty zone: 95.100.IN-ADDR.ARPA
+automatic empty zone: 96.100.IN-ADDR.ARPA
+automatic empty zone: 97.100.IN-ADDR.ARPA
+automatic empty zone: 98.100.IN-ADDR.ARPA
+automatic empty zone: 99.100.IN-ADDR.ARPA
+automatic empty zone: 100.100.IN-ADDR.ARPA
+automatic empty zone: 101.100.IN-ADDR.ARPA
+automatic empty zone: 102.100.IN-ADDR.ARPA
+automatic empty zone: 103.100.IN-ADDR.ARPA
+automatic empty zone: 104.100.IN-ADDR.ARPA
+automatic empty zone: 105.100.IN-ADDR.ARPA
+automatic empty zone: 106.100.IN-ADDR.ARPA
+automatic empty zone: 107.100.IN-ADDR.ARPA
+automatic empty zone: 108.100.IN-ADDR.ARPA
+automatic empty zone: 109.100.IN-ADDR.ARPA
+automatic empty zone: 110.100.IN-ADDR.ARPA
+automatic empty zone: 111.100.IN-ADDR.ARPA
+automatic empty zone: 112.100.IN-ADDR.ARPA
+automatic empty zone: 113.100.IN-ADDR.ARPA
+automatic empty zone: 114.100.IN-ADDR.ARPA
+automatic empty zone: 115.100.IN-ADDR.ARPA
+automatic empty zone: 116.100.IN-ADDR.ARPA
+automatic empty zone: 117.100.IN-ADDR.ARPA
+automatic empty zone: 118.100.IN-ADDR.ARPA
+automatic empty zone: 119.100.IN-ADDR.ARPA
+automatic empty zone: 120.100.IN-ADDR.ARPA
+automatic empty zone: 121.100.IN-ADDR.ARPA
+automatic empty zone: 122.100.IN-ADDR.ARPA
+automatic empty zone: 123.100.IN-ADDR.ARPA
+automatic empty zone: 124.100.IN-ADDR.ARPA
+automatic empty zone: 125.100.IN-ADDR.ARPA
+automatic empty zone: 126.100.IN-ADDR.ARPA
+automatic empty zone: 127.100.IN-ADDR.ARPA
+automatic empty zone: 127.IN-ADDR.ARPA
+automatic empty zone: 254.169.IN-ADDR.ARPA
+automatic empty zone: 2.0.192.IN-ADDR.ARPA
+automatic empty zone: 100.51.198.IN-ADDR.ARPA
+automatic empty zone: 113.0.203.IN-ADDR.ARPA
+automatic empty zone: 255.255.255.255.IN-ADDR.ARPA
+automatic empty zone: 0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.IP6.ARPA
+automatic empty zone: D.F.IP6.ARPA
+automatic empty zone: 8.E.F.IP6.ARPA
+automatic empty zone: 9.E.F.IP6.ARPA
+automatic empty zone: A.E.F.IP6.ARPA
+automatic empty zone: B.E.F.IP6.ARPA
+automatic empty zone: 8.B.D.0.1.0.0.2.IP6.ARPA
+automatic empty zone: EMPTY.AS112.ARPA
+configuring command channel from '/etc/rndc.key'
+configuring command channel from '/etc/rndc.key'
+reloading configuration succeeded
+reloading zones succeeded
+network unreachable resolving './DNSKEY/IN': 2001:500:2f::f#53
+network unreachable resolving './NS/IN': 2001:500:2f::f#53
+all zones loaded
+running
+network unreachable resolving 'ltc.chibitronics.com/NS/IN': 2607:f440::d85c:35f#53
+received control channel command 'stop'
+shutting down: flushing changes
+stopping command channel on 127.0.0.1#953
+stopping command channel on ::1#953
+no longer listening on 127.0.0.1#53
+no longer listening on ::1#53
+exiting
+managed-keys-zone: journal file is out of date: removing journal file
+managed-keys-zone: loaded serial 3
+zone 0.in-addr.arpa/IN: loaded serial 0
+zone 1.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.ip6.arpa/IN: loaded serial 0
+zone 1.0.0.127.in-addr.arpa/IN: loaded serial 0
+zone localhost/IN: loaded serial 0
+zone ltc.chibitronics.com/IN: loaded serial 2016311001
+zone localhost.localdomain/IN: loaded serial 0
+all zones loaded
+running
+network unreachable resolving './DNSKEY/IN': 2001:503:ba3e::2:30#53
+network unreachable resolving './NS/IN': 2001:503:ba3e::2:30#53
+network unreachable resolving 'b.root-servers.net/AAAA/IN': 2001:7fd::1#53
+network unreachable resolving './DNSKEY/IN': 2001:7fd::1#53
+network unreachable resolving './NS/IN': 2001:7fd::1#53
+client 210.23.24.198#60035 (ltc.chibitronics.com.super.net.sg): query (cache) 'ltc.chibitronics.com.super.net.sg/NS/IN' denied
+client 210.23.24.198#60036 (ltc.chibitronics.com): query 'ltc.chibitronics.com/NS/IN' denied
+received control channel command 'stop'
+shutting down: flushing changes
+stopping command channel on 127.0.0.1#953
+stopping command channel on ::1#953
+no longer listening on ::#53
+no longer listening on 127.0.0.1#53
+no longer listening on 128.199.64.146#53
+no longer listening on 10.15.0.5#53
+exiting
+managed-keys-zone: journal file is out of date: removing journal file
+managed-keys-zone: loaded serial 4
+zone 0.in-addr.arpa/IN: loaded serial 0
+zone 1.0.0.127.in-addr.arpa/IN: loaded serial 0
+zone ltc.chibitronics.com/IN: loaded serial 2016311001
+zone 1.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.ip6.arpa/IN: loaded serial 0
+zone localhost.localdomain/IN: loaded serial 0
+zone localhost/IN: loaded serial 0
+all zones loaded
+running
+client 210.23.24.198#50222 (ltc.chibitronics.com.super.net.sg): query (cache) 'ltc.chibitronics.com.super.net.sg/NS/IN' denied
+client 210.23.24.198#62723 (ltc.chibitronics.com.super.net.sg): query (cache) 'ltc.chibitronics.com.super.net.sg/NS/IN' denied
+client 210.23.24.198#62230 (setver.super.net.sg): query (cache) 'setver.super.net.sg/NS/IN' denied
+client 210.23.24.198#62231 (setver.super.net.sg): query (cache) 'setver.super.net.sg/NS/IN' denied
+client 210.23.24.198#62233 (ltc.chibitronics.com.super.net.sg): query (cache) 'ltc.chibitronics.com.super.net.sg/NS/IN' denied
+client 210.23.24.198#58920 (ltc.chibitronics.com.super.net.sg): query (cache) 'ltc.chibitronics.com.super.net.sg/NS/IN' denied
+client 210.23.24.198#54564 (server=188.166.197.248.super.net.sg): query (cache) 'server=188.166.197.248.super.net.sg/NS/IN' denied
+client 210.23.24.198#54565 (server=188.166.197.248): query (cache) 'server=188.166.197.248/NS/IN' denied
+client 210.23.24.198#54566 (ltc.chibitronics.com.super.net.sg): query (cache) 'ltc.chibitronics.com.super.net.sg/NS/IN' denied
+received control channel command 'stop'
+shutting down: flushing changes
+stopping command channel on 127.0.0.1#953
+stopping command channel on ::1#953
+no longer listening on ::#53
+no longer listening on 127.0.0.1#53
+no longer listening on 128.199.64.146#53
+no longer listening on 10.15.0.5#53
+exiting
+managed-keys-zone: journal file is out of date: removing journal file
+managed-keys-zone: loaded serial 5
+zone 0.in-addr.arpa/IN: loaded serial 0
+zone 1.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.ip6.arpa/IN: loaded serial 0
+zone 1.0.0.127.in-addr.arpa/IN: loaded serial 0
+zone ltc.chibitronics.com/IN: loaded serial 2016311001
+zone localhost.localdomain/IN: loaded serial 0
+zone localhost/IN: loaded serial 0
+all zones loaded
+running
+network unreachable resolving './DNSKEY/IN': 2001:7fe::53#53
+network unreachable resolving 'b.root-servers.net/AAAA/IN': 2001:dc3::35#53
+network unreachable resolving './DNSKEY/IN': 2001:dc3::35#53
+client 210.23.24.198#50904 (ltc.chibitronics.com.super.net.sg): query (cache) 'ltc.chibitronics.com.super.net.sg/NS/IN' denied
+client 210.23.24.198#57703 (ltc.chibitronics.com.super.net.sg): query (cache) 'ltc.chibitronics.com.super.net.sg/NS/IN' denied
+client 210.23.24.198#57706 (ltc.chibitronics.com.super.net.sg): query (cache) 'ltc.chibitronics.com.super.net.sg/NS/IN' denied
+client 210.23.24.198#57710 (ns5.pairinc.com.super.net.sg): query (cache) 'ns5.pairinc.com.super.net.sg/A/IN' denied
+client 210.23.24.198#57711 (ns5.pairinc.com.super.net.sg): query (cache) 'ns5.pairinc.com.super.net.sg/AAAA/IN' denied
+client 210.23.24.198#57712 (ns5.pairinc.com): query (cache) 'ns5.pairinc.com/A/IN' denied
+client 210.23.24.198#57713 (ns5.pairinc.com): query (cache) 'ns5.pairinc.com/AAAA/IN' denied
+client 210.23.24.198#57714 (ns5.pairinc.com.super.net.sg): query (cache) 'ns5.pairinc.com.super.net.sg/A/IN' denied
+client 210.23.24.198#57715 (ns5.pairinc.com.super.net.sg): query (cache) 'ns5.pairinc.com.super.net.sg/AAAA/IN' denied
+client 210.23.24.198#57716 (ns5.pairinc.com): query (cache) 'ns5.pairinc.com/A/IN' denied
+client 210.23.24.198#57717 (ns5.pairinc.com): query (cache) 'ns5.pairinc.com/AAAA/IN' denied
+client 210.23.24.198#57718 (server=ns5.pairinc.com.super.net.sg): query (cache) 'server=ns5.pairinc.com.super.net.sg/NS/IN' denied
+client 210.23.24.198#57719 (server=ns5.pairinc.com): query (cache) 'server=ns5.pairinc.com/NS/IN' denied
+client 210.23.24.198#57720 (ns5.pairinc.com.super.net.sg): query (cache) 'ns5.pairinc.com.super.net.sg/A/IN' denied
+client 210.23.24.198#57721 (ns5.pairinc.com.super.net.sg): query (cache) 'ns5.pairinc.com.super.net.sg/AAAA/IN' denied
+client 210.23.24.198#57722 (ns5.pairinc.com): query (cache) 'ns5.pairinc.com/A/IN' denied
+client 210.23.24.198#57723 (ns5.pairinc.com): query (cache) 'ns5.pairinc.com/AAAA/IN' denied
+client 210.23.24.198#57724 (ns5.pairinc.com): query (cache) 'ns5.pairinc.com/A/IN' denied
+client 210.23.24.198#57725 (ns5.pairinc.com): query (cache) 'ns5.pairinc.com/AAAA/IN' denied
+received control channel command 'reload'
+loading configuration from '/etc/named.conf'
+GeoIP Country (IPv4) (type 1) DB not available
+GeoIP Country (IPv6) (type 12) DB not available
+GeoIP City (IPv4) (type 2) DB not available
+GeoIP City (IPv4) (type 6) DB not available
+GeoIP City (IPv6) (type 30) DB not available
+GeoIP City (IPv6) (type 31) DB not available
+GeoIP Region (type 3) DB not available
+GeoIP Region (type 7) DB not available
+GeoIP ISP (type 4) DB not available
+GeoIP Org (type 5) DB not available
+GeoIP AS (type 9) DB not available
+GeoIP Domain (type 11) DB not available
+GeoIP NetSpeed (type 10) DB not available
+using default UDP/IPv4 port range: [1024, 65535]
+using default UDP/IPv6 port range: [1024, 65535]
+sizing zone task pool based on 7 zones
+using built-in root key for view _default
+configuring command channel from '/etc/rndc.key'
+configuring command channel from '/etc/rndc.key'
+reloading configuration succeeded
+reloading zones succeeded
+network unreachable resolving './DNSKEY/IN': 2001:7fe::53#53
+network unreachable resolving './NS/IN': 2001:7fe::53#53
+all zones loaded
+running
+zone ltc.chibitronics.com/IN: loaded serial 2016311002
+client 104.255.70.247#40859 (svist21.cz): query (cache) 'svist21.cz/ANY/IN' denied
+client 212.83.152.146#5300 (cpsc.gov): query (cache) 'cpsc.gov/ANY/IN' denied
+client 104.255.70.247#45397 (svist21.cz): query (cache) 'svist21.cz/ANY/IN' denied
+client 5.154.191.151#46905 (1x1.cz): query (cache) '1x1.cz/ANY/IN' denied
+client 212.83.152.146#5300 (cpsc.gov): query (cache) 'cpsc.gov/ANY/IN' denied
+client 154.16.199.43#56802 (cpsc.gov): query (cache) 'cpsc.gov/ANY/IN' denied
+client 154.16.199.43#57923 (cpsc.gov): query (cache) 'cpsc.gov/ANY/IN' denied
+client 212.83.152.146#5300 (cpsc.gov): query (cache) 'cpsc.gov/ANY/IN' denied
+client 154.16.199.43#60154 (cpsc.gov): query (cache) 'cpsc.gov/ANY/IN' denied
+client 51.255.194.246#37925 (cpsc.gov): query (cache) 'cpsc.gov/ANY/IN' denied
+client 106.184.2.29#18010 (www.qq.com): query (cache) 'www.qq.com/A/IN' denied
+client 198.48.92.104#60184 (satellite.cs.washington.edu): query (cache) 'satellite.cs.washington.edu/A/IN' denied
+client 71.6.165.200#35550 (direct.shodan.io): query (cache) 'direct.shodan.io/A/IN' denied
+client 185.94.111.1#35947 (com): query (cache) 'com/ANY/IN' denied
+client 138.68.148.168#46481 (www.baidu.com): query (cache) 'www.baidu.com/ANY/IN' denied
+client 45.63.70.29#52797 (cpsc.gov): query (cache) 'cpsc.gov/ANY/IN' denied
+client 185.94.111.1#57983 (com): query (cache) 'com/ANY/IN' denied
+client 45.63.70.29#34494 (cpsc.gov): query (cache) 'cpsc.gov/ANY/IN' denied
+client 85.159.233.131#47308 (cpsc.gov): query (cache) 'cpsc.gov/ANY/IN' denied
+client 85.159.233.131#47314 (cpsc.gov): query (cache) 'cpsc.gov/ANY/IN' denied
+client 85.159.233.131#47311 (cpsc.gov): query (cache) 'cpsc.gov/ANY/IN' denied
+client 85.159.233.131#47313 (cpsc.gov): query (cache) 'cpsc.gov/ANY/IN' denied
+client 85.159.233.131#47317 (cpsc.gov): query (cache) 'cpsc.gov/ANY/IN' denied
+client 85.159.233.131#47310 (cpsc.gov): query (cache) 'cpsc.gov/ANY/IN' denied
+client 85.159.233.131#47312 (cpsc.gov): query (cache) 'cpsc.gov/ANY/IN' denied
+client 85.159.233.131#47316 (cpsc.gov): query (cache) 'cpsc.gov/ANY/IN' denied
+client 85.159.233.131#47315 (cpsc.gov): query (cache) 'cpsc.gov/ANY/IN' denied
+client 85.159.233.131#45058 (cpsc.gov): query (cache) 'cpsc.gov/ANY/IN' denied
+client 85.159.233.131#45062 (cpsc.gov): query (cache) 'cpsc.gov/ANY/IN' denied
+client 85.159.233.131#45065 (cpsc.gov): query (cache) 'cpsc.gov/ANY/IN' denied
+client 85.159.233.131#45061 (cpsc.gov): query (cache) 'cpsc.gov/ANY/IN' denied
+client 85.159.233.131#45059 (cpsc.gov): query (cache) 'cpsc.gov/ANY/IN' denied
+client 85.159.233.131#45056 (cpsc.gov): query (cache) 'cpsc.gov/ANY/IN' denied
+client 85.159.233.131#45060 (cpsc.gov): query (cache) 'cpsc.gov/ANY/IN' denied
+client 85.159.233.131#45057 (cpsc.gov): query (cache) 'cpsc.gov/ANY/IN' denied
+client 85.159.233.131#45064 (cpsc.gov): query (cache) 'cpsc.gov/ANY/IN' denied
+client 85.159.233.131#45063 (cpsc.gov): query (cache) 'cpsc.gov/ANY/IN' denied
+client 198.48.92.104#53312 (satellite.cs.washington.edu): query (cache) 'satellite.cs.washington.edu/A/IN' denied
+client 85.159.233.131#55211 (cpsc.gov): query (cache) 'cpsc.gov/ANY/IN' denied
+client 85.159.233.131#55208 (cpsc.gov): query (cache) 'cpsc.gov/ANY/IN' denied
+client 85.159.233.131#55213 (cpsc.gov): query (cache) 'cpsc.gov/ANY/IN' denied
+client 85.159.233.131#55212 (cpsc.gov): query (cache) 'cpsc.gov/ANY/IN' denied
+client 85.159.233.131#55207 (cpsc.gov): query (cache) 'cpsc.gov/ANY/IN' denied
+client 85.159.233.131#55214 (cpsc.gov): query (cache) 'cpsc.gov/ANY/IN' denied
+client 85.159.233.131#55209 (cpsc.gov): query (cache) 'cpsc.gov/ANY/IN' denied
+client 85.159.233.131#55210 (cpsc.gov): query (cache) 'cpsc.gov/ANY/IN' denied
+client 85.159.233.131#55205 (cpsc.gov): query (cache) 'cpsc.gov/ANY/IN' denied
+client 85.159.233.131#55206 (cpsc.gov): query (cache) 'cpsc.gov/ANY/IN' denied
+client 85.159.233.131#39001 (cpsc.gov): query (cache) 'cpsc.gov/ANY/IN' denied
+client 85.159.233.131#38997 (cpsc.gov): query (cache) 'cpsc.gov/ANY/IN' denied
+client 85.159.233.131#38995 (cpsc.gov): query (cache) 'cpsc.gov/ANY/IN' denied
+client 85.159.233.131#38992 (cpsc.gov): query (cache) 'cpsc.gov/ANY/IN' denied
+client 85.159.233.131#38998 (cpsc.gov): query (cache) 'cpsc.gov/ANY/IN' denied
+client 85.159.233.131#38999 (cpsc.gov): query (cache) 'cpsc.gov/ANY/IN' denied
+client 85.159.233.131#39000 (cpsc.gov): query (cache) 'cpsc.gov/ANY/IN' denied
+client 85.159.233.131#38996 (cpsc.gov): query (cache) 'cpsc.gov/ANY/IN' denied
+client 85.159.233.131#38993 (cpsc.gov): query (cache) 'cpsc.gov/ANY/IN' denied
+client 85.159.233.131#38994 (cpsc.gov): query (cache) 'cpsc.gov/ANY/IN' denied
+client 183.56.172.145#20000 (2453718912.www.baidu.com): query (cache) '2453718912.www.baidu.com/A/IN' denied
+client 85.159.233.131#34588 (cpsc.gov): query (cache) 'cpsc.gov/ANY/IN' denied
+client 85.159.233.131#34581 (cpsc.gov): query (cache) 'cpsc.gov/ANY/IN' denied
+client 85.159.233.131#34587 (cpsc.gov): query (cache) 'cpsc.gov/ANY/IN' denied
+client 85.159.233.131#34584 (cpsc.gov): query (cache) 'cpsc.gov/ANY/IN' denied
+client 85.159.233.131#34586 (cpsc.gov): query (cache) 'cpsc.gov/ANY/IN' denied
+client 85.159.233.131#34580 (cpsc.gov): query (cache) 'cpsc.gov/ANY/IN' denied
+client 85.159.233.131#34583 (cpsc.gov): query (cache) 'cpsc.gov/ANY/IN' denied
+client 85.159.233.131#34579 (cpsc.gov): query (cache) 'cpsc.gov/ANY/IN' denied
+client 85.159.233.131#34585 (cpsc.gov): query (cache) 'cpsc.gov/ANY/IN' denied
+client 85.159.233.131#34582 (cpsc.gov): query (cache) 'cpsc.gov/ANY/IN' denied
+client 85.159.233.131#32919 (cpsc.gov): query (cache) 'cpsc.gov/ANY/IN' denied
+client 85.159.233.131#32918 (cpsc.gov): query (cache) 'cpsc.gov/ANY/IN' denied
+client 85.159.233.131#32917 (cpsc.gov): query (cache) 'cpsc.gov/ANY/IN' denied
+client 85.159.233.131#32922 (cpsc.gov): query (cache) 'cpsc.gov/ANY/IN' denied
+client 85.159.233.131#32920 (cpsc.gov): query (cache) 'cpsc.gov/ANY/IN' denied
+client 85.159.233.131#32926 (cpsc.gov): query (cache) 'cpsc.gov/ANY/IN' denied
+client 85.159.233.131#32925 (cpsc.gov): query (cache) 'cpsc.gov/ANY/IN' denied
+client 85.159.233.131#32923 (cpsc.gov): query (cache) 'cpsc.gov/ANY/IN' denied
+client 85.159.233.131#32924 (cpsc.gov): query (cache) 'cpsc.gov/ANY/IN' denied
+client 85.159.233.131#32921 (cpsc.gov): query (cache) 'cpsc.gov/ANY/IN' denied
+client 138.68.148.168#46481 (www.baidu.com): query (cache) 'www.baidu.com/ANY/IN' denied
+client 183.56.172.145#20000 (4173702844.www.baidu.com): query (cache) '4173702844.www.baidu.com/A/IN' denied
+client 74.82.47.34#59703 (dnsscan.shadowserver.org): query (cache) 'dnsscan.shadowserver.org/A/IN' denied
+client 74.82.47.50#11785 (dnsscan.shadowserver.org): query (cache) 'dnsscan.shadowserver.org/A/IN' denied
+received control channel command 'stop'
+shutting down: flushing changes
+stopping command channel on 127.0.0.1#953
+stopping command channel on ::1#953
+no longer listening on ::#53
+no longer listening on 127.0.0.1#53
+no longer listening on 128.199.64.146#53
+no longer listening on 10.15.0.5#53
+exiting
+managed-keys-zone: journal file is out of date: removing journal file
+managed-keys-zone: loaded serial 7
+zone 0.in-addr.arpa/IN: loaded serial 0
+zone ltc.chibitronics.com/IN: loaded serial 2016311002
+zone 1.0.0.127.in-addr.arpa/IN: loaded serial 0
+zone 1.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.ip6.arpa/IN: loaded serial 0
+zone localhost.localdomain/IN: loaded serial 0
+zone localhost/IN: loaded serial 0
+all zones loaded
+running
+received control channel command 'stop'
+shutting down: flushing changes
+stopping command channel on 127.0.0.1#953
+stopping command channel on ::1#953
+no longer listening on ::#53
+no longer listening on 127.0.0.1#53
+no longer listening on 128.199.64.146#53
+no longer listening on 10.15.0.5#53
+exiting
+managed-keys-zone: journal file is out of date: removing journal file
+managed-keys-zone: loaded serial 8
+zone 0.in-addr.arpa/IN: loaded serial 0
+zone localhost.localdomain/IN: loaded serial 0
+zone 1.0.0.127.in-addr.arpa/IN: loaded serial 0
+zone 1.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.ip6.arpa/IN: loaded serial 0
+zone ltc.chibitronics.com/IN: loaded serial 2016311002
+zone localhost/IN: loaded serial 0
+all zones loaded
+running
+network unreachable resolving './DNSKEY/IN': 2001:7fd::1#53
+received control channel command 'stop'
+shutting down: flushing changes
+stopping command channel on 127.0.0.1#953
+stopping command channel on ::1#953
+no longer listening on ::#53
+no longer listening on 127.0.0.1#53
+no longer listening on 128.199.64.146#53
+no longer listening on 10.15.0.5#53
+exiting
+managed-keys-zone: journal file is out of date: removing journal file
+managed-keys-zone: loaded serial 9
+zone 0.in-addr.arpa/IN: loaded serial 0
+zone 1.0.0.127.in-addr.arpa/IN: loaded serial 0
+zone 1.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.ip6.arpa/IN: loaded serial 0
+zone ltc.chibitronics.com/IN: loaded serial 2016311002
+zone localhost/IN: loaded serial 0
+zone localhost.localdomain/IN: loaded serial 0
+all zones loaded
+running
+received control channel command 'stop'
+shutting down: flushing changes
+stopping command channel on 127.0.0.1#953
+stopping command channel on ::1#953
+no longer listening on ::#53
+no longer listening on 127.0.0.1#53
+no longer listening on 128.199.64.146#53
+no longer listening on 10.15.0.5#53
+exiting
+managed-keys-zone: loaded serial 10
+zone 0.in-addr.arpa/IN: loaded serial 0
+zone localhost/IN: loaded serial 0
+zone 1.0.0.127.in-addr.arpa/IN: loaded serial 0
+zone 1.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.ip6.arpa/IN: loaded serial 0
+zone ltc.chibitronics.com/IN: loaded serial 2016311002
+zone localhost.localdomain/IN: loaded serial 0
+all zones loaded
+running
+network unreachable resolving './DNSKEY/IN': 2001:503:ba3e::2:30#53
+network unreachable resolving './NS/IN': 2001:503:ba3e::2:30#53
+network unreachable resolving 'b.root-servers.net/AAAA/IN': 2001:7fd::1#53
+network unreachable resolving 'b.root-servers.net/AAAA/IN': 2001:503:c27::2:30#53
+network unreachable resolving 'c.root-servers.net/AAAA/IN': 2001:500:2d::d#53
+network unreachable resolving './DNSKEY/IN': 2001:7fd::1#53
+network unreachable resolving './NS/IN': 2001:7fd::1#53
+network unreachable resolving 'b.root-servers.net/AAAA/IN': 2001:500:2d::d#53
+received control channel command 'stop'
+shutting down: flushing changes
+stopping command channel on 127.0.0.1#953
+stopping command channel on ::1#953
+no longer listening on ::#53
+no longer listening on 127.0.0.1#53
+no longer listening on 128.199.64.146#53
+no longer listening on 10.15.0.5#53
+exiting
+managed-keys-zone: journal file is out of date: removing journal file
+managed-keys-zone: loaded serial 11
+zone 0.in-addr.arpa/IN: loaded serial 0
+zone localhost/IN: loaded serial 0
+zone 1.0.0.127.in-addr.arpa/IN: loaded serial 0
+zone 1.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.ip6.arpa/IN: loaded serial 0
+zone ltc.chibitronics.com/IN: loaded serial 2016311002
+zone localhost.localdomain/IN: loaded serial 0
+all zones loaded
+running
+network unreachable resolving './DNSKEY/IN': 2001:7fd::1#53
+network unreachable resolving 'b.root-servers.net/AAAA/IN': 2001:dc3::35#53
+network unreachable resolving './DNSKEY/IN': 2001:dc3::35#53
+client 173.208.177.138#51735 (fema.gov): query (cache) 'fema.gov/ANY/IN' denied
+received control channel command 'stop'
+shutting down: flushing changes
+stopping command channel on 127.0.0.1#953
+stopping command channel on ::1#953
+no longer listening on ::#53
+no longer listening on 127.0.0.1#53
+no longer listening on 128.199.64.146#53
+no longer listening on 10.15.0.5#53
+exiting
+managed-keys-zone: journal file is out of date: removing journal file
+managed-keys-zone: loaded serial 12
+zone 0.in-addr.arpa/IN: loaded serial 0
+zone 1.0.0.127.in-addr.arpa/IN: loaded serial 0
+zone 1.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.ip6.arpa/IN: loaded serial 0
+zone ltc.chibitronics.com/IN: loaded serial 2016321002
+zone localhost.localdomain/IN: loaded serial 0
+zone localhost/IN: loaded serial 0
+all zones loaded
+running
+client 106.184.2.29#59642 (www.qq.com): query (cache) 'www.qq.com/A/IN' denied
+client 183.56.172.145#20000 (2453718912.www.baidu.com): query (cache) '2453718912.www.baidu.com/A/IN' denied
+client 85.159.233.131#44764 (cpsc.gov): query (cache) 'cpsc.gov/ANY/IN' denied
+client 85.159.233.131#44767 (cpsc.gov): query (cache) 'cpsc.gov/ANY/IN' denied
+client 85.159.233.131#44761 (cpsc.gov): query (cache) 'cpsc.gov/ANY/IN' denied
+client 85.159.233.131#44768 (cpsc.gov): query (cache) 'cpsc.gov/ANY/IN' denied
+client 85.159.233.131#44766 (cpsc.gov): query (cache) 'cpsc.gov/ANY/IN' denied
+client 85.159.233.131#44763 (cpsc.gov): query (cache) 'cpsc.gov/ANY/IN' denied
+client 85.159.233.131#44765 (cpsc.gov): query (cache) 'cpsc.gov/ANY/IN' denied
+client 85.159.233.131#44760 (cpsc.gov): query (cache) 'cpsc.gov/ANY/IN' denied
+client 85.159.233.131#44762 (cpsc.gov): query (cache) 'cpsc.gov/ANY/IN' denied
+client 85.159.233.131#44769 (cpsc.gov): query (cache) 'cpsc.gov/ANY/IN' denied
+client 85.159.233.131#59965 (cpsc.gov): query (cache) 'cpsc.gov/ANY/IN' denied
+client 85.159.233.131#59974 (cpsc.gov): query (cache) 'cpsc.gov/ANY/IN' denied
+client 85.159.233.131#59968 (cpsc.gov): query (cache) 'cpsc.gov/ANY/IN' denied
+client 85.159.233.131#59969 (cpsc.gov): query (cache) 'cpsc.gov/ANY/IN' denied
+client 85.159.233.131#59972 (cpsc.gov): query (cache) 'cpsc.gov/ANY/IN' denied
+client 85.159.233.131#59967 (cpsc.gov): query (cache) 'cpsc.gov/ANY/IN' denied
+client 85.159.233.131#59970 (cpsc.gov): query (cache) 'cpsc.gov/ANY/IN' denied
+client 85.159.233.131#59973 (cpsc.gov): query (cache) 'cpsc.gov/ANY/IN' denied
+client 85.159.233.131#59971 (cpsc.gov): query (cache) 'cpsc.gov/ANY/IN' denied
+client 85.159.233.131#59966 (cpsc.gov): query (cache) 'cpsc.gov/ANY/IN' denied
+client 183.56.172.145#20000 (4173702844.www.baidu.com): query (cache) '4173702844.www.baidu.com/A/IN' denied
+client 185.94.111.1#37248 (com): query (cache) 'com/ANY/IN' denied
+client 51.255.194.246#47935 (cpsc.gov): query (cache) 'cpsc.gov/ANY/IN' denied
+client 74.82.47.2#55958 (dnsscan.shadowserver.org): query (cache) 'dnsscan.shadowserver.org/A/IN' denied
+client 185.94.111.1#46560 (com): query (cache) 'com/ANY/IN' denied
+client 74.82.47.10#27306 (dnsscan.shadowserver.org): query (cache) 'dnsscan.shadowserver.org/A/IN' denied
+client 204.42.253.2#48340 (c98e09db.openresolvertest.net): query (cache) 'c98e09db.openresolvertest.net/A/IN' denied
+client 204.42.253.2#48340 (f5ef8cb1.openresolvertest.net): query (cache) 'f5ef8cb1.openresolvertest.net/A/IN' denied
+client 209.126.136.2#47169 (a.gtld-servers.net): query (cache) 'a.gtld-servers.net/A/IN' denied
+client 209.126.136.2#54900 (a.gtld-servers.net): query (cache) 'a.gtld-servers.net/A/IN' denied
+client 104.255.70.247#59760 (doc.gov): query (cache) 'doc.gov/ANY/IN' denied
+client 93.190.142.194#41434 (defcongroups.org): query (cache) 'defcongroups.org/ANY/IN' denied
+client 188.165.195.128#42948 (defcon.org): query (cache) 'defcon.org/ANY/IN' denied
+client 93.190.142.194#46810 (defcongroups.org): query (cache) 'defcongroups.org/ANY/IN' denied
+client 106.184.2.29#65466 (www.qq.com): query (cache) 'www.qq.com/A/IN' denied
+client 137.74.192.133#51711 (isc.org): query (cache) 'isc.org/ANY/IN' denied
+client 183.56.172.145#20000 (2453718912.www.baidu.com): query (cache) '2453718912.www.baidu.com/A/IN' denied
+client 106.184.2.29#22958 (www.qq.com): query (cache) 'www.qq.com/A/IN' denied
+client 137.74.192.133#51711 (isc.org): query (cache) 'isc.org/ANY/IN' denied
+client 183.56.172.145#20000 (4173702844.www.baidu.com): query (cache) '4173702844.www.baidu.com/A/IN' denied
+client 74.82.47.26#1785 (dnsscan.shadowserver.org): query (cache) 'dnsscan.shadowserver.org/A/IN' denied
+client 74.82.47.46#15912 (dnsscan.shadowserver.org): query (cache) 'dnsscan.shadowserver.org/A/IN' denied
+client 95.215.60.214#43983 (d5l.ru): query (cache) 'd5l.ru/ANY/IN' denied
+client 182.92.223.10#24580 (www.iana.org): query (cache) 'www.iana.org/A/IN' denied
+client 185.94.111.1#37660 (com): query (cache) 'com/ANY/IN' denied
+client 185.94.111.1#52274 (com): query (cache) 'com/ANY/IN' denied
+client 95.215.60.214#43983 (d5l.ru): query (cache) 'd5l.ru/ANY/IN' denied
+client 89.248.171.40#53 (cpsc.gov): query (cache) 'cpsc.gov/ANY/IN' denied
+client 89.248.171.40#53 (cpsc.gov): query (cache) 'cpsc.gov/ANY/IN' denied
+client 188.165.195.128#52413 (defcon.org): query (cache) 'defcon.org/ANY/IN' denied
+client 46.105.36.5#5300 (gransy.com): query (cache) 'gransy.com/ANY/IN' denied
+client 188.165.195.128#59802 (defcon.org): query (cache) 'defcon.org/ANY/IN' denied
+client 46.105.36.5#5300 (gransy.com): query (cache) 'gransy.com/ANY/IN' denied
+client 183.56.172.145#20000 (2453718912.www.baidu.com): query (cache) '2453718912.www.baidu.com/A/IN' denied
+client 93.190.142.194#37927 (defcon.org): query (cache) 'defcon.org/ANY/IN' denied
+client 81.171.12.152#48442 (.): query (cache) './ANY/IN' denied
+client 74.82.47.22#31457 (dnsscan.shadowserver.org): query (cache) 'dnsscan.shadowserver.org/A/IN' denied
+client 93.190.142.194#40429 (defcon.org): query (cache) 'defcon.org/ANY/IN' denied
+client 74.82.47.18#51123 (dnsscan.shadowserver.org): query (cache) 'dnsscan.shadowserver.org/A/IN' denied
+client 141.212.122.173#34169 (c.afekv.com): query (cache) 'c.afekv.com/A/IN' denied
+client 46.105.36.5#5300 (gransy.com): query (cache) 'gransy.com/ANY/IN' denied
+client 66.240.219.146#43189 (direct.shodan.io): query (cache) 'direct.shodan.io/A/IN' denied
+client 198.20.70.114#43747 (direct.shodan.io): query (cache) 'direct.shodan.io/A/IN' denied
+client 46.105.36.5#5300 (gransy.com): query (cache) 'gransy.com/ANY/IN' denied
+client 46.105.36.5#5300 (gransy.com): query (cache) 'gransy.com/ANY/IN' denied
+client 141.212.122.163#34150 (c.afekv.com): query (cache) 'c.afekv.com/A/IN' denied
+client 95.215.60.214#36211 (defcongroups.org): query (cache) 'defcongroups.org/ANY/IN' denied
+client 93.190.142.194#46328 (defcongroups.org): query (cache) 'defcongroups.org/ANY/IN' denied
+client 93.190.142.194#42181 (defcongroups.org): query (cache) 'defcongroups.org/ANY/IN' denied
+client 93.190.142.194#39237 (defcongroups.org): query (cache) 'defcongroups.org/ANY/IN' denied
+client 154.16.199.43#42321 (cpsc.gov): query (cache) 'cpsc.gov/ANY/IN' denied
+client 95.215.60.214#36211 (defcongroups.org): query (cache) 'defcongroups.org/ANY/IN' denied
+client 51.255.194.246#60069 (cpsc.gov): query (cache) 'cpsc.gov/ANY/IN' denied
+client 183.56.172.145#20000 (2453718912.www.baidu.com): query (cache) '2453718912.www.baidu.com/A/IN' denied
+client 185.128.40.162#46837 (defcon.org): query (cache) 'defcon.org/ANY/IN' denied
+client 185.94.111.1#51994 (com): query (cache) 'com/ANY/IN' denied
+client 185.94.111.1#46174 (com): query (cache) 'com/ANY/IN' denied
+client 183.56.172.145#20000 (4173702844.www.baidu.com): query (cache) '4173702844.www.baidu.com/A/IN' denied
+client 74.82.47.50#3662 (dnsscan.shadowserver.org): query (cache) 'dnsscan.shadowserver.org/A/IN' denied
+client 74.82.47.2#7445 (dnsscan.shadowserver.org): query (cache) 'dnsscan.shadowserver.org/A/IN' denied
+client 80.82.70.134#64504 (dd03): query (cache) 'dd03/A/IN' denied
+client 134.147.203.115#29387 (0a1g.9240c780.wc.syssec.rub.de): query (cache) '0a1g.9240c780.wc.syssec.rub.de/A/IN' denied
+client 134.147.203.115#29387 (on27.f8c5a6bc.wc.syssec.rub.de): query (cache) 'on27.f8c5a6bc.wc.syssec.rub.de/A/IN' denied
+client 85.159.233.131#58268 (cpsc.gov): query (cache) 'cpsc.gov/ANY/IN' denied
+client 85.159.233.131#58264 (cpsc.gov): query (cache) 'cpsc.gov/ANY/IN' denied
+client 85.159.233.131#58261 (cpsc.gov): query (cache) 'cpsc.gov/ANY/IN' denied
+client 85.159.233.131#58267 (cpsc.gov): query (cache) 'cpsc.gov/ANY/IN' denied
+client 85.159.233.131#58263 (cpsc.gov): query (cache) 'cpsc.gov/ANY/IN' denied
+client 85.159.233.131#58260 (cpsc.gov): query (cache) 'cpsc.gov/ANY/IN' denied
+client 85.159.233.131#58262 (cpsc.gov): query (cache) 'cpsc.gov/ANY/IN' denied
+client 85.159.233.131#58265 (cpsc.gov): query (cache) 'cpsc.gov/ANY/IN' denied
+client 85.159.233.131#58269 (cpsc.gov): query (cache) 'cpsc.gov/ANY/IN' denied
+client 85.159.233.131#58266 (cpsc.gov): query (cache) 'cpsc.gov/ANY/IN' denied
+client 85.159.233.131#44667 (cpsc.gov): query (cache) 'cpsc.gov/ANY/IN' denied
+client 85.159.233.131#44672 (cpsc.gov): query (cache) 'cpsc.gov/ANY/IN' denied
+client 85.159.233.131#44669 (cpsc.gov): query (cache) 'cpsc.gov/ANY/IN' denied
+client 85.159.233.131#44671 (cpsc.gov): query (cache) 'cpsc.gov/ANY/IN' denied
+client 85.159.233.131#44664 (cpsc.gov): query (cache) 'cpsc.gov/ANY/IN' denied
+client 85.159.233.131#44665 (cpsc.gov): query (cache) 'cpsc.gov/ANY/IN' denied
+client 85.159.233.131#44668 (cpsc.gov): query (cache) 'cpsc.gov/ANY/IN' denied
+client 85.159.233.131#44670 (cpsc.gov): query (cache) 'cpsc.gov/ANY/IN' denied
+client 85.159.233.131#44666 (cpsc.gov): query (cache) 'cpsc.gov/ANY/IN' denied
+client 183.56.172.145#20000 (4173702844.www.baidu.com): query (cache) '4173702844.www.baidu.com/A/IN' denied
+client 80.241.208.175#50325 (.): query (cache) './ANY/IN' denied
+client 74.82.47.58#58491 (dnsscan.shadowserver.org): query (cache) 'dnsscan.shadowserver.org/A/IN' denied
+client 74.82.47.14#8803 (dnsscan.shadowserver.org): query (cache) 'dnsscan.shadowserver.org/A/IN' denied
+client 218.241.98.198#14589 (cnnic.cn): query (cache) 'cnnic.cn/A/IN' denied
+client 204.42.253.2#56379 (c98e09db.openresolverproject.org): query (cache) 'c98e09db.openresolverproject.org/A/IN' denied
+client 80.82.70.134#4848 (dd03): query (cache) 'dd03/A/IN' denied
+client 185.94.111.1#33727 (com): query (cache) 'com/ANY/IN' denied
+client 204.42.253.2#56379 (f5ef8cb1.openresolverproject.org): query (cache) 'f5ef8cb1.openresolverproject.org/A/IN' denied
+client 218.241.98.198#65269 (cnnic.cn): query (cache) 'cnnic.cn/A/IN' denied
+client 185.94.111.1#49265 (com): query (cache) 'com/ANY/IN' denied
+client 185.35.62.224#60464 (www.google.com): query (cache) 'www.google.com/A/IN' denied
+client 185.35.62.50#60903 (www.google.com): query (cache) 'www.google.com/A/IN' denied
+client 14.152.95.221#40638 (zing.zong.co.ua): query (cache) 'zing.zong.co.ua/ANY/IN' denied
+client 188.165.195.128#38629 (defcon.org): query (cache) 'defcon.org/ANY/IN' denied
+client 183.56.172.145#20000 (2453718912.www.baidu.com): query (cache) '2453718912.www.baidu.com/A/IN' denied
+client 183.56.172.145#20000 (4173702844.www.baidu.com): query (cache) '4173702844.www.baidu.com/A/IN' denied
+client 74.82.47.2#14534 (dnsscan.shadowserver.org): query (cache) 'dnsscan.shadowserver.org/A/IN' denied
+client 185.128.40.162#43395 (defcon.org): query (cache) 'defcon.org/ANY/IN' denied
+client 74.82.47.62#28077 (dnsscan.shadowserver.org): query (cache) 'dnsscan.shadowserver.org/A/IN' denied
+client 185.128.40.162#43962 (defcon.org): query (cache) 'defcon.org/ANY/IN' denied
+client 198.245.49.24#34402 (.): query (cache) './ANY/IN' denied
+client 198.245.49.24#40767 (.): query (cache) './ANY/IN' denied
+client 106.184.2.29#22418 (www.qq.com): query (cache) 'www.qq.com/A/IN' denied
+client 198.48.92.104#41228 (satellite.cs.washington.edu): query (cache) 'satellite.cs.washington.edu/A/IN' denied
+client 198.48.92.104#49861 (satellite.cs.washington.edu): query (cache) 'satellite.cs.washington.edu/A/IN' denied
+client 185.94.111.1#60773 (com): query (cache) 'com/ANY/IN' denied
+client 185.94.111.1#54555 (com): query (cache) 'com/ANY/IN' denied
+client 93.190.142.194#50891 (defcongroups.org): query (cache) 'defcongroups.org/ANY/IN' denied
+client 93.174.93.213#54996 (www.verizonwireless.com): query (cache) 'www.verizonwireless.com/A/IN' denied
+client 106.184.2.29#45124 (www.qq.com): query (cache) 'www.qq.com/A/IN' denied
+client 183.56.172.145#20000 (2453718912.www.baidu.com): query (cache) '2453718912.www.baidu.com/A/IN' denied
+client 183.56.172.145#20000 (4173702844.www.baidu.com): query (cache) '4173702844.www.baidu.com/A/IN' denied
+client 93.174.93.213#49341 (www.jrdga.info): query (cache) 'www.jrdga.info/A/IN' denied
+client 93.174.93.213#58683 (www.defcon.org): query (cache) 'www.defcon.org/A/IN' denied
+client 74.82.47.58#54595 (dnsscan.shadowserver.org): query (cache) 'dnsscan.shadowserver.org/A/IN' denied
+client 74.82.47.38#30098 (dnsscan.shadowserver.org): query (cache) 'dnsscan.shadowserver.org/A/IN' denied
+client 93.190.142.194#35940 (defcongroups.org): query (cache) 'defcongroups.org/ANY/IN' denied
+client 93.190.142.194#49858 (defcongroups.org): query (cache) 'defcongroups.org/ANY/IN' denied
+client 188.165.195.128#37002 (defcon.org): query (cache) 'defcon.org/ANY/IN' denied
+client 106.184.2.29#34380 (www.qq.com): query (cache) 'www.qq.com/A/IN' denied
+client 188.165.195.128#53171 (defcon.org): query (cache) 'defcon.org/ANY/IN' denied
+client 188.165.195.128#42460 (defcon.org): query (cache) 'defcon.org/ANY/IN' denied
+client 183.56.172.145#20000 (2453718912.www.baidu.com): query (cache) '2453718912.www.baidu.com/A/IN' denied
+client 183.56.172.145#20000 (4173702844.www.baidu.com): query (cache) '4173702844.www.baidu.com/A/IN' denied
+client 106.184.2.29#56496 (www.qq.com): query (cache) 'www.qq.com/A/IN' denied
+client 209.126.136.2#34997 (a.gtld-servers.net): query (cache) 'a.gtld-servers.net/A/IN' denied
+client 74.82.47.26#62207 (dnsscan.shadowserver.org): query (cache) 'dnsscan.shadowserver.org/A/IN' denied
+client 74.82.47.42#49903 (dnsscan.shadowserver.org): query (cache) 'dnsscan.shadowserver.org/A/IN' denied
+client 204.42.253.2#33220 (c98e09db.openresolvertest.net): query (cache) 'c98e09db.openresolvertest.net/A/IN' denied
+client 204.42.253.2#33220 (f5ef8cb1.openresolvertest.net): query (cache) 'f5ef8cb1.openresolvertest.net/A/IN' denied
+client 209.126.136.2#54141 (a.gtld-servers.net): query (cache) 'a.gtld-servers.net/A/IN' denied
+client 178.157.212.237#55246 (cpsc.gov): query (cache) 'cpsc.gov/ANY/IN' denied
+client 2.105.13.142#32788 (cpsc.gov): query (cache) 'cpsc.gov/ANY/IN' denied
+client 213.32.17.22#60275 (cpsc.gov): query (cache) 'cpsc.gov/ANY/IN' denied
+client 2.105.13.142#43063 (cpsc.gov): query (cache) 'cpsc.gov/ANY/IN' denied
+client 223.17.174.116#35840 (www.google.it): query (cache) 'www.google.it/A/IN' denied
+client 183.56.172.145#20000 (2453718912.www.baidu.com): query (cache) '2453718912.www.baidu.com/A/IN' denied
+client 185.106.122.182#38670 (cpsc.gov): query (cache) 'cpsc.gov/A/IN' denied
+client 183.56.172.145#20000 (4173702844.www.baidu.com): query (cache) '4173702844.www.baidu.com/A/IN' denied
+client 185.106.122.182#38670 (cpsc.gov): query (cache) 'cpsc.gov/A/IN' denied
+client 213.32.17.22#60275 (cpsc.gov): query (cache) 'cpsc.gov/ANY/IN' denied
+client 178.157.212.237#35902 (cpsc.gov): query (cache) 'cpsc.gov/ANY/IN' denied
+client 185.106.122.182#14162 (cpsc.gov): query (cache) 'cpsc.gov/ANY/IN' denied
+client 185.106.122.182#14162 (cpsc.gov): query (cache) 'cpsc.gov/ANY/IN' denied
+client 185.106.122.182#14162 (cpsc.gov): query (cache) 'cpsc.gov/ANY/IN' denied
+client 185.106.122.182#14162 (cpsc.gov): query (cache) 'cpsc.gov/ANY/IN' denied
+client 185.106.122.182#14162 (cpsc.gov): query (cache) 'cpsc.gov/ANY/IN' denied
+client 185.106.122.182#14162 (cpsc.gov): query (cache) 'cpsc.gov/ANY/IN' denied
+client 185.106.122.182#14162 (cpsc.gov): query (cache) 'cpsc.gov/ANY/IN' denied
+client 185.106.122.182#14162 (cpsc.gov): query (cache) 'cpsc.gov/ANY/IN' denied
+client 185.106.122.182#14162 (cpsc.gov): query (cache) 'cpsc.gov/ANY/IN' denied
+client 185.106.122.182#14162 (cpsc.gov): query (cache) 'cpsc.gov/ANY/IN' denied
+client 185.106.122.182#14162 (cpsc.gov): query (cache) 'cpsc.gov/ANY/IN' denied
+client 185.106.122.182#14162 (cpsc.gov): query (cache) 'cpsc.gov/ANY/IN' denied
+client 185.106.122.182#14162 (cpsc.gov): query (cache) 'cpsc.gov/ANY/IN' denied
+client 185.106.122.182#14162 (cpsc.gov): query (cache) 'cpsc.gov/ANY/IN' denied
+client 185.106.122.182#14162 (cpsc.gov): query (cache) 'cpsc.gov/ANY/IN' denied
+client 185.106.122.182#14498 (cpsc.gov): query (cache) 'cpsc.gov/ANY/IN' denied
+client 185.106.122.182#14498 (cpsc.gov): query (cache) 'cpsc.gov/ANY/IN' denied
+client 185.106.122.182#14498 (cpsc.gov): query (cache) 'cpsc.gov/ANY/IN' denied
+client 185.106.122.182#14498 (cpsc.gov): query (cache) 'cpsc.gov/ANY/IN' denied
+client 185.106.122.182#14498 (cpsc.gov): query (cache) 'cpsc.gov/ANY/IN' denied
+client 185.106.122.182#14498 (cpsc.gov): query (cache) 'cpsc.gov/ANY/IN' denied
+client 185.106.122.182#14498 (cpsc.gov): query (cache) 'cpsc.gov/ANY/IN' denied
+client 185.106.122.182#14498 (cpsc.gov): query (cache) 'cpsc.gov/ANY/IN' denied
+client 185.106.122.182#14498 (cpsc.gov): query (cache) 'cpsc.gov/ANY/IN' denied
+client 185.106.122.182#14498 (cpsc.gov): query (cache) 'cpsc.gov/ANY/IN' denied
+client 185.106.122.182#14498 (cpsc.gov): query (cache) 'cpsc.gov/ANY/IN' denied
+client 185.106.122.182#14498 (cpsc.gov): query (cache) 'cpsc.gov/ANY/IN' denied
+client 185.106.122.182#14498 (cpsc.gov): query (cache) 'cpsc.gov/ANY/IN' denied
+client 185.106.122.182#14498 (cpsc.gov): query (cache) 'cpsc.gov/ANY/IN' denied
+client 185.106.122.182#14498 (cpsc.gov): query (cache) 'cpsc.gov/ANY/IN' denied
+client 185.106.122.182#42409 (cpsc.gov): query (cache) 'cpsc.gov/ANY/IN' denied
+client 185.106.122.182#42409 (cpsc.gov): query (cache) 'cpsc.gov/ANY/IN' denied
+client 185.106.122.182#42409 (cpsc.gov): query (cache) 'cpsc.gov/ANY/IN' denied
+client 185.106.122.182#42409 (cpsc.gov): query (cache) 'cpsc.gov/ANY/IN' denied
+client 185.106.122.182#42409 (cpsc.gov): query (cache) 'cpsc.gov/ANY/IN' denied
+client 185.106.122.182#42409 (cpsc.gov): query (cache) 'cpsc.gov/ANY/IN' denied
+client 185.106.122.182#42409 (cpsc.gov): query (cache) 'cpsc.gov/ANY/IN' denied
+client 185.106.122.182#42409 (cpsc.gov): query (cache) 'cpsc.gov/ANY/IN' denied
+client 185.106.122.182#42409 (cpsc.gov): query (cache) 'cpsc.gov/ANY/IN' denied
+client 185.106.122.182#42409 (cpsc.gov): query (cache) 'cpsc.gov/ANY/IN' denied
+client 185.106.122.182#42409 (cpsc.gov): query (cache) 'cpsc.gov/ANY/IN' denied
+client 185.106.122.182#42409 (cpsc.gov): query (cache) 'cpsc.gov/ANY/IN' denied
+client 185.106.122.182#42409 (cpsc.gov): query (cache) 'cpsc.gov/ANY/IN' denied
+client 185.106.122.182#42409 (cpsc.gov): query (cache) 'cpsc.gov/ANY/IN' denied
+client 185.106.122.182#42409 (cpsc.gov): query (cache) 'cpsc.gov/ANY/IN' denied
+client 185.106.122.182#28988 (cpsc.gov): query (cache) 'cpsc.gov/ANY/IN' denied
+client 185.106.122.182#28988 (cpsc.gov): query (cache) 'cpsc.gov/ANY/IN' denied
+client 185.106.122.182#28988 (cpsc.gov): query (cache) 'cpsc.gov/ANY/IN' denied
+client 185.106.122.182#28988 (cpsc.gov): query (cache) 'cpsc.gov/ANY/IN' denied
+client 185.106.122.182#28988 (cpsc.gov): query (cache) 'cpsc.gov/ANY/IN' denied
+client 185.106.122.182#28988 (cpsc.gov): query (cache) 'cpsc.gov/ANY/IN' denied
+client 185.106.122.182#28988 (cpsc.gov): query (cache) 'cpsc.gov/ANY/IN' denied
+client 185.106.122.182#28988 (cpsc.gov): query (cache) 'cpsc.gov/ANY/IN' denied
+client 185.106.122.182#28988 (cpsc.gov): query (cache) 'cpsc.gov/ANY/IN' denied
+client 185.106.122.182#28988 (cpsc.gov): query (cache) 'cpsc.gov/ANY/IN' denied
+client 185.106.122.182#28988 (cpsc.gov): query (cache) 'cpsc.gov/ANY/IN' denied
+client 185.106.122.182#28988 (cpsc.gov): query (cache) 'cpsc.gov/ANY/IN' denied
+client 185.106.122.182#28988 (cpsc.gov): query (cache) 'cpsc.gov/ANY/IN' denied
+client 185.106.122.182#28988 (cpsc.gov): query (cache) 'cpsc.gov/ANY/IN' denied
+client 185.106.122.182#28988 (cpsc.gov): query (cache) 'cpsc.gov/ANY/IN' denied
+client 185.106.122.182#19504 (cpsc.gov): query (cache) 'cpsc.gov/ANY/IN' denied
+client 185.106.122.182#19504 (cpsc.gov): query (cache) 'cpsc.gov/ANY/IN' denied
+client 185.106.122.182#19504 (cpsc.gov): query (cache) 'cpsc.gov/ANY/IN' denied
+client 185.106.122.182#19504 (cpsc.gov): query (cache) 'cpsc.gov/ANY/IN' denied
+client 185.106.122.182#19504 (cpsc.gov): query (cache) 'cpsc.gov/ANY/IN' denied
+client 185.106.122.182#19504 (cpsc.gov): query (cache) 'cpsc.gov/ANY/IN' denied
+client 185.106.122.182#19504 (cpsc.gov): query (cache) 'cpsc.gov/ANY/IN' denied
+client 185.106.122.182#19504 (cpsc.gov): query (cache) 'cpsc.gov/ANY/IN' denied
+client 185.106.122.182#19504 (cpsc.gov): query (cache) 'cpsc.gov/ANY/IN' denied
+client 185.106.122.182#19504 (cpsc.gov): query (cache) 'cpsc.gov/ANY/IN' denied
+client 185.106.122.182#19504 (cpsc.gov): query (cache) 'cpsc.gov/ANY/IN' denied
+client 185.106.122.182#19504 (cpsc.gov): query (cache) 'cpsc.gov/ANY/IN' denied
+client 185.106.122.182#19504 (cpsc.gov): query (cache) 'cpsc.gov/ANY/IN' denied
+client 185.106.122.182#19504 (cpsc.gov): query (cache) 'cpsc.gov/ANY/IN' denied
+client 185.106.122.182#19504 (cpsc.gov): query (cache) 'cpsc.gov/ANY/IN' denied
+client 185.106.122.182#18842 (cpsc.gov): query (cache) 'cpsc.gov/ANY/IN' denied
+client 185.106.122.182#24474 (cpsc.gov): query (cache) 'cpsc.gov/ANY/IN' denied
+client 185.106.122.182#24474 (cpsc.gov): query (cache) 'cpsc.gov/ANY/IN' denied
+client 185.106.122.182#24474 (cpsc.gov): query (cache) 'cpsc.gov/ANY/IN' denied
+client 185.106.122.182#24474 (cpsc.gov): query (cache) 'cpsc.gov/ANY/IN' denied
+client 185.106.122.182#18842 (cpsc.gov): query (cache) 'cpsc.gov/ANY/IN' denied
+client 185.106.122.182#18842 (cpsc.gov): query (cache) 'cpsc.gov/ANY/IN' denied
+client 185.106.122.182#18842 (cpsc.gov): query (cache) 'cpsc.gov/ANY/IN' denied
+client 185.106.122.182#18842 (cpsc.gov): query (cache) 'cpsc.gov/ANY/IN' denied
+client 185.106.122.182#18842 (cpsc.gov): query (cache) 'cpsc.gov/ANY/IN' denied
+client 185.106.122.182#18842 (cpsc.gov): query (cache) 'cpsc.gov/ANY/IN' denied
+client 185.106.122.182#18842 (cpsc.gov): query (cache) 'cpsc.gov/ANY/IN' denied
+client 185.106.122.182#18842 (cpsc.gov): query (cache) 'cpsc.gov/ANY/IN' denied
+client 185.106.122.182#18842 (cpsc.gov): query (cache) 'cpsc.gov/ANY/IN' denied
+client 185.106.122.182#18842 (cpsc.gov): query (cache) 'cpsc.gov/ANY/IN' denied
+client 185.106.122.182#18842 (cpsc.gov): query (cache) 'cpsc.gov/ANY/IN' denied
+client 185.106.122.182#18842 (cpsc.gov): query (cache) 'cpsc.gov/ANY/IN' denied
+client 185.106.122.182#18842 (cpsc.gov): query (cache) 'cpsc.gov/ANY/IN' denied
+client 185.106.122.182#18842 (cpsc.gov): query (cache) 'cpsc.gov/ANY/IN' denied
+client 185.106.122.182#24474 (cpsc.gov): query (cache) 'cpsc.gov/ANY/IN' denied
+client 185.106.122.182#24474 (cpsc.gov): query (cache) 'cpsc.gov/ANY/IN' denied
+client 185.106.122.182#24474 (cpsc.gov): query (cache) 'cpsc.gov/ANY/IN' denied
+client 185.106.122.182#24474 (cpsc.gov): query (cache) 'cpsc.gov/ANY/IN' denied
+client 185.106.122.182#24474 (cpsc.gov): query (cache) 'cpsc.gov/ANY/IN' denied
+client 185.106.122.182#24474 (cpsc.gov): query (cache) 'cpsc.gov/ANY/IN' denied
+client 185.106.122.182#24474 (cpsc.gov): query (cache) 'cpsc.gov/ANY/IN' denied
+client 185.106.122.182#24474 (cpsc.gov): query (cache) 'cpsc.gov/ANY/IN' denied
+client 185.106.122.182#24474 (cpsc.gov): query (cache) 'cpsc.gov/ANY/IN' denied
+client 185.106.122.182#24474 (cpsc.gov): query (cache) 'cpsc.gov/ANY/IN' denied
+client 185.106.122.182#24474 (cpsc.gov): query (cache) 'cpsc.gov/ANY/IN' denied
+client 185.106.122.182#8150 (cpsc.gov): query (cache) 'cpsc.gov/ANY/IN' denied
+client 185.106.122.182#8150 (cpsc.gov): query (cache) 'cpsc.gov/ANY/IN' denied
+client 185.106.122.182#8150 (cpsc.gov): query (cache) 'cpsc.gov/ANY/IN' denied
+client 185.106.122.182#8150 (cpsc.gov): query (cache) 'cpsc.gov/ANY/IN' denied
+client 185.106.122.182#8150 (cpsc.gov): query (cache) 'cpsc.gov/ANY/IN' denied
+client 185.106.122.182#8150 (cpsc.gov): query (cache) 'cpsc.gov/ANY/IN' denied
+client 185.106.122.182#8150 (cpsc.gov): query (cache) 'cpsc.gov/ANY/IN' denied
+client 185.106.122.182#8150 (cpsc.gov): query (cache) 'cpsc.gov/ANY/IN' denied
+client 185.106.122.182#8150 (cpsc.gov): query (cache) 'cpsc.gov/ANY/IN' denied
+client 185.106.122.182#8150 (cpsc.gov): query (cache) 'cpsc.gov/ANY/IN' denied
+client 185.106.122.182#8150 (cpsc.gov): query (cache) 'cpsc.gov/ANY/IN' denied
+client 185.106.122.182#8150 (cpsc.gov): query (cache) 'cpsc.gov/ANY/IN' denied
+client 185.106.122.182#8150 (cpsc.gov): query (cache) 'cpsc.gov/ANY/IN' denied
+client 185.106.122.182#8150 (cpsc.gov): query (cache) 'cpsc.gov/ANY/IN' denied
+client 185.106.122.182#8150 (cpsc.gov): query (cache) 'cpsc.gov/ANY/IN' denied
+client 185.106.122.182#29088 (cpsc.gov): query (cache) 'cpsc.gov/ANY/IN' denied
+client 185.106.122.182#29088 (cpsc.gov): query (cache) 'cpsc.gov/ANY/IN' denied
+client 185.106.122.182#29088 (cpsc.gov): query (cache) 'cpsc.gov/ANY/IN' denied
+client 185.106.122.182#29088 (cpsc.gov): query (cache) 'cpsc.gov/ANY/IN' denied
+client 185.106.122.182#29088 (cpsc.gov): query (cache) 'cpsc.gov/ANY/IN' denied
+client 185.106.122.182#29088 (cpsc.gov): query (cache) 'cpsc.gov/ANY/IN' denied
+client 185.106.122.182#29088 (cpsc.gov): query (cache) 'cpsc.gov/ANY/IN' denied
+client 185.106.122.182#29088 (cpsc.gov): query (cache) 'cpsc.gov/ANY/IN' denied
+client 185.106.122.182#29088 (cpsc.gov): query (cache) 'cpsc.gov/ANY/IN' denied
+client 185.106.122.182#29088 (cpsc.gov): query (cache) 'cpsc.gov/ANY/IN' denied
+client 185.106.122.182#29088 (cpsc.gov): query (cache) 'cpsc.gov/ANY/IN' denied
+client 185.106.122.182#29088 (cpsc.gov): query (cache) 'cpsc.gov/ANY/IN' denied
+client 185.106.122.182#29088 (cpsc.gov): query (cache) 'cpsc.gov/ANY/IN' denied
+client 185.106.122.182#29088 (cpsc.gov): query (cache) 'cpsc.gov/ANY/IN' denied
+client 185.106.122.182#29088 (cpsc.gov): query (cache) 'cpsc.gov/ANY/IN' denied
+client 185.106.122.182#5451 (cpsc.gov): query (cache) 'cpsc.gov/ANY/IN' denied
+client 185.106.122.182#5451 (cpsc.gov): query (cache) 'cpsc.gov/ANY/IN' denied
+client 185.106.122.182#5451 (cpsc.gov): query (cache) 'cpsc.gov/ANY/IN' denied
+client 185.106.122.182#5451 (cpsc.gov): query (cache) 'cpsc.gov/ANY/IN' denied
+client 185.106.122.182#5451 (cpsc.gov): query (cache) 'cpsc.gov/ANY/IN' denied
+client 185.106.122.182#5451 (cpsc.gov): query (cache) 'cpsc.gov/ANY/IN' denied
+client 185.106.122.182#5451 (cpsc.gov): query (cache) 'cpsc.gov/ANY/IN' denied
+client 185.106.122.182#5451 (cpsc.gov): query (cache) 'cpsc.gov/ANY/IN' denied
+client 185.106.122.182#5451 (cpsc.gov): query (cache) 'cpsc.gov/ANY/IN' denied
+client 185.106.122.182#5451 (cpsc.gov): query (cache) 'cpsc.gov/ANY/IN' denied
+client 185.106.122.182#5451 (cpsc.gov): query (cache) 'cpsc.gov/ANY/IN' denied
+client 185.106.122.182#5451 (cpsc.gov): query (cache) 'cpsc.gov/ANY/IN' denied
+client 185.106.122.182#5451 (cpsc.gov): query (cache) 'cpsc.gov/ANY/IN' denied
+client 185.106.122.182#5451 (cpsc.gov): query (cache) 'cpsc.gov/ANY/IN' denied
+client 185.106.122.182#5451 (cpsc.gov): query (cache) 'cpsc.gov/ANY/IN' denied
+client 185.106.122.182#5015 (cpsc.gov): query (cache) 'cpsc.gov/ANY/IN' denied
+client 185.106.122.182#5015 (cpsc.gov): query (cache) 'cpsc.gov/ANY/IN' denied
+client 185.106.122.182#5015 (cpsc.gov): query (cache) 'cpsc.gov/ANY/IN' denied
+client 185.106.122.182#5015 (cpsc.gov): query (cache) 'cpsc.gov/ANY/IN' denied
+client 185.106.122.182#5015 (cpsc.gov): query (cache) 'cpsc.gov/ANY/IN' denied
+client 185.106.122.182#5015 (cpsc.gov): query (cache) 'cpsc.gov/ANY/IN' denied
+client 185.106.122.182#5015 (cpsc.gov): query (cache) 'cpsc.gov/ANY/IN' denied
+client 185.106.122.182#5015 (cpsc.gov): query (cache) 'cpsc.gov/ANY/IN' denied
+client 185.106.122.182#5015 (cpsc.gov): query (cache) 'cpsc.gov/ANY/IN' denied
+client 185.106.122.182#5015 (cpsc.gov): query (cache) 'cpsc.gov/ANY/IN' denied
+client 185.106.122.182#5015 (cpsc.gov): query (cache) 'cpsc.gov/ANY/IN' denied
+client 185.106.122.182#5015 (cpsc.gov): query (cache) 'cpsc.gov/ANY/IN' denied
+client 185.106.122.182#5015 (cpsc.gov): query (cache) 'cpsc.gov/ANY/IN' denied
+client 185.106.122.182#5015 (cpsc.gov): query (cache) 'cpsc.gov/ANY/IN' denied
+client 185.106.122.182#5015 (cpsc.gov): query (cache) 'cpsc.gov/ANY/IN' denied
+client 185.106.122.182#59496 (cpsc.gov): query (cache) 'cpsc.gov/ANY/IN' denied
+client 185.106.122.182#59496 (cpsc.gov): query (cache) 'cpsc.gov/ANY/IN' denied
+client 185.106.122.182#59496 (cpsc.gov): query (cache) 'cpsc.gov/ANY/IN' denied
+client 185.106.122.182#59496 (cpsc.gov): query (cache) 'cpsc.gov/ANY/IN' denied
+client 185.106.122.182#59496 (cpsc.gov): query (cache) 'cpsc.gov/ANY/IN' denied
+client 185.106.122.182#59496 (cpsc.gov): query (cache) 'cpsc.gov/ANY/IN' denied
+client 185.106.122.182#59496 (cpsc.gov): query (cache) 'cpsc.gov/ANY/IN' denied
+client 185.106.122.182#59496 (cpsc.gov): query (cache) 'cpsc.gov/ANY/IN' denied
+client 185.106.122.182#59496 (cpsc.gov): query (cache) 'cpsc.gov/ANY/IN' denied
+client 185.106.122.182#59496 (cpsc.gov): query (cache) 'cpsc.gov/ANY/IN' denied
+client 185.106.122.182#59496 (cpsc.gov): query (cache) 'cpsc.gov/ANY/IN' denied
+client 185.106.122.182#59496 (cpsc.gov): query (cache) 'cpsc.gov/ANY/IN' denied
+client 185.106.122.182#59496 (cpsc.gov): query (cache) 'cpsc.gov/ANY/IN' denied
+client 185.106.122.182#59496 (cpsc.gov): query (cache) 'cpsc.gov/ANY/IN' denied
+client 185.106.122.182#59496 (cpsc.gov): query (cache) 'cpsc.gov/ANY/IN' denied
+client 185.106.122.182#34217 (cpsc.gov): query (cache) 'cpsc.gov/ANY/IN' denied
+client 185.106.122.182#34217 (cpsc.gov): query (cache) 'cpsc.gov/ANY/IN' denied
+client 185.106.122.182#34217 (cpsc.gov): query (cache) 'cpsc.gov/ANY/IN' denied
+client 185.106.122.182#34217 (cpsc.gov): query (cache) 'cpsc.gov/ANY/IN' denied
+client 185.106.122.182#34217 (cpsc.gov): query (cache) 'cpsc.gov/ANY/IN' denied
+client 185.106.122.182#34217 (cpsc.gov): query (cache) 'cpsc.gov/ANY/IN' denied
+client 185.106.122.182#34217 (cpsc.gov): query (cache) 'cpsc.gov/ANY/IN' denied
+client 185.106.122.182#34217 (cpsc.gov): query (cache) 'cpsc.gov/ANY/IN' denied
+client 185.106.122.182#34217 (cpsc.gov): query (cache) 'cpsc.gov/ANY/IN' denied
+client 185.106.122.182#34217 (cpsc.gov): query (cache) 'cpsc.gov/ANY/IN' denied
+client 185.106.122.182#34217 (cpsc.gov): query (cache) 'cpsc.gov/ANY/IN' denied
+client 185.106.122.182#34217 (cpsc.gov): query (cache) 'cpsc.gov/ANY/IN' denied
+client 185.106.122.182#34217 (cpsc.gov): query (cache) 'cpsc.gov/ANY/IN' denied
+client 185.106.122.182#34217 (cpsc.gov): query (cache) 'cpsc.gov/ANY/IN' denied
+client 185.106.122.182#34217 (cpsc.gov): query (cache) 'cpsc.gov/ANY/IN' denied
+client 185.106.122.182#9103 (cpsc.gov): query (cache) 'cpsc.gov/ANY/IN' denied
+client 185.106.122.182#9103 (cpsc.gov): query (cache) 'cpsc.gov/ANY/IN' denied
+client 185.106.122.182#9103 (cpsc.gov): query (cache) 'cpsc.gov/ANY/IN' denied
+client 185.106.122.182#9103 (cpsc.gov): query (cache) 'cpsc.gov/ANY/IN' denied
+client 185.106.122.182#9103 (cpsc.gov): query (cache) 'cpsc.gov/ANY/IN' denied
+client 185.106.122.182#9103 (cpsc.gov): query (cache) 'cpsc.gov/ANY/IN' denied
+client 185.106.122.182#9103 (cpsc.gov): query (cache) 'cpsc.gov/ANY/IN' denied
+client 185.106.122.182#9103 (cpsc.gov): query (cache) 'cpsc.gov/ANY/IN' denied
+client 185.106.122.182#9103 (cpsc.gov): query (cache) 'cpsc.gov/ANY/IN' denied
+client 185.106.122.182#9103 (cpsc.gov): query (cache) 'cpsc.gov/ANY/IN' denied
+client 185.106.122.182#9103 (cpsc.gov): query (cache) 'cpsc.gov/ANY/IN' denied
+client 185.106.122.182#9103 (cpsc.gov): query (cache) 'cpsc.gov/ANY/IN' denied
+client 185.106.122.182#9103 (cpsc.gov): query (cache) 'cpsc.gov/ANY/IN' denied
+client 185.106.122.182#9103 (cpsc.gov): query (cache) 'cpsc.gov/ANY/IN' denied
+client 185.106.122.182#9103 (cpsc.gov): query (cache) 'cpsc.gov/ANY/IN' denied
+client 185.106.122.182#3834 (cpsc.gov): query (cache) 'cpsc.gov/ANY/IN' denied
+client 185.106.122.182#3834 (cpsc.gov): query (cache) 'cpsc.gov/ANY/IN' denied
+client 185.106.122.182#3834 (cpsc.gov): query (cache) 'cpsc.gov/ANY/IN' denied
+client 185.106.122.182#3834 (cpsc.gov): query (cache) 'cpsc.gov/ANY/IN' denied
+client 185.106.122.182#3834 (cpsc.gov): query (cache) 'cpsc.gov/ANY/IN' denied
+client 185.106.122.182#3834 (cpsc.gov): query (cache) 'cpsc.gov/ANY/IN' denied
+client 185.106.122.182#3834 (cpsc.gov): query (cache) 'cpsc.gov/ANY/IN' denied
+client 185.106.122.182#3834 (cpsc.gov): query (cache) 'cpsc.gov/ANY/IN' denied
+client 185.106.122.182#3834 (cpsc.gov): query (cache) 'cpsc.gov/ANY/IN' denied
+client 185.106.122.182#3834 (cpsc.gov): query (cache) 'cpsc.gov/ANY/IN' denied
+client 185.106.122.182#3834 (cpsc.gov): query (cache) 'cpsc.gov/ANY/IN' denied
+client 185.106.122.182#3834 (cpsc.gov): query (cache) 'cpsc.gov/ANY/IN' denied
+client 185.106.122.182#3834 (cpsc.gov): query (cache) 'cpsc.gov/ANY/IN' denied
+client 185.106.122.182#3834 (cpsc.gov): query (cache) 'cpsc.gov/ANY/IN' denied
+client 185.106.122.182#3834 (cpsc.gov): query (cache) 'cpsc.gov/ANY/IN' denied
+client 185.106.122.182#22861 (cpsc.gov): query (cache) 'cpsc.gov/ANY/IN' denied
+client 185.106.122.182#22861 (cpsc.gov): query (cache) 'cpsc.gov/ANY/IN' denied
+client 185.106.122.182#22861 (cpsc.gov): query (cache) 'cpsc.gov/ANY/IN' denied
+client 185.106.122.182#22861 (cpsc.gov): query (cache) 'cpsc.gov/ANY/IN' denied
+client 185.106.122.182#22861 (cpsc.gov): query (cache) 'cpsc.gov/ANY/IN' denied
+client 185.106.122.182#22861 (cpsc.gov): query (cache) 'cpsc.gov/ANY/IN' denied
+client 185.106.122.182#22861 (cpsc.gov): query (cache) 'cpsc.gov/ANY/IN' denied
+client 185.106.122.182#22861 (cpsc.gov): query (cache) 'cpsc.gov/ANY/IN' denied
+client 185.106.122.182#22861 (cpsc.gov): query (cache) 'cpsc.gov/ANY/IN' denied
+client 185.106.122.182#22861 (cpsc.gov): query (cache) 'cpsc.gov/ANY/IN' denied
+client 185.106.122.182#22861 (cpsc.gov): query (cache) 'cpsc.gov/ANY/IN' denied
+client 185.106.122.182#22861 (cpsc.gov): query (cache) 'cpsc.gov/ANY/IN' denied
+client 185.106.122.182#22861 (cpsc.gov): query (cache) 'cpsc.gov/ANY/IN' denied
+client 185.106.122.182#22861 (cpsc.gov): query (cache) 'cpsc.gov/ANY/IN' denied
+client 185.106.122.182#22861 (cpsc.gov): query (cache) 'cpsc.gov/ANY/IN' denied
+client 185.106.122.182#41022 (cpsc.gov): query (cache) 'cpsc.gov/ANY/IN' denied
+client 185.106.122.182#41022 (cpsc.gov): query (cache) 'cpsc.gov/ANY/IN' denied
+client 185.106.122.182#41022 (cpsc.gov): query (cache) 'cpsc.gov/ANY/IN' denied
+client 185.106.122.182#41022 (cpsc.gov): query (cache) 'cpsc.gov/ANY/IN' denied
+client 185.106.122.182#41022 (cpsc.gov): query (cache) 'cpsc.gov/ANY/IN' denied
+client 185.106.122.182#41022 (cpsc.gov): query (cache) 'cpsc.gov/ANY/IN' denied
+client 185.106.122.182#41022 (cpsc.gov): query (cache) 'cpsc.gov/ANY/IN' denied
+client 185.106.122.182#41022 (cpsc.gov): query (cache) 'cpsc.gov/ANY/IN' denied
+client 185.106.122.182#41022 (cpsc.gov): query (cache) 'cpsc.gov/ANY/IN' denied
+client 185.106.122.182#41022 (cpsc.gov): query (cache) 'cpsc.gov/ANY/IN' denied
+client 185.106.122.182#41022 (cpsc.gov): query (cache) 'cpsc.gov/ANY/IN' denied
+client 185.106.122.182#41022 (cpsc.gov): query (cache) 'cpsc.gov/ANY/IN' denied
+client 185.106.122.182#41022 (cpsc.gov): query (cache) 'cpsc.gov/ANY/IN' denied
+client 185.106.122.182#41022 (cpsc.gov): query (cache) 'cpsc.gov/ANY/IN' denied
+client 185.106.122.182#41022 (cpsc.gov): query (cache) 'cpsc.gov/ANY/IN' denied
+client 185.106.122.182#35634 (cpsc.gov): query (cache) 'cpsc.gov/ANY/IN' denied
+client 185.106.122.182#35634 (cpsc.gov): query (cache) 'cpsc.gov/ANY/IN' denied
+client 185.106.122.182#35634 (cpsc.gov): query (cache) 'cpsc.gov/ANY/IN' denied
+client 185.106.122.182#35634 (cpsc.gov): query (cache) 'cpsc.gov/ANY/IN' denied
+client 185.106.122.182#35634 (cpsc.gov): query (cache) 'cpsc.gov/ANY/IN' denied
+client 185.106.122.182#35634 (cpsc.gov): query (cache) 'cpsc.gov/ANY/IN' denied
+client 185.106.122.182#35634 (cpsc.gov): query (cache) 'cpsc.gov/ANY/IN' denied
+client 185.106.122.182#35634 (cpsc.gov): query (cache) 'cpsc.gov/ANY/IN' denied
+client 185.106.122.182#35634 (cpsc.gov): query (cache) 'cpsc.gov/ANY/IN' denied
+client 185.106.122.182#35634 (cpsc.gov): query (cache) 'cpsc.gov/ANY/IN' denied
+client 185.106.122.182#35634 (cpsc.gov): query (cache) 'cpsc.gov/ANY/IN' denied
+client 185.106.122.182#35634 (cpsc.gov): query (cache) 'cpsc.gov/ANY/IN' denied
+client 185.106.122.182#35634 (cpsc.gov): query (cache) 'cpsc.gov/ANY/IN' denied
+client 185.106.122.182#35634 (cpsc.gov): query (cache) 'cpsc.gov/ANY/IN' denied
+client 185.106.122.182#35634 (cpsc.gov): query (cache) 'cpsc.gov/ANY/IN' denied
+client 185.106.122.182#55144 (cpsc.gov): query (cache) 'cpsc.gov/ANY/IN' denied
+client 185.106.122.182#55144 (cpsc.gov): query (cache) 'cpsc.gov/ANY/IN' denied
+client 185.106.122.182#55144 (cpsc.gov): query (cache) 'cpsc.gov/ANY/IN' denied
+client 185.106.122.182#55144 (cpsc.gov): query (cache) 'cpsc.gov/ANY/IN' denied
+client 185.106.122.182#55144 (cpsc.gov): query (cache) 'cpsc.gov/ANY/IN' denied
+client 185.106.122.182#55144 (cpsc.gov): query (cache) 'cpsc.gov/ANY/IN' denied
+client 185.106.122.182#55144 (cpsc.gov): query (cache) 'cpsc.gov/ANY/IN' denied
+client 185.106.122.182#55144 (cpsc.gov): query (cache) 'cpsc.gov/ANY/IN' denied
+client 185.106.122.182#55144 (cpsc.gov): query (cache) 'cpsc.gov/ANY/IN' denied
+client 185.106.122.182#55144 (cpsc.gov): query (cache) 'cpsc.gov/ANY/IN' denied
+client 185.106.122.182#55144 (cpsc.gov): query (cache) 'cpsc.gov/ANY/IN' denied
+client 185.106.122.182#55144 (cpsc.gov): query (cache) 'cpsc.gov/ANY/IN' denied
+client 185.106.122.182#55144 (cpsc.gov): query (cache) 'cpsc.gov/ANY/IN' denied
+client 185.106.122.182#55144 (cpsc.gov): query (cache) 'cpsc.gov/ANY/IN' denied
+client 185.106.122.182#55144 (cpsc.gov): query (cache) 'cpsc.gov/ANY/IN' denied
+client 185.106.122.182#5639 (cpsc.gov): query (cache) 'cpsc.gov/ANY/IN' denied
+client 185.106.122.182#5639 (cpsc.gov): query (cache) 'cpsc.gov/ANY/IN' denied
+client 185.106.122.182#5639 (cpsc.gov): query (cache) 'cpsc.gov/ANY/IN' denied
+client 185.106.122.182#5639 (cpsc.gov): query (cache) 'cpsc.gov/ANY/IN' denied
+client 185.106.122.182#5639 (cpsc.gov): query (cache) 'cpsc.gov/ANY/IN' denied
+client 185.106.122.182#5639 (cpsc.gov): query (cache) 'cpsc.gov/ANY/IN' denied
+client 185.106.122.182#5639 (cpsc.gov): query (cache) 'cpsc.gov/ANY/IN' denied
+client 185.106.122.182#5639 (cpsc.gov): query (cache) 'cpsc.gov/ANY/IN' denied
+client 185.106.122.182#5639 (cpsc.gov): query (cache) 'cpsc.gov/ANY/IN' denied
+client 185.106.122.182#5639 (cpsc.gov): query (cache) 'cpsc.gov/ANY/IN' denied
+client 185.106.122.182#5639 (cpsc.gov): query (cache) 'cpsc.gov/ANY/IN' denied
+client 185.106.122.182#5639 (cpsc.gov): query (cache) 'cpsc.gov/ANY/IN' denied
+client 185.106.122.182#5639 (cpsc.gov): query (cache) 'cpsc.gov/ANY/IN' denied
+client 185.106.122.182#5639 (cpsc.gov): query (cache) 'cpsc.gov/ANY/IN' denied
+client 185.106.122.182#5639 (cpsc.gov): query (cache) 'cpsc.gov/ANY/IN' denied
+client 185.106.122.182#45129 (cpsc.gov): query (cache) 'cpsc.gov/ANY/IN' denied
+client 185.106.122.182#45129 (cpsc.gov): query (cache) 'cpsc.gov/ANY/IN' denied
+client 185.106.122.182#45129 (cpsc.gov): query (cache) 'cpsc.gov/ANY/IN' denied
+client 185.106.122.182#45129 (cpsc.gov): query (cache) 'cpsc.gov/ANY/IN' denied
+client 185.106.122.182#45129 (cpsc.gov): query (cache) 'cpsc.gov/ANY/IN' denied
+client 185.106.122.182#45129 (cpsc.gov): query (cache) 'cpsc.gov/ANY/IN' denied
+client 185.106.122.182#45129 (cpsc.gov): query (cache) 'cpsc.gov/ANY/IN' denied
+client 185.106.122.182#45129 (cpsc.gov): query (cache) 'cpsc.gov/ANY/IN' denied
+client 185.106.122.182#45129 (cpsc.gov): query (cache) 'cpsc.gov/ANY/IN' denied
+client 185.106.122.182#45129 (cpsc.gov): query (cache) 'cpsc.gov/ANY/IN' denied
+client 185.106.122.182#45129 (cpsc.gov): query (cache) 'cpsc.gov/ANY/IN' denied
+client 185.106.122.182#45129 (cpsc.gov): query (cache) 'cpsc.gov/ANY/IN' denied
+client 185.106.122.182#45129 (cpsc.gov): query (cache) 'cpsc.gov/ANY/IN' denied
+client 185.106.122.182#45129 (cpsc.gov): query (cache) 'cpsc.gov/ANY/IN' denied
+client 185.106.122.182#45129 (cpsc.gov): query (cache) 'cpsc.gov/ANY/IN' denied
+client 185.106.122.182#58347 (cpsc.gov): query (cache) 'cpsc.gov/ANY/IN' denied
+client 185.106.122.182#58347 (cpsc.gov): query (cache) 'cpsc.gov/ANY/IN' denied
+client 185.106.122.182#58347 (cpsc.gov): query (cache) 'cpsc.gov/ANY/IN' denied
+client 185.106.122.182#58347 (cpsc.gov): query (cache) 'cpsc.gov/ANY/IN' denied
+client 185.106.122.182#58347 (cpsc.gov): query (cache) 'cpsc.gov/ANY/IN' denied
+client 185.106.122.182#58347 (cpsc.gov): query (cache) 'cpsc.gov/ANY/IN' denied
+client 185.106.122.182#58347 (cpsc.gov): query (cache) 'cpsc.gov/ANY/IN' denied
+client 185.106.122.182#58347 (cpsc.gov): query (cache) 'cpsc.gov/ANY/IN' denied
+client 185.106.122.182#58347 (cpsc.gov): query (cache) 'cpsc.gov/ANY/IN' denied
+client 185.106.122.182#58347 (cpsc.gov): query (cache) 'cpsc.gov/ANY/IN' denied
+client 185.106.122.182#58347 (cpsc.gov): query (cache) 'cpsc.gov/ANY/IN' denied
+client 185.106.122.182#58347 (cpsc.gov): query (cache) 'cpsc.gov/ANY/IN' denied
+client 185.106.122.182#58347 (cpsc.gov): query (cache) 'cpsc.gov/ANY/IN' denied
+client 185.106.122.182#58347 (cpsc.gov): query (cache) 'cpsc.gov/ANY/IN' denied
+client 185.106.122.182#58347 (cpsc.gov): query (cache) 'cpsc.gov/ANY/IN' denied
+client 185.106.122.182#25436 (cpsc.gov): query (cache) 'cpsc.gov/ANY/IN' denied
+client 185.106.122.182#25436 (cpsc.gov): query (cache) 'cpsc.gov/ANY/IN' denied
+client 185.106.122.182#25436 (cpsc.gov): query (cache) 'cpsc.gov/ANY/IN' denied
+client 185.106.122.182#25436 (cpsc.gov): query (cache) 'cpsc.gov/ANY/IN' denied
+client 185.106.122.182#25436 (cpsc.gov): query (cache) 'cpsc.gov/ANY/IN' denied
+client 185.106.122.182#25436 (cpsc.gov): query (cache) 'cpsc.gov/ANY/IN' denied
+client 185.106.122.182#25436 (cpsc.gov): query (cache) 'cpsc.gov/ANY/IN' denied
+client 185.106.122.182#25436 (cpsc.gov): query (cache) 'cpsc.gov/ANY/IN' denied
+client 185.106.122.182#25436 (cpsc.gov): query (cache) 'cpsc.gov/ANY/IN' denied
+client 185.106.122.182#25436 (cpsc.gov): query (cache) 'cpsc.gov/ANY/IN' denied
+client 185.106.122.182#25436 (cpsc.gov): query (cache) 'cpsc.gov/ANY/IN' denied
+client 185.106.122.182#25436 (cpsc.gov): query (cache) 'cpsc.gov/ANY/IN' denied
+client 185.106.122.182#25436 (cpsc.gov): query (cache) 'cpsc.gov/ANY/IN' denied
+client 185.106.122.182#25436 (cpsc.gov): query (cache) 'cpsc.gov/ANY/IN' denied
+client 185.106.122.182#25436 (cpsc.gov): query (cache) 'cpsc.gov/ANY/IN' denied
+client 185.106.122.182#37529 (cpsc.gov): query (cache) 'cpsc.gov/ANY/IN' denied
+client 185.106.122.182#37529 (cpsc.gov): query (cache) 'cpsc.gov/ANY/IN' denied
+client 185.106.122.182#37529 (cpsc.gov): query (cache) 'cpsc.gov/ANY/IN' denied
+client 185.106.122.182#37529 (cpsc.gov): query (cache) 'cpsc.gov/ANY/IN' denied
+client 185.106.122.182#37529 (cpsc.gov): query (cache) 'cpsc.gov/ANY/IN' denied
+client 185.106.122.182#37529 (cpsc.gov): query (cache) 'cpsc.gov/ANY/IN' denied
+client 185.106.122.182#37529 (cpsc.gov): query (cache) 'cpsc.gov/ANY/IN' denied
+client 185.106.122.182#37529 (cpsc.gov): query (cache) 'cpsc.gov/ANY/IN' denied
+client 185.106.122.182#37529 (cpsc.gov): query (cache) 'cpsc.gov/ANY/IN' denied
+client 185.106.122.182#37529 (cpsc.gov): query (cache) 'cpsc.gov/ANY/IN' denied
+client 185.106.122.182#37529 (cpsc.gov): query (cache) 'cpsc.gov/ANY/IN' denied
+client 185.106.122.182#37529 (cpsc.gov): query (cache) 'cpsc.gov/ANY/IN' denied
+client 185.106.122.182#37529 (cpsc.gov): query (cache) 'cpsc.gov/ANY/IN' denied
+client 185.106.122.182#37529 (cpsc.gov): query (cache) 'cpsc.gov/ANY/IN' denied
+client 185.106.122.182#37529 (cpsc.gov): query (cache) 'cpsc.gov/ANY/IN' denied
+client 185.106.122.182#11406 (cpsc.gov): query (cache) 'cpsc.gov/ANY/IN' denied
+client 185.106.122.182#11406 (cpsc.gov): query (cache) 'cpsc.gov/ANY/IN' denied
+client 185.106.122.182#11406 (cpsc.gov): query (cache) 'cpsc.gov/ANY/IN' denied
+client 185.106.122.182#11406 (cpsc.gov): query (cache) 'cpsc.gov/ANY/IN' denied
+client 185.106.122.182#11406 (cpsc.gov): query (cache) 'cpsc.gov/ANY/IN' denied
+client 185.106.122.182#11406 (cpsc.gov): query (cache) 'cpsc.gov/ANY/IN' denied
+client 185.106.122.182#11406 (cpsc.gov): query (cache) 'cpsc.gov/ANY/IN' denied
+client 185.106.122.182#11406 (cpsc.gov): query (cache) 'cpsc.gov/ANY/IN' denied
+client 185.106.122.182#11406 (cpsc.gov): query (cache) 'cpsc.gov/ANY/IN' denied
+client 185.106.122.182#11406 (cpsc.gov): query (cache) 'cpsc.gov/ANY/IN' denied
+client 185.106.122.182#11406 (cpsc.gov): query (cache) 'cpsc.gov/ANY/IN' denied
+client 185.106.122.182#11406 (cpsc.gov): query (cache) 'cpsc.gov/ANY/IN' denied
+client 185.106.122.182#11406 (cpsc.gov): query (cache) 'cpsc.gov/ANY/IN' denied
+client 185.106.122.182#11406 (cpsc.gov): query (cache) 'cpsc.gov/ANY/IN' denied
+client 185.106.122.182#11406 (cpsc.gov): query (cache) 'cpsc.gov/ANY/IN' denied
+client 185.106.122.182#29784 (cpsc.gov): query (cache) 'cpsc.gov/ANY/IN' denied
+client 185.106.122.182#29784 (cpsc.gov): query (cache) 'cpsc.gov/ANY/IN' denied
+client 185.106.122.182#29784 (cpsc.gov): query (cache) 'cpsc.gov/ANY/IN' denied
+client 185.106.122.182#29784 (cpsc.gov): query (cache) 'cpsc.gov/ANY/IN' denied
+client 185.106.122.182#29784 (cpsc.gov): query (cache) 'cpsc.gov/ANY/IN' denied
+client 185.106.122.182#29784 (cpsc.gov): query (cache) 'cpsc.gov/ANY/IN' denied
+client 185.106.122.182#29784 (cpsc.gov): query (cache) 'cpsc.gov/ANY/IN' denied
+client 185.106.122.182#29784 (cpsc.gov): query (cache) 'cpsc.gov/ANY/IN' denied
+client 185.106.122.182#29784 (cpsc.gov): query (cache) 'cpsc.gov/ANY/IN' denied
+client 185.106.122.182#29784 (cpsc.gov): query (cache) 'cpsc.gov/ANY/IN' denied
+client 185.106.122.182#29784 (cpsc.gov): query (cache) 'cpsc.gov/ANY/IN' denied
+client 185.106.122.182#29784 (cpsc.gov): query (cache) 'cpsc.gov/ANY/IN' denied
+client 185.106.122.182#29784 (cpsc.gov): query (cache) 'cpsc.gov/ANY/IN' denied
+client 185.106.122.182#29784 (cpsc.gov): query (cache) 'cpsc.gov/ANY/IN' denied
+client 185.106.122.182#29784 (cpsc.gov): query (cache) 'cpsc.gov/ANY/IN' denied
+client 185.106.122.182#40470 (cpsc.gov): query (cache) 'cpsc.gov/ANY/IN' denied
+client 185.106.122.182#40470 (cpsc.gov): query (cache) 'cpsc.gov/ANY/IN' denied
+client 185.106.122.182#40470 (cpsc.gov): query (cache) 'cpsc.gov/ANY/IN' denied
+client 185.106.122.182#40470 (cpsc.gov): query (cache) 'cpsc.gov/ANY/IN' denied
+client 185.106.122.182#40470 (cpsc.gov): query (cache) 'cpsc.gov/ANY/IN' denied
+client 185.106.122.182#40470 (cpsc.gov): query (cache) 'cpsc.gov/ANY/IN' denied
+client 185.106.122.182#40470 (cpsc.gov): query (cache) 'cpsc.gov/ANY/IN' denied
+client 185.106.122.182#40470 (cpsc.gov): query (cache) 'cpsc.gov/ANY/IN' denied
+client 185.106.122.182#40470 (cpsc.gov): query (cache) 'cpsc.gov/ANY/IN' denied
+client 185.106.122.182#40470 (cpsc.gov): query (cache) 'cpsc.gov/ANY/IN' denied
+client 185.106.122.182#40470 (cpsc.gov): query (cache) 'cpsc.gov/ANY/IN' denied
+client 185.106.122.182#40470 (cpsc.gov): query (cache) 'cpsc.gov/ANY/IN' denied
+client 185.106.122.182#40470 (cpsc.gov): query (cache) 'cpsc.gov/ANY/IN' denied
+client 185.106.122.182#40470 (cpsc.gov): query (cache) 'cpsc.gov/ANY/IN' denied
+client 185.106.122.182#40470 (cpsc.gov): query (cache) 'cpsc.gov/ANY/IN' denied
+client 185.106.122.182#17454 (cpsc.gov): query (cache) 'cpsc.gov/ANY/IN' denied
+client 185.106.122.182#17454 (cpsc.gov): query (cache) 'cpsc.gov/ANY/IN' denied
+client 185.106.122.182#17454 (cpsc.gov): query (cache) 'cpsc.gov/ANY/IN' denied
+client 185.106.122.182#17454 (cpsc.gov): query (cache) 'cpsc.gov/ANY/IN' denied
+client 185.106.122.182#17454 (cpsc.gov): query (cache) 'cpsc.gov/ANY/IN' denied
+client 185.106.122.182#17454 (cpsc.gov): query (cache) 'cpsc.gov/ANY/IN' denied
+client 185.106.122.182#17454 (cpsc.gov): query (cache) 'cpsc.gov/ANY/IN' denied
+client 185.106.122.182#17454 (cpsc.gov): query (cache) 'cpsc.gov/ANY/IN' denied
+client 185.106.122.182#17454 (cpsc.gov): query (cache) 'cpsc.gov/ANY/IN' denied
+client 185.106.122.182#17454 (cpsc.gov): query (cache) 'cpsc.gov/ANY/IN' denied
+client 185.106.122.182#17454 (cpsc.gov): query (cache) 'cpsc.gov/ANY/IN' denied
+client 185.106.122.182#17454 (cpsc.gov): query (cache) 'cpsc.gov/ANY/IN' denied
+client 185.106.122.182#17454 (cpsc.gov): query (cache) 'cpsc.gov/ANY/IN' denied
+client 185.106.122.182#17454 (cpsc.gov): query (cache) 'cpsc.gov/ANY/IN' denied
+client 185.106.122.182#17454 (cpsc.gov): query (cache) 'cpsc.gov/ANY/IN' denied
+client 185.106.122.182#23166 (cpsc.gov): query (cache) 'cpsc.gov/ANY/IN' denied
+client 185.106.122.182#23166 (cpsc.gov): query (cache) 'cpsc.gov/ANY/IN' denied
+client 185.106.122.182#23166 (cpsc.gov): query (cache) 'cpsc.gov/ANY/IN' denied
+client 185.106.122.182#23166 (cpsc.gov): query (cache) 'cpsc.gov/ANY/IN' denied
+client 185.106.122.182#23166 (cpsc.gov): query (cache) 'cpsc.gov/ANY/IN' denied
+client 185.106.122.182#23166 (cpsc.gov): query (cache) 'cpsc.gov/ANY/IN' denied
+client 185.106.122.182#23166 (cpsc.gov): query (cache) 'cpsc.gov/ANY/IN' denied
+client 185.106.122.182#23166 (cpsc.gov): query (cache) 'cpsc.gov/ANY/IN' denied
+client 185.106.122.182#23166 (cpsc.gov): query (cache) 'cpsc.gov/ANY/IN' denied
+client 185.106.122.182#23166 (cpsc.gov): query (cache) 'cpsc.gov/ANY/IN' denied
+client 185.106.122.182#23166 (cpsc.gov): query (cache) 'cpsc.gov/ANY/IN' denied
+client 185.106.122.182#23166 (cpsc.gov): query (cache) 'cpsc.gov/ANY/IN' denied
+client 185.106.122.182#23166 (cpsc.gov): query (cache) 'cpsc.gov/ANY/IN' denied
+client 185.106.122.182#23166 (cpsc.gov): query (cache) 'cpsc.gov/ANY/IN' denied
+client 185.106.122.182#23166 (cpsc.gov): query (cache) 'cpsc.gov/ANY/IN' denied
+client 185.106.122.182#8045 (cpsc.gov): query (cache) 'cpsc.gov/ANY/IN' denied
+client 185.106.122.182#8045 (cpsc.gov): query (cache) 'cpsc.gov/ANY/IN' denied
+client 185.106.122.182#8045 (cpsc.gov): query (cache) 'cpsc.gov/ANY/IN' denied
+client 185.106.122.182#8045 (cpsc.gov): query (cache) 'cpsc.gov/ANY/IN' denied
+client 185.106.122.182#8045 (cpsc.gov): query (cache) 'cpsc.gov/ANY/IN' denied
+client 185.106.122.182#8045 (cpsc.gov): query (cache) 'cpsc.gov/ANY/IN' denied
+client 185.106.122.182#8045 (cpsc.gov): query (cache) 'cpsc.gov/ANY/IN' denied
+client 185.106.122.182#8045 (cpsc.gov): query (cache) 'cpsc.gov/ANY/IN' denied
+client 185.106.122.182#8045 (cpsc.gov): query (cache) 'cpsc.gov/ANY/IN' denied
+client 185.106.122.182#8045 (cpsc.gov): query (cache) 'cpsc.gov/ANY/IN' denied
+client 185.106.122.182#8045 (cpsc.gov): query (cache) 'cpsc.gov/ANY/IN' denied
+client 185.106.122.182#8045 (cpsc.gov): query (cache) 'cpsc.gov/ANY/IN' denied
+client 185.106.122.182#8045 (cpsc.gov): query (cache) 'cpsc.gov/ANY/IN' denied
+client 185.106.122.182#8045 (cpsc.gov): query (cache) 'cpsc.gov/ANY/IN' denied
+client 185.106.122.182#8045 (cpsc.gov): query (cache) 'cpsc.gov/ANY/IN' denied
+client 185.106.122.182#61099 (cpsc.gov): query (cache) 'cpsc.gov/ANY/IN' denied
+client 185.106.122.182#61099 (cpsc.gov): query (cache) 'cpsc.gov/ANY/IN' denied
+client 185.106.122.182#61099 (cpsc.gov): query (cache) 'cpsc.gov/ANY/IN' denied
+client 185.106.122.182#61099 (cpsc.gov): query (cache) 'cpsc.gov/ANY/IN' denied
+client 185.106.122.182#61099 (cpsc.gov): query (cache) 'cpsc.gov/ANY/IN' denied
+client 185.106.122.182#61099 (cpsc.gov): query (cache) 'cpsc.gov/ANY/IN' denied
+client 185.106.122.182#61099 (cpsc.gov): query (cache) 'cpsc.gov/ANY/IN' denied
+client 185.106.122.182#61099 (cpsc.gov): query (cache) 'cpsc.gov/ANY/IN' denied
+client 185.106.122.182#61099 (cpsc.gov): query (cache) 'cpsc.gov/ANY/IN' denied
+client 185.106.122.182#61099 (cpsc.gov): query (cache) 'cpsc.gov/ANY/IN' denied
+client 185.106.122.182#61099 (cpsc.gov): query (cache) 'cpsc.gov/ANY/IN' denied
+client 185.106.122.182#61099 (cpsc.gov): query (cache) 'cpsc.gov/ANY/IN' denied
+client 185.106.122.182#61099 (cpsc.gov): query (cache) 'cpsc.gov/ANY/IN' denied
+client 185.106.122.182#61099 (cpsc.gov): query (cache) 'cpsc.gov/ANY/IN' denied
+client 185.106.122.182#61099 (cpsc.gov): query (cache) 'cpsc.gov/ANY/IN' denied
+client 185.106.122.182#565 (cpsc.gov): query (cache) 'cpsc.gov/ANY/IN' denied
+client 185.106.122.182#565 (cpsc.gov): query (cache) 'cpsc.gov/ANY/IN' denied
+client 185.106.122.182#565 (cpsc.gov): query (cache) 'cpsc.gov/ANY/IN' denied
+client 185.106.122.182#565 (cpsc.gov): query (cache) 'cpsc.gov/ANY/IN' denied
+client 185.106.122.182#565 (cpsc.gov): query (cache) 'cpsc.gov/ANY/IN' denied
+client 185.106.122.182#565 (cpsc.gov): query (cache) 'cpsc.gov/ANY/IN' denied
+client 185.106.122.182#565 (cpsc.gov): query (cache) 'cpsc.gov/ANY/IN' denied
+client 185.106.122.182#565 (cpsc.gov): query (cache) 'cpsc.gov/ANY/IN' denied
+client 185.106.122.182#565 (cpsc.gov): query (cache) 'cpsc.gov/ANY/IN' denied
+client 185.106.122.182#565 (cpsc.gov): query (cache) 'cpsc.gov/ANY/IN' denied
+client 185.106.122.182#565 (cpsc.gov): query (cache) 'cpsc.gov/ANY/IN' denied
+client 185.106.122.182#565 (cpsc.gov): query (cache) 'cpsc.gov/ANY/IN' denied
+client 185.106.122.182#565 (cpsc.gov): query (cache) 'cpsc.gov/ANY/IN' denied
+client 185.106.122.182#565 (cpsc.gov): query (cache) 'cpsc.gov/ANY/IN' denied
+client 185.106.122.182#565 (cpsc.gov): query (cache) 'cpsc.gov/ANY/IN' denied
+client 185.106.122.182#59183 (cpsc.gov): query (cache) 'cpsc.gov/ANY/IN' denied
+client 185.106.122.182#59183 (cpsc.gov): query (cache) 'cpsc.gov/ANY/IN' denied
+client 185.106.122.182#59183 (cpsc.gov): query (cache) 'cpsc.gov/ANY/IN' denied
+client 185.106.122.182#59183 (cpsc.gov): query (cache) 'cpsc.gov/ANY/IN' denied
+client 185.106.122.182#59183 (cpsc.gov): query (cache) 'cpsc.gov/ANY/IN' denied
+client 185.106.122.182#59183 (cpsc.gov): query (cache) 'cpsc.gov/ANY/IN' denied
+client 185.106.122.182#59183 (cpsc.gov): query (cache) 'cpsc.gov/ANY/IN' denied
+client 185.106.122.182#59183 (cpsc.gov): query (cache) 'cpsc.gov/ANY/IN' denied
+client 185.106.122.182#59183 (cpsc.gov): query (cache) 'cpsc.gov/ANY/IN' denied
+client 185.106.122.182#59183 (cpsc.gov): query (cache) 'cpsc.gov/ANY/IN' denied
+client 185.106.122.182#59183 (cpsc.gov): query (cache) 'cpsc.gov/ANY/IN' denied
+client 185.106.122.182#59183 (cpsc.gov): query (cache) 'cpsc.gov/ANY/IN' denied
+client 185.106.122.182#59183 (cpsc.gov): query (cache) 'cpsc.gov/ANY/IN' denied
+client 185.106.122.182#59183 (cpsc.gov): query (cache) 'cpsc.gov/ANY/IN' denied
+client 185.106.122.182#59183 (cpsc.gov): query (cache) 'cpsc.gov/ANY/IN' denied
+client 185.106.122.182#15906 (cpsc.gov): query (cache) 'cpsc.gov/ANY/IN' denied
+client 185.106.122.182#15906 (cpsc.gov): query (cache) 'cpsc.gov/ANY/IN' denied
+client 185.106.122.182#15906 (cpsc.gov): query (cache) 'cpsc.gov/ANY/IN' denied
+client 185.106.122.182#15906 (cpsc.gov): query (cache) 'cpsc.gov/ANY/IN' denied
+client 185.106.122.182#15906 (cpsc.gov): query (cache) 'cpsc.gov/ANY/IN' denied
+client 185.106.122.182#15906 (cpsc.gov): query (cache) 'cpsc.gov/ANY/IN' denied
+client 185.106.122.182#15906 (cpsc.gov): query (cache) 'cpsc.gov/ANY/IN' denied
+client 185.106.122.182#15906 (cpsc.gov): query (cache) 'cpsc.gov/ANY/IN' denied
+client 185.106.122.182#15906 (cpsc.gov): query (cache) 'cpsc.gov/ANY/IN' denied
+client 185.106.122.182#15906 (cpsc.gov): query (cache) 'cpsc.gov/ANY/IN' denied
+client 185.106.122.182#15906 (cpsc.gov): query (cache) 'cpsc.gov/ANY/IN' denied
+client 185.106.122.182#15906 (cpsc.gov): query (cache) 'cpsc.gov/ANY/IN' denied
+client 185.106.122.182#15906 (cpsc.gov): query (cache) 'cpsc.gov/ANY/IN' denied
+client 185.106.122.182#15906 (cpsc.gov): query (cache) 'cpsc.gov/ANY/IN' denied
+client 185.106.122.182#15906 (cpsc.gov): query (cache) 'cpsc.gov/ANY/IN' denied
+client 185.106.122.182#53509 (cpsc.gov): query (cache) 'cpsc.gov/ANY/IN' denied
+client 185.106.122.182#53509 (cpsc.gov): query (cache) 'cpsc.gov/ANY/IN' denied
+client 185.106.122.182#53509 (cpsc.gov): query (cache) 'cpsc.gov/ANY/IN' denied
+client 185.106.122.182#53509 (cpsc.gov): query (cache) 'cpsc.gov/ANY/IN' denied
+client 185.106.122.182#53509 (cpsc.gov): query (cache) 'cpsc.gov/ANY/IN' denied
+client 185.106.122.182#53509 (cpsc.gov): query (cache) 'cpsc.gov/ANY/IN' denied
+client 185.106.122.182#53509 (cpsc.gov): query (cache) 'cpsc.gov/ANY/IN' denied
+client 185.106.122.182#53509 (cpsc.gov): query (cache) 'cpsc.gov/ANY/IN' denied
+client 185.106.122.182#53509 (cpsc.gov): query (cache) 'cpsc.gov/ANY/IN' denied
+client 185.106.122.182#53509 (cpsc.gov): query (cache) 'cpsc.gov/ANY/IN' denied
+client 185.106.122.182#53509 (cpsc.gov): query (cache) 'cpsc.gov/ANY/IN' denied
+client 185.106.122.182#53509 (cpsc.gov): query (cache) 'cpsc.gov/ANY/IN' denied
+client 185.106.122.182#53509 (cpsc.gov): query (cache) 'cpsc.gov/ANY/IN' denied
+client 185.106.122.182#53509 (cpsc.gov): query (cache) 'cpsc.gov/ANY/IN' denied
+client 185.106.122.182#53509 (cpsc.gov): query (cache) 'cpsc.gov/ANY/IN' denied
+client 185.106.122.182#2553 (cpsc.gov): query (cache) 'cpsc.gov/ANY/IN' denied
+client 185.106.122.182#2553 (cpsc.gov): query (cache) 'cpsc.gov/ANY/IN' denied
+client 185.106.122.182#2553 (cpsc.gov): query (cache) 'cpsc.gov/ANY/IN' denied
+client 185.106.122.182#2553 (cpsc.gov): query (cache) 'cpsc.gov/ANY/IN' denied
+client 185.106.122.182#2553 (cpsc.gov): query (cache) 'cpsc.gov/ANY/IN' denied
+client 185.106.122.182#2553 (cpsc.gov): query (cache) 'cpsc.gov/ANY/IN' denied
+client 185.106.122.182#2553 (cpsc.gov): query (cache) 'cpsc.gov/ANY/IN' denied
+client 185.106.122.182#2553 (cpsc.gov): query (cache) 'cpsc.gov/ANY/IN' denied
+client 185.106.122.182#2553 (cpsc.gov): query (cache) 'cpsc.gov/ANY/IN' denied
+client 185.106.122.182#2553 (cpsc.gov): query (cache) 'cpsc.gov/ANY/IN' denied
+client 185.106.122.182#2553 (cpsc.gov): query (cache) 'cpsc.gov/ANY/IN' denied
+client 185.106.122.182#2553 (cpsc.gov): query (cache) 'cpsc.gov/ANY/IN' denied
+client 185.106.122.182#2553 (cpsc.gov): query (cache) 'cpsc.gov/ANY/IN' denied
+client 185.106.122.182#2553 (cpsc.gov): query (cache) 'cpsc.gov/ANY/IN' denied
+client 185.106.122.182#2553 (cpsc.gov): query (cache) 'cpsc.gov/ANY/IN' denied
+client 185.106.122.182#62275 (cpsc.gov): query (cache) 'cpsc.gov/ANY/IN' denied
+client 185.106.122.182#62275 (cpsc.gov): query (cache) 'cpsc.gov/ANY/IN' denied
+client 185.106.122.182#62275 (cpsc.gov): query (cache) 'cpsc.gov/ANY/IN' denied
+client 185.106.122.182#62275 (cpsc.gov): query (cache) 'cpsc.gov/ANY/IN' denied
+client 185.106.122.182#62275 (cpsc.gov): query (cache) 'cpsc.gov/ANY/IN' denied
+client 185.106.122.182#62275 (cpsc.gov): query (cache) 'cpsc.gov/ANY/IN' denied
+client 185.106.122.182#62275 (cpsc.gov): query (cache) 'cpsc.gov/ANY/IN' denied
+client 185.106.122.182#62275 (cpsc.gov): query (cache) 'cpsc.gov/ANY/IN' denied
+client 185.106.122.182#62275 (cpsc.gov): query (cache) 'cpsc.gov/ANY/IN' denied
+client 185.106.122.182#62275 (cpsc.gov): query (cache) 'cpsc.gov/ANY/IN' denied
+client 185.106.122.182#62275 (cpsc.gov): query (cache) 'cpsc.gov/ANY/IN' denied
+client 185.106.122.182#62275 (cpsc.gov): query (cache) 'cpsc.gov/ANY/IN' denied
+client 185.106.122.182#62275 (cpsc.gov): query (cache) 'cpsc.gov/ANY/IN' denied
+client 185.106.122.182#62275 (cpsc.gov): query (cache) 'cpsc.gov/ANY/IN' denied
+client 185.106.122.182#62275 (cpsc.gov): query (cache) 'cpsc.gov/ANY/IN' denied
+client 185.106.122.182#50173 (cpsc.gov): query (cache) 'cpsc.gov/ANY/IN' denied
+client 185.106.122.182#50173 (cpsc.gov): query (cache) 'cpsc.gov/ANY/IN' denied
+client 185.106.122.182#50173 (cpsc.gov): query (cache) 'cpsc.gov/ANY/IN' denied
+client 185.106.122.182#50173 (cpsc.gov): query (cache) 'cpsc.gov/ANY/IN' denied
+client 185.106.122.182#50173 (cpsc.gov): query (cache) 'cpsc.gov/ANY/IN' denied
+client 185.106.122.182#50173 (cpsc.gov): query (cache) 'cpsc.gov/ANY/IN' denied
+client 185.106.122.182#50173 (cpsc.gov): query (cache) 'cpsc.gov/ANY/IN' denied
+client 185.106.122.182#50173 (cpsc.gov): query (cache) 'cpsc.gov/ANY/IN' denied
+client 185.106.122.182#50173 (cpsc.gov): query (cache) 'cpsc.gov/ANY/IN' denied
+client 185.106.122.182#50173 (cpsc.gov): query (cache) 'cpsc.gov/ANY/IN' denied
+client 185.106.122.182#50173 (cpsc.gov): query (cache) 'cpsc.gov/ANY/IN' denied
+client 185.106.122.182#50173 (cpsc.gov): query (cache) 'cpsc.gov/ANY/IN' denied
+client 185.106.122.182#50173 (cpsc.gov): query (cache) 'cpsc.gov/ANY/IN' denied
+client 185.106.122.182#50173 (cpsc.gov): query (cache) 'cpsc.gov/ANY/IN' denied
+client 185.106.122.182#50173 (cpsc.gov): query (cache) 'cpsc.gov/ANY/IN' denied
+client 185.106.122.182#21659 (cpsc.gov): query (cache) 'cpsc.gov/ANY/IN' denied
+client 185.106.122.182#21659 (cpsc.gov): query (cache) 'cpsc.gov/ANY/IN' denied
+client 185.106.122.182#21659 (cpsc.gov): query (cache) 'cpsc.gov/ANY/IN' denied
+client 185.106.122.182#21659 (cpsc.gov): query (cache) 'cpsc.gov/ANY/IN' denied
+client 185.106.122.182#21659 (cpsc.gov): query (cache) 'cpsc.gov/ANY/IN' denied
+client 185.106.122.182#21659 (cpsc.gov): query (cache) 'cpsc.gov/ANY/IN' denied
+client 185.106.122.182#21659 (cpsc.gov): query (cache) 'cpsc.gov/ANY/IN' denied
+client 185.106.122.182#21659 (cpsc.gov): query (cache) 'cpsc.gov/ANY/IN' denied
+client 185.106.122.182#21659 (cpsc.gov): query (cache) 'cpsc.gov/ANY/IN' denied
+client 185.106.122.182#21659 (cpsc.gov): query (cache) 'cpsc.gov/ANY/IN' denied
+client 185.106.122.182#21659 (cpsc.gov): query (cache) 'cpsc.gov/ANY/IN' denied
+client 185.106.122.182#21659 (cpsc.gov): query (cache) 'cpsc.gov/ANY/IN' denied
+client 185.106.122.182#21659 (cpsc.gov): query (cache) 'cpsc.gov/ANY/IN' denied
+client 185.106.122.182#21659 (cpsc.gov): query (cache) 'cpsc.gov/ANY/IN' denied
+client 185.106.122.182#21659 (cpsc.gov): query (cache) 'cpsc.gov/ANY/IN' denied
+client 185.106.122.182#8144 (cpsc.gov): query (cache) 'cpsc.gov/ANY/IN' denied
+client 185.106.122.182#8144 (cpsc.gov): query (cache) 'cpsc.gov/ANY/IN' denied
+client 185.106.122.182#8144 (cpsc.gov): query (cache) 'cpsc.gov/ANY/IN' denied
+client 185.106.122.182#8144 (cpsc.gov): query (cache) 'cpsc.gov/ANY/IN' denied
+client 185.106.122.182#8144 (cpsc.gov): query (cache) 'cpsc.gov/ANY/IN' denied
+client 185.106.122.182#8144 (cpsc.gov): query (cache) 'cpsc.gov/ANY/IN' denied
+client 185.106.122.182#8144 (cpsc.gov): query (cache) 'cpsc.gov/ANY/IN' denied
+client 185.106.122.182#8144 (cpsc.gov): query (cache) 'cpsc.gov/ANY/IN' denied
+client 185.106.122.182#8144 (cpsc.gov): query (cache) 'cpsc.gov/ANY/IN' denied
+client 185.106.122.182#8144 (cpsc.gov): query (cache) 'cpsc.gov/ANY/IN' denied
+client 185.106.122.182#8144 (cpsc.gov): query (cache) 'cpsc.gov/ANY/IN' denied
+client 185.106.122.182#8144 (cpsc.gov): query (cache) 'cpsc.gov/ANY/IN' denied
+client 185.106.122.182#8144 (cpsc.gov): query (cache) 'cpsc.gov/ANY/IN' denied
+client 185.106.122.182#8144 (cpsc.gov): query (cache) 'cpsc.gov/ANY/IN' denied
+client 185.106.122.182#8144 (cpsc.gov): query (cache) 'cpsc.gov/ANY/IN' denied
+client 74.82.47.46#54347 (dnsscan.shadowserver.org): query (cache) 'dnsscan.shadowserver.org/A/IN' denied
+client 74.82.47.42#11042 (dnsscan.shadowserver.org): query (cache) 'dnsscan.shadowserver.org/A/IN' denied
+client 185.128.40.162#45023 (defcon.org): query (cache) 'defcon.org/ANY/IN' denied
+client 23.94.191.90#5555 (commerce.gov): query (cache) 'commerce.gov/ANY/IN' denied
+client 23.94.191.90#5555 (commerce.gov): query (cache) 'commerce.gov/ANY/IN' denied
+client 141.212.122.21#33827 (c.afekv.com): query (cache) 'c.afekv.com/A/IN' denied
+client 46.172.91.220#57145 (lizing.pw): query (cache) 'lizing.pw/A/IN' denied
+client 46.172.91.220#57145 (lizing.pw): query (cache) 'lizing.pw/A/IN' denied
+client 183.56.172.145#20000 (2453718912.www.baidu.com): query (cache) '2453718912.www.baidu.com/A/IN' denied
+client 183.56.172.145#20000 (4173702844.www.baidu.com): query (cache) '4173702844.www.baidu.com/A/IN' denied
+client 141.212.122.31#40913 (c.afekv.com): query (cache) 'c.afekv.com/A/IN' denied
+client 89.248.171.40#5678 (cpsc.gov): query (cache) 'cpsc.gov/ANY/IN' denied
+client 89.248.171.40#5678 (cpsc.gov): query (cache) 'cpsc.gov/ANY/IN' denied
+client 74.82.47.42#46048 (dnsscan.shadowserver.org): query (cache) 'dnsscan.shadowserver.org/A/IN' denied
+client 74.82.47.6#25442 (dnsscan.shadowserver.org): query (cache) 'dnsscan.shadowserver.org/A/IN' denied
+client 51.255.194.246#59507 (cpsc.gov): query (cache) 'cpsc.gov/ANY/IN' denied
+client 188.165.195.128#42112 (defcon.org): query (cache) 'defcon.org/ANY/IN' denied
+client 188.165.195.128#38009 (defcon.org): query (cache) 'defcon.org/ANY/IN' denied
+client 188.165.195.128#44416 (defcon.org): query (cache) 'defcon.org/ANY/IN' denied
+client 188.165.195.128#41630 (defcon.org): query (cache) 'defcon.org/ANY/IN' denied
+client 183.56.172.145#20000 (2453718912.www.baidu.com): query (cache) '2453718912.www.baidu.com/A/IN' denied
+client 212.24.96.244#47903 (.): query (cache) './ANY/IN' denied
+client 183.56.172.145#20000 (4173702844.www.baidu.com): query (cache) '4173702844.www.baidu.com/A/IN' denied
+client 74.82.47.30#12552 (dnsscan.shadowserver.org): query (cache) 'dnsscan.shadowserver.org/A/IN' denied
+client 74.82.47.46#3923 (dnsscan.shadowserver.org): query (cache) 'dnsscan.shadowserver.org/A/IN' denied
+client 222.186.15.97#53501 (cpsc.gov): query (cache) 'cpsc.gov/ANY/IN' denied
+client 93.158.215.26#10221 (google.com): query (cache) 'google.com/ANY/IN' denied
+client 93.158.215.26#10221 (google.com): query (cache) 'google.com/ANY/IN' denied
+client 93.158.215.26#10221 (activum.nu): query (cache) 'activum.nu/ANY/IN' denied
+client 93.158.215.26#10221 (activum.nu): query (cache) 'activum.nu/ANY/IN' denied
+client 93.158.215.26#10221 (d5l.ru): query (cache) 'd5l.ru/ANY/IN' denied
+client 93.158.215.26#10221 (d5l.ru): query (cache) 'd5l.ru/ANY/IN' denied
+client 93.158.215.26#10221 (defcongroups.org): query (cache) 'defcongroups.org/ANY/IN' denied
+client 93.158.215.26#10221 (defcongroups.org): query (cache) 'defcongroups.org/ANY/IN' denied
+client 93.158.215.26#10221 (hoffmeister.be): query (cache) 'hoffmeister.be/ANY/IN' denied
+client 93.158.215.26#10221 (hoffmeister.be): query (cache) 'hoffmeister.be/ANY/IN' denied
+client 134.147.203.115#29407 (qrti.9240c780.wc.syssec.rub.de): query (cache) 'qrti.9240c780.wc.syssec.rub.de/A/IN' denied
+client 93.158.215.26#10221 (hrsa.gov): query (cache) 'hrsa.gov/ANY/IN' denied
+client 93.158.215.26#10221 (hrsa.gov): query (cache) 'hrsa.gov/ANY/IN' denied
+client 93.158.215.26#10221 (leth.cc): query (cache) 'leth.cc/ANY/IN' denied
+client 93.158.215.26#10221 (leth.cc): query (cache) 'leth.cc/ANY/IN' denied
+client 93.158.215.26#10221 (lizing.pw): query (cache) 'lizing.pw/ANY/IN' denied
+client 93.158.215.26#10221 (lizing.pw): query (cache) 'lizing.pw/ANY/IN' denied
+client 93.158.215.26#10221 (samfunnsovervakning.no): query (cache) 'samfunnsovervakning.no/ANY/IN' denied
+client 93.158.215.26#10221 (samfunnsovervakning.no): query (cache) 'samfunnsovervakning.no/ANY/IN' denied
+client 93.158.215.26#10222 (activum.nu): query (cache) 'activum.nu/ANY/IN' denied
+client 93.158.215.26#10222 (activum.nu): query (cache) 'activum.nu/ANY/IN' denied
+client 93.158.215.26#10222 (activum.nu): query (cache) 'activum.nu/ANY/IN' denied
+client 93.158.215.26#10222 (activum.nu): query (cache) 'activum.nu/ANY/IN' denied
+client 93.158.215.26#10222 (activum.nu): query (cache) 'activum.nu/ANY/IN' denied
+client 93.158.215.26#10222 (activum.nu): query (cache) 'activum.nu/ANY/IN' denied
+client 93.158.215.26#10222 (activum.nu): query (cache) 'activum.nu/ANY/IN' denied
+client 93.158.215.26#10222 (activum.nu): query (cache) 'activum.nu/ANY/IN' denied
+client 134.147.203.115#29407 (9fuh.f8c5a6bc.wc.syssec.rub.de): query (cache) '9fuh.f8c5a6bc.wc.syssec.rub.de/A/IN' denied
+client 2.105.13.142#49370 (cpsc.gov): query (cache) 'cpsc.gov/ANY/IN' denied
+client 188.165.195.128#47748 (defcon.org): query (cache) 'defcon.org/ANY/IN' denied
+client 188.165.195.128#59389 (defcon.org): query (cache) 'defcon.org/ANY/IN' denied
+client 183.56.172.145#20000 (2453718912.www.baidu.com): query (cache) '2453718912.www.baidu.com/A/IN' denied
+client 106.184.2.29#63274 (www.qq.com): query (cache) 'www.qq.com/A/IN' denied
+client 183.56.172.145#20000 (4173702844.www.baidu.com): query (cache) '4173702844.www.baidu.com/A/IN' denied
+client 2.105.13.142#58365 (cpsc.gov): query (cache) 'cpsc.gov/ANY/IN' denied
+client 95.215.60.214#45329 (.): query (cache) './ANY/IN' denied
+client 188.165.195.128#50651 (defcon.org): query (cache) 'defcon.org/ANY/IN' denied
+client 74.82.47.14#56045 (dnsscan.shadowserver.org): query (cache) 'dnsscan.shadowserver.org/A/IN' denied
+client 188.165.195.128#60235 (defcon.org): query (cache) 'defcon.org/ANY/IN' denied
+client 204.42.253.2#43082 (c98e09db.openresolverproject.org): query (cache) 'c98e09db.openresolverproject.org/A/IN' denied
+client 74.82.47.22#55885 (dnsscan.shadowserver.org): query (cache) 'dnsscan.shadowserver.org/A/IN' denied
+client 204.42.253.2#43082 (f5ef8cb1.openresolverproject.org): query (cache) 'f5ef8cb1.openresolverproject.org/A/IN' denied
+client 141.212.122.165#40429 (c.afekv.com): query (cache) 'c.afekv.com/A/IN' denied
+client 95.215.60.214#45329 (.): query (cache) './ANY/IN' denied
+client 23.94.191.90#5555 (commerce.gov): query (cache) 'commerce.gov/ANY/IN' denied
+client 23.94.191.90#5555 (commerce.gov): query (cache) 'commerce.gov/ANY/IN' denied
+client 106.184.2.29#31682 (www.qq.com): query (cache) 'www.qq.com/A/IN' denied
+client 106.184.2.29#11446 (www.qq.com): query (cache) 'www.qq.com/A/IN' denied
+client 183.56.172.145#20000 (2453718912.www.baidu.com): query (cache) '2453718912.www.baidu.com/A/IN' denied
+client 81.171.12.152#58198 (.): query (cache) './ANY/IN' denied
+client 141.212.122.171#43675 (c.afekv.com): query (cache) 'c.afekv.com/A/IN' denied
+client 78.129.171.164#54988 (gransy.com): query (cache) 'gransy.com/ANY/IN' denied
+client 74.82.47.18#36306 (dnsscan.shadowserver.org): query (cache) 'dnsscan.shadowserver.org/A/IN' denied
+client 78.129.171.164#47125 (gransy.com): query (cache) 'gransy.com/ANY/IN' denied
+client 74.82.47.26#21269 (dnsscan.shadowserver.org): query (cache) 'dnsscan.shadowserver.org/A/IN' denied
+client 45.76.213.208#54722 (.): query (cache) './ANY/IN' denied
+client 45.76.213.208#36222 (.): query (cache) './ANY/IN' denied
+client 198.48.92.104#57086 (satellite.cs.washington.edu): query (cache) 'satellite.cs.washington.edu/A/IN' denied
+client 198.48.92.104#33422 (satellite.cs.washington.edu): query (cache) 'satellite.cs.washington.edu/A/IN' denied
+client 106.184.2.29#6468 (www.qq.com): query (cache) 'www.qq.com/A/IN' denied
+client 183.56.172.145#20000 (2453718912.www.baidu.com): query (cache) '2453718912.www.baidu.com/A/IN' denied
+client 183.56.172.145#20000 (4173702844.www.baidu.com): query (cache) '4173702844.www.baidu.com/A/IN' denied
+client 74.82.47.38#60879 (dnsscan.shadowserver.org): query (cache) 'dnsscan.shadowserver.org/A/IN' denied
+client 74.82.47.26#52474 (dnsscan.shadowserver.org): query (cache) 'dnsscan.shadowserver.org/A/IN' denied
+client 64.16.214.100#54613 (.): query (cache) './ANY/IN' denied
+client 23.94.191.90#5555 (commerce.gov): query (cache) 'commerce.gov/ANY/IN' denied
+client 23.94.191.90#5555 (commerce.gov): query (cache) 'commerce.gov/ANY/IN' denied
+network unreachable resolving './DNSKEY/IN': 2001:503:ba3e::2:30#53
+client 185.128.40.162#52147 (.): query (cache) './ANY/IN' denied
+client 183.56.172.145#20000 (2453718912.www.baidu.com): query (cache) '2453718912.www.baidu.com/A/IN' denied
+client 183.56.172.145#20000 (4173702844.www.baidu.com): query (cache) '4173702844.www.baidu.com/A/IN' denied
+client 185.128.40.162#54287 (defcon.org): query (cache) 'defcon.org/ANY/IN' denied
+client 185.128.40.162#43686 (defcon.org): query (cache) 'defcon.org/ANY/IN' denied
+client 74.82.47.34#60694 (dnsscan.shadowserver.org): query (cache) 'dnsscan.shadowserver.org/A/IN' denied
+client 74.82.47.2#48144 (dnsscan.shadowserver.org): query (cache) 'dnsscan.shadowserver.org/A/IN' denied
+client 204.42.253.2#53111 (c98e09db.openresolvertest.net): query (cache) 'c98e09db.openresolvertest.net/A/IN' denied
+client 204.42.253.2#53111 (f5ef8cb1.openresolvertest.net): query (cache) 'f5ef8cb1.openresolvertest.net/A/IN' denied
+client 209.126.136.2#34227 (a.gtld-servers.net): query (cache) 'a.gtld-servers.net/A/IN' denied
+client 93.158.215.26#10219 (activum.nu): query (cache) 'activum.nu/ANY/IN' denied
+client 93.158.215.26#10219 (activum.nu): query (cache) 'activum.nu/ANY/IN' denied
+client 209.126.136.2#56972 (a.gtld-servers.net): query (cache) 'a.gtld-servers.net/A/IN' denied
+client 173.212.193.170#34689 (.): query (cache) './ANY/IN' denied
+client 106.184.2.29#27974 (www.qq.com): query (cache) 'www.qq.com/A/IN' denied
+client 173.212.193.170#57248 (.): query (cache) './ANY/IN' denied
+client 23.94.191.90#5555 (commerce.gov): query (cache) 'commerce.gov/ANY/IN' denied
+client 23.94.191.90#5555 (commerce.gov): query (cache) 'commerce.gov/ANY/IN' denied
+client 93.158.215.26#10200 (google.com): query (cache) 'google.com/ANY/IN' denied
+client 93.158.215.26#10200 (google.com): query (cache) 'google.com/ANY/IN' denied
+client 93.158.215.26#10201 (hrsa.gov): query (cache) 'hrsa.gov/ANY/IN' denied
+client 93.158.215.26#10201 (hrsa.gov): query (cache) 'hrsa.gov/ANY/IN' denied
+client 93.158.215.26#10202 (d5l.ru): query (cache) 'd5l.ru/ANY/IN' denied
+client 93.158.215.26#10202 (d5l.ru): query (cache) 'd5l.ru/ANY/IN' denied
+client 93.158.215.26#10203 (hoffmeister.be): query (cache) 'hoffmeister.be/ANY/IN' denied
+client 93.158.215.26#10203 (hoffmeister.be): query (cache) 'hoffmeister.be/ANY/IN' denied
+client 93.158.215.26#10204 (leth.cc): query (cache) 'leth.cc/ANY/IN' denied
+client 93.158.215.26#10204 (leth.cc): query (cache) 'leth.cc/ANY/IN' denied
+client 93.158.215.26#10205 (defcongroups.org): query (cache) 'defcongroups.org/ANY/IN' denied
+client 93.158.215.26#10205 (defcongroups.org): query (cache) 'defcongroups.org/ANY/IN' denied
+client 93.158.215.26#10206 (activum.nu): query (cache) 'activum.nu/ANY/IN' denied
+client 93.158.215.26#10206 (activum.nu): query (cache) 'activum.nu/ANY/IN' denied
+client 183.56.172.145#20000 (2453718912.www.baidu.com): query (cache) '2453718912.www.baidu.com/A/IN' denied
+client 173.212.193.170#50592 (.): query (cache) './ANY/IN' denied
+client 183.56.172.145#20000 (4173702844.www.baidu.com): query (cache) '4173702844.www.baidu.com/A/IN' denied
+client 173.212.193.170#43267 (.): query (cache) './ANY/IN' denied
+client 185.101.98.220#38650 (.): query (cache) './ANY/IN' denied
+client 74.82.47.42#63444 (dnsscan.shadowserver.org): query (cache) 'dnsscan.shadowserver.org/A/IN' denied
+client 74.82.47.46#28646 (dnsscan.shadowserver.org): query (cache) 'dnsscan.shadowserver.org/A/IN' denied
