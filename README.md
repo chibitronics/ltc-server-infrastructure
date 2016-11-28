@@ -14,42 +14,27 @@ Create a new network for everything to live on:
 Compiler
 --------
 
+The compiler is based on a reduced set of the Arduino toolchain with a simplified version of the Codebender compiler running on a PHP FastCGI module.
+
 Build the compiler container with:
 
-     docker build -t xobs/ltc-compiler:1.1 compiler/
+    docker build -t xobs/ltc-compiler:1.3 compiler/
 
 Run the compiler with the following Docker arguments:
 
-    docker run -d -e CODEBENDER_AUTHORIZATION_KEY=fantasticpass4242 --network ltc-network --name ltc-compiler xobs/ltc-compiler:1.1
+    docker run -d --network ltc-network --name ltc-compiler xobs/ltc-compiler:1.3
 
+The compiler will now be listening on ltc-compiler:9000.
 
 UX
 ------
 
-This is the server that hosts files the users see.
+This is the server that hosts files the users see.  It runs an nginx server with a link at /compiler to ltc-compiler:9000/app.php
 
 Build:
 
-    docker build -t xobs/ltc-ux:1.0 ux/
+    docker build -t xobs/ltc-ux:1.1 ux/
 
 Run:
 
-    docker run -d -v ${ux-src-dir}:/usr/share/nginx/html --network ltc-network --name ltc-ux xobs/ltc-ux:1.0
-
-
-Frontend
----------
-
-This server acts as a frontend to the compiler, UX, and API servers.
-
-Build:
-
-    docker build -t xobs/ltc-frontend:1.0 frontend/
-
-Run:
-
-    docker run -p 8080:80 -d --network ltc-network --name ltc-frontend xobs/ltc-frontend:1.0
-
-Reload configuration:
-
-    docker kill -s HUP ltc-frontend
+    docker run -d -p 8080:80 --network ltc-network --name ltc-ux xobs/ltc-ux:1.1
