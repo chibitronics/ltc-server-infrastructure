@@ -1018,6 +1018,9 @@ $config = array(
     ,"object_directory" => "/tmp/codebender_object_files"
 );
 
+// Turn off all error reporting.  Disable this when debugging.
+error_reporting(0);
+
 // 15 === JSON_HEX_TAG | JSON_HEX_APOS | JSON_HEX_AMP | JSON_HEX_QUOT
 echo json_encode($compiler->main($request, $config), 15);
 
