@@ -2,19 +2,39 @@
 
 coreos:
   etcd2:
-    # generate a new token for each unique cluster from https://discovery.etcd.io/new:
-    discovery: https://discovery.etcd.io/10cb0f13d4c06b534a2fe0c4eb21b5e6
-    # multi-region deployments, multi-cloud deployments, and Droplets without
-    # private networking need to use $public_ipv4:
-    advertise-client-urls: http://$private_ipv4:2379,http://$private_ipv4:4001
-    initial-advertise-peer-urls: http://$private_ipv4:2380
-    # listen on the official ports 2379, 2380 and one legacy port 4001:
-    listen-client-urls: http://0.0.0.0:2379,http://0.0.0.0:4001
-    listen-peer-urls: http://$private_ipv4:2380
+    #initial cluster configuration
+    initial-advertise-peer-urls: https://$public_ipv4:2380
+    listen-peer-urls: https://$public_ipv4:2380
+    listen-client-urls: https://$public_ipv4:2379
+    advertise-client-urls: https://$public_ipv4:2379
+    initial-advertise-client-urls: https://$public_ipv4:2379
+    initial-cluster-state: new
+    #security
+    trusted-ca-file: /home/core/ca.pem
+    cert-file: /home/core/etcd.pem
+    key-file: /home/core/etcd-key.pem
+    client-cert-auth: 1
+    peer-trusted-ca-file: /home/core/ca.pem
+    peer-cert-file: /home/core/etcd.pem
+    peer-key-file: /home/core/etcd-key.pem
+    peer-client-cert-auth: 1
+    #tuning see https://github.com/coreos/etcd/blob/master/Documentation/tuning.md
+    heartbeat-interval: 100
+    election-timeout: 2500
   fleet:
-    public-ip: $private_ipv4   # used for fleetctl ssh command
+    public-ip: $public_ipv4   # used for fleetctl ssh command
+    etcd_servers: https://$public_ipv4:2379
   units:
     - name: etcd2.service
       command: start
     - name: fleet.service
       command: start
+write_files:
+  - path: /run/systemd/system/fleet.service.d/30-certificates.conf
+    permissions: 0644
+    content: |
+      [Service]
+      # client auth certs
+      ETCD_CAFILE=/home/core/ca.pem
+      ETCD_CERTFILE=/home/core/etcd.pem
+      ETCD_KEYFILE=/home/core/etcd-key.pem

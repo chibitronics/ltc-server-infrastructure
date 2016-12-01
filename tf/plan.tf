@@ -13,6 +13,9 @@
 
 
 variable "do_token" {}
+variable "do_hostname" {
+    default = "ltc-ns.chibitronics.com"
+}
 variable "do_region" {
     default = "sgp1"
 }
@@ -21,6 +24,15 @@ variable "number_of_workers" {}
 variable "hypercube_version" {
     default = "v1.3.6_coreos.0"
 }
+
+variable "etcd_cluster_size" {
+    default = "3"
+}
+
+variable "etcd_discovery_url" {
+    default = "etcd_discovery_url.txt"
+}
+
 ###############################################################################
 #
 # Specify provider
@@ -40,8 +52,25 @@ provider "digitalocean" {
 ###############################################################################
 
 
+resource "null_resource" "ssl_init" {
+    # Generate the Certificate Authority
+    provisioner "local-exec" {
+        command = <<EOF
+            rm -f "client.crt" "client.key.insecure"
+            rm -rf ".etcd-ca"
+            etcd-ca init --passphrase ''
+            etcd-ca new-cert  --passphrase '' client
+            etcd-ca sign  --passphrase '' client
+            etcd-ca export --insecure  --passphrase '' client | tar xvf -
+
+            curl 'https://discovery.etcd.io/new?size=${var.etcd_cluster_size}' > ${var.etcd_discovery_url}
+EOF
+    }
+}
+
 resource "digitalocean_droplet" "k8s_worker" {
     image = "coreos-stable"
+    depends_on = [ "null_resource.ssl_init" ]
     count = "${var.number_of_workers}"
     name = "${format("k8s-worker-%02d", count.index + 1)}"
     region = "${var.do_region}"
@@ -52,64 +81,96 @@ resource "digitalocean_droplet" "k8s_worker" {
         "${var.ssh_fingerprint}"
     ]
 
-#    # Generate the Certificate Authority
-#    provisioner "local-exec" {
-#        command = <<EOF
-#            $PWD/cfssl/generate_ca.sh
-#EOF
-#    }
-#
-#    # Generate k8s-etcd server certificate
-#    provisioner "local-exec" {
-#        command = <<EOF
-#            $PWD/cfssl/generate_server.sh k8s_etcd ${digitalocean_droplet.k8s_etcd.ipv4_address_private}
-#EOF
-#    }
-#
-#    # Provision k8s_etcd server certificate
-#    provisioner "file" {
-#        source = "./secrets/ca.pem"
-#        destination = "/home/core/ca.pem"
-#        connection {
-#            user = "core"
-#        }
-#    }
-#    provisioner "file" {
-#        source = "./secrets/k8s_etcd.pem"
-#        destination = "/home/core/etcd.pem"
-#        connection {
-#            user = "core"
-#        }
-#    }
-#    provisioner "file" {
-#        source = "./secrets/k8s_etcd-key.pem"
-#        destination = "/home/core/etcd-key.pem"
-#        connection {
-#            user = "core"
-#        }
-#    }
-#
-#    # TODO: figure out etcd2 user and chown, chmod key.pem files
-#    provisioner "remote-exec" {
-#        inline = [
-#            "sudo mkdir -p /etc/kubernetes/ssl",
-#            "sudo mv /home/core/{ca,etcd,etcd-key}.pem /etc/kubernetes/ssl/."
-#        ]
-#        connection {
-#            user = "core"
-#        }
-#    }
-#
-#    # Start etcd2
-#    provisioner "remote-exec" {
-#        inline = [
-#            "sudo systemctl start etcd2",
-#            "sudo systemctl enable etcd2",
-#        ]
-#        connection {
-#            user = "core"
-#        }
-#    }
+    provisioner "local-exec" {
+        command = <<EOF
+            rm -f "${self.name}.ca.crt" "${self.name}.crt" "${self.name}.key.insecure"
+            etcd-ca new-cert --passphrase '' --ip "${self.ipv4_address}" --domain "${self.name}.chibitronics" ${self.name}
+            etcd-ca sign ${self.name}
+            etcd-ca export --insecure --passphrase '' ${self.name} | tar xvf -
+	    etcd-ca chain ${self.name} > ${self.name}.ca.crt
+EOF
+    }
+
+    # Provision k8s_etcd server certificate
+    provisioner "file" {
+        source = "./${self.name}.ca.crt"
+        destination = "/home/core/ca.pem"
+        connection {
+            user = "core"
+        }
+    }
+    provisioner "file" {
+        source = "./${self.name}.crt"
+        destination = "/home/core/etcd.pem"
+        connection {
+            user = "core"
+        }
+    }
+    provisioner "file" {
+        source = "./${self.name}.key.insecure"
+        destination = "/home/core/etcd-key.pem"
+        connection {
+            user = "core"
+        }
+    }
+    provisioner "file" {
+        source = "./client.crt"
+        destination = "/home/core/client.pem"
+        connection {
+            user = "core"
+        }
+    }
+    provisioner "file" {
+        source = "./client.key.insecure"
+        destination = "/home/core/client-key.pem"
+        connection {
+            user = "core"
+        }
+    }
+    provisioner "file" {
+        source = "${var.etcd_discovery_url}"
+        destination = "/home/core/provider_url"
+        connection {
+            user = "core"
+        }
+    }
+
+    provisioner "remote-exec" {
+        inline = [
+            "echo -e '[Service]\nEnvironment=ETCD_NAME=${self.name}' | sudo tee /run/systemd/system/etcd2.service.d/35-name.conf",
+            "echo -ne '[Service]\nEnvironment=ETCD_DISCOVERY=' > /tmp/34-discovery.conf",
+            "cat /home/core/provider_url >> /tmp/34-discovery.conf",
+            "echo '' >> /tmp/34-discovery.conf",
+            "sudo mv /tmp/34-discovery.conf /run/systemd/system/etcd2.service.d/34-discovery.conf"
+        ]
+        connection {
+            user = "core"
+        }
+    }
+
+    # Start etcd2
+    provisioner "remote-exec" {
+        inline = [
+            "sudo systemctl daemon-reload",
+            "sudo systemctl start etcd2",
+            "sudo systemctl enable etcd2",
+        ]
+        connection {
+            user = "core"
+        }
+    }
+}
+
+resource "null_resource" "setup_kubectl" {
+    depends_on = ["digitalocean_droplet.k8s_worker"]
+    provisioner "local-exec" {
+        command = <<EOF
+            echo export ETCDCTL_CERT_FILE=/home/core/client.pem > setup_etcdctl.sh
+            echo export ETCDCTL_KEY_FILE=/home/core/client-key.pem >> setup_etcdctl.sh
+            echo export ETCDCTL_CA_FILE=/home/core/ca.pem >> setup_etcdctl.sh
+            echo export ETCDCTL_PEERS=${join(",", formatlist("https://%s:2379/", digitalocean_droplet.k8s_worker.*.ipv4_address))} >> setup_etcdctl.sh
+EOF
+    }
 }
 
 
