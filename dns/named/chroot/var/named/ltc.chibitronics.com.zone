@@ -1,0 +1,13 @@
+$TTL 6048
+@			IN	SOA	ltc-ns.chibitronics.com. ltc.chibitronics.com. (
+					2016321002	; Serial
+					6048		; Refresh
+					864		; Retry
+					24192		; Expire
+					6048 )		; Negative Cache TTL
+;
+ltc.chibitronics.com. 	IN	NS	ltc-ns.chibitronics.com.
+ns1			IN	A	188.166.197.248
+@			IN	A	188.166.197.248
+api			IN	A	188.166.197.248
+auth			IN	A	188.166.197.248
