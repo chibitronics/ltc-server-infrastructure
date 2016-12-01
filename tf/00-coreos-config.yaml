@@ -38,3 +38,22 @@ write_files:
       ETCD_CAFILE=/home/core/ca.pem
       ETCD_CERTFILE=/home/core/etcd.pem
       ETCD_KEYFILE=/home/core/etcd-key.pem
+  - path: "/etc/flannel/options.env"
+    permissions: "0755"
+    content: |
+        FLANNELD_IFACE=$public_ipv4
+        FLANNELD_ETCD_ENDPOINTS=https://$public_ipv4:2379
+        FLANNELD_ETCD_CAFILE=/etc/ssl/etcd/ca.pem
+        FLANNELD_ETCD_CERTFILE=/etc/ssl/etcd/client.pem
+        FLANNELD_ETCD_KEYFILE=/etc/ssl/etcd/client-key.pem
+  - path: "/etc/systemd/system/flanneld.service.d/40-ExecStartPre-symlink.conf"
+    permissions: "0755"
+    content: |
+        [Service]
+        ExecStartPre=/usr/bin/ln -sf /etc/flannel/options.env /run/flannel/options.env
+  - path: "/etc/systemd/system/docker.service.d/40-flannel.conf"
+    permissions: "0755"
+    content: |
+        [Unit]
+        Requires=flanneld.service
+        After=flanneld.service

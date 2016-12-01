@@ -141,19 +141,16 @@ EOF
             "echo -ne '[Service]\nEnvironment=ETCD_DISCOVERY=' > /tmp/34-discovery.conf",
             "cat /home/core/provider_url >> /tmp/34-discovery.conf",
             "echo '' >> /tmp/34-discovery.conf",
-            "sudo mv /tmp/34-discovery.conf /run/systemd/system/etcd2.service.d/34-discovery.conf"
-        ]
-        connection {
-            user = "core"
-        }
-    }
+            "sudo mv /tmp/34-discovery.conf /run/systemd/system/etcd2.service.d/34-discovery.conf",
 
-    # Start etcd2
-    provisioner "remote-exec" {
-        inline = [
+            "sudo mkdir -p /etc/ssl/etcd",
+            "sudo cp /home/core/{ca,etcd,etcd-key,client,client-key}.pem /etc/ssl/etcd/.",
             "sudo systemctl daemon-reload",
+            "until curl --cacert /home/core/ca.pem --cert /home/core/client.pem --key /home/core/client-key.pem -X PUT -d 'value={\"Network\":\"10.2.0.0/16\",\"Backend\":{\"Type\":\"vxlan\"}}' https://${self.ipv4_address}:2379/v2/keys/coreos.com/network/config; do sleep 1; done",
             "sudo systemctl start etcd2",
             "sudo systemctl enable etcd2",
+            "sudo systemctl start flanneld",
+            "sudo systemctl enable flanneld",
         ]
         connection {
             user = "core"
