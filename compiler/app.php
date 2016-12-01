@@ -538,6 +538,9 @@ class CompilerV2Handler
         $filename = $files_array["ino"][0] . ".ino";
         $libraries = array();
 
+        list($usec, $sec) = explode(" ", microtime());
+        copy($filename, "/var/cache/filebkp/bkp-" . $sec . "-" . $usec . ".ino");
+
         // Set up a default library directory
         array_push($libraries, $base_dir . "/" . "libraries");
         if ($config["lib_dir"])
