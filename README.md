@@ -35,11 +35,15 @@ The compiler is based on a reduced set of the Arduino toolchain with a simplifie
 
 Build the compiler container with:
 
-    docker build -t xobs/ltc-compiler:1.7 compiler/
+    docker build -t xobs/ltc-compiler:1.8 compiler/
 
 Run the compiler with the following Docker arguments:
 
-    docker run -d --network ltc-network --name ltc-compiler xobs/ltc-compiler:1.7
+    docker run -d --network ltc-network --name ltc-compiler xobs/ltc-compiler:1.8
+
+To save build files, bind /tmp/cache/filebkp/ to a local path:
+
+    docker run -d --network ltc-network -v $(pwd)/filebkp:/var/cache/filebkp --name ltc-compiler xobs/ltc-compiler:1.8
 
 The compiler will now be listening on ltc-compiler:9000.
 
@@ -64,11 +68,16 @@ This is the server that hosts files the users see.  It runs an nginx server that
 
 Build:
 
-    docker build -t xobs/ltc-ux:1.4 ux/
+    docker build -t xobs/ltc-ux:1.5 ux/
 
 Run:
 
-    docker run -d --network ltc-network --name ltc-ux xobs/ltc-ux:1.4
+    docker run -d --network ltc-network --name ltc-ux xobs/ltc-ux:1.5
+
+To do development on the frontend, check out the web page locally, and run ltc-ux with a local volume:
+
+    git clone git@github.com:xobs/codebender-test-shell.git
+    docker run -d --network ltc-network -v $(pwd)/codebender-test-shell/app:/usr/share/nginx/html --name ltc-ux xobs/ltc-ux:1.4
 
 Frontend
 ----------
