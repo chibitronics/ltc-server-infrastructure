@@ -4,10 +4,27 @@ Chibitronics Server Infrastructure
 Support documents and files for deploying the Chibitronics Love-to-Code
 server infrastructure.
 
+
+Quickstart
+==========
+
+Install Docker.  Then run:
+
+    docker network create ltc-network
+    docker run -d --network ltc-network --name ltc-compiler xobs/ltc-compiler:1.6
+    docker run -d --network ltc-network --name ltc-compiler-frontend xobs/ltc-compiler-frontend:1.6
+    docker run -d --network ltc-network --name ltc-ux xobs/ltc-ux:1.4
+    docker run -p 8080:80 -d --network ltc-network --name ltc-frontend xobs/ltc-frontend:1.1
+
+
+Building Containers
+===================
+
+
 Network
 -------
 
-Create a new network for everything to live on:
+Containers refer to each other using their names.  Be sure to put everything on the same network:
 
     docker network create ltc-network
 
@@ -18,11 +35,11 @@ The compiler is based on a reduced set of the Arduino toolchain with a simplifie
 
 Build the compiler container with:
 
-    docker build -t xobs/ltc-compiler:1.6 compiler/
+    docker build -t xobs/ltc-compiler:1.7 compiler/
 
 Run the compiler with the following Docker arguments:
 
-    docker run -d --network ltc-network --name ltc-compiler xobs/ltc-compiler:1.6
+    docker run -d --network ltc-network --name ltc-compiler xobs/ltc-compiler:1.7
 
 The compiler will now be listening on ltc-compiler:9000.
 
