@@ -29,8 +29,8 @@ class CompilerV2Handler
 
         // Step 0: Reject the request if the input data is not valid.
         $err = $this->validateInput($request);
-	if ($err != null)
-		return $this->makeError("Invalid input: $err");
+        if ($err != null)
+            return $this->makeError("Invalid input: $err");
 
         $this->setVariables($request, $libraries, $should_archive, $config);
 
@@ -39,7 +39,7 @@ class CompilerV2Handler
         // Step 1(part 1): Extract the project files included in the request.
         $ret = $this->extractFiles($request['files'], $temporaryDirectory, $project_dir, $incoming_files, 'files');
         if ($ret != null)
-		return $this->makeError($ret, 1);
+            return $this->makeError($ret, 1);
 
         // Add the compiler temp directory to the config struct.
         $config['project_dir'] = $project_dir;
@@ -65,7 +65,7 @@ class CompilerV2Handler
             $ret = $this->extractFiles($library_files, $temporaryDirectory, $lib_dir,
                 $files['libs'][$library], $library, true);
             if ($ret != null)
-		return $this->makeError($ret, 2);
+                return $this->makeError($ret, 2);
             $config['lib_dir'] = $lib_dir;
         }
 
@@ -81,7 +81,7 @@ class CompilerV2Handler
         $ret = $this->setLoggingParams($request, $config, $temporaryDirectory, $project_dir);
         if ($ret != null)
             return array_merge($this->makeError($ret, 2),
-			 ($should_archive) ? array("archive" => $ARCHIVE_PATH) : array());
+                            ($should_archive) ? array("archive" => $ARCHIVE_PATH) : array());
 
         // Log the names of the project files and the libraries used in it.
         $this->makeLogEntry($request, $config, $should_archive, $ARCHIVE_PATH);
@@ -130,13 +130,13 @@ class CompilerV2Handler
         return $convertedOutput;
     }
 
-	private function makeError($msg, $step = 0)
-	{
-		return array(
-			"success" => false,
-			"step" => $step,
-			"message" => $msg);
-	}
+    private function makeError($msg, $step = 0)
+    {
+        return array(
+            "success" => false,
+            "step" => $step,
+            "message" => $msg);
+    }
 
     private function copyRecursive($src, $dst)
     {
@@ -378,10 +378,10 @@ class CompilerV2Handler
         $output_dir = $config["output_dir"];
 
         $err = $this->copyCaches($output_dir, $cache_dir, $this->cacheDirs());
-	if ($err) {
-		echo "Unable to copy caches to $cache_dir: [$err]\n";
-		return $err;
-	}
+        if ($err) {
+            echo "Unable to copy caches to $cache_dir: [$err]\n";
+            return $err;
+        }
         $this->updateDependencyPaths($cache_dir, $this->cacheDirs(), $output_dir, "::BUILD_DIR::");
 
         return array("success" => true);
@@ -412,11 +412,6 @@ class CompilerV2Handler
         }
 
         $this->logger_id = microtime(true) . "_" . substr($config['project_dir'], -6) . "_user:$user_id" . "_project:$sketch_id";
-
-//        echo $this->logger_id . " - " . implode(" ", $req_elements) . "\n";
-//        $this->compiler_logger->addInfo($this->logger_id . " - " . implode(" ", $req_elements));
-//        if ($should_archive)
-//            $this->compiler_logger->addInfo($this->logger_id . " - " . "Archive file: $archive_path");
     }
 
     /**
@@ -427,7 +422,6 @@ class CompilerV2Handler
      */
     private function isBinaryObject($str)
     {
-
         for ($i = 0; $i < strlen($str); $i++) {
             $c = substr($str, $i, 1);
             if ($c > chr(127))
@@ -783,255 +777,242 @@ class CompilerV2Handler
         return $message;
     }
 
- function validateInput($request)
- {
-     // Request must be successfully decoded.
-     if ($request === null)
-         return "request is not valid JSON";
-     // Request must contain certain entities.
-     if (!(array_key_exists("format", $request)
-         && array_key_exists("version", $request)
-         && array_key_exists("files", $request)
-         && array_key_exists("libraries", $request)
-         && ((array_key_exists("build", $request)
-                 && is_array($request["build"])
-                 && array_key_exists("mcu", $request["build"])
-                 && array_key_exists("f_cpu", $request["build"])
-                 && array_key_exists("core", $request["build"]))
-             || array_key_exists("fqbn", $request))
-         && is_array($request["files"]))
-     ) {
-         return "missing stuff from array";
-     }
+    function validateInput($request)
+    {
+        // Request must be successfully decoded.
+        if ($request === null)
+            return "request is not valid JSON";
+        // Request must contain certain entities.
+        if (!(array_key_exists("format", $request)
+            && array_key_exists("version", $request)
+            && array_key_exists("files", $request)
+            && array_key_exists("libraries", $request)
+            && ((array_key_exists("build", $request)
+                    && is_array($request["build"])
+                    && array_key_exists("mcu", $request["build"])
+                    && array_key_exists("f_cpu", $request["build"])
+                    && array_key_exists("core", $request["build"]))
+                || array_key_exists("fqbn", $request))
+            && is_array($request["files"]))
+        ) {
+            return "missing stuff from array";
+        }
 
-     if (array_key_exists("build", $request)) {
+        if (array_key_exists("build", $request)) {
 
-         // Leonardo-specific flags.
-         if (array_key_exists("variant", $request["build"]) && $request["build"]["variant"] == "leonardo")
-             if (!(array_key_exists("vid", $request["build"])
-                 && array_key_exists("pid", $request["build"]))
-             )
-                 return "weird leonardo-specific flags missing";
+            // Leonardo-specific flags.
+            if (array_key_exists("variant", $request["build"]) && $request["build"]["variant"] == "leonardo")
+                if (!(array_key_exists("vid", $request["build"])
+                    && array_key_exists("pid", $request["build"]))
+                )
+                    return "weird leonardo-specific flags missing";
 
-         // Values used as command-line arguments may not contain any special
-         // characters. This is a serious security risk.
-         $values = array("version", "mcu", "f_cpu", "core", "vid", "pid");
-         if (array_key_exists("variant", $request["build"])) {
-             $values[] = "variant";
-         }
-         foreach ($values as $i) {
-             if (isset($request["build"][$i]) && escapeshellcmd($request["build"][$i]) != $request["build"][$i]) {
-                 return "value $i contians special characters";
-             }
-         }
-     }
+            // Values used as command-line arguments may not contain any special
+            // characters. This is a serious security risk.
+            $values = array("version", "mcu", "f_cpu", "core", "vid", "pid");
+            if (array_key_exists("variant", $request["build"])) {
+                $values[] = "variant";
+            }
+            foreach ($values as $i) {
+                if (isset($request["build"][$i]) && escapeshellcmd($request["build"][$i]) != $request["build"][$i]) {
+                    return "value $i contians special characters";
+                }
+            }
+        }
 
-     $values = array("fqbn", "vid", "pid");
-     foreach ($values as $i) {
-         if (isset($request[$i]) && escapeshellcmd($request[$i]) != $request[$i]) {
-             return "missing or invalid $i property";
-         }
-     }
+        $values = array("fqbn", "vid", "pid");
+        foreach ($values as $i) {
+            if (isset($request[$i]) && escapeshellcmd($request[$i]) != $request[$i]) {
+                return "missing or invalid $i property";
+            }
+        }
 
-     // Request is valid.
-     return null;
- }
+        // Request is valid.
+        return null;
+    }
 
 
- function extractFiles($request, $temp_dir, &$dir, &$files, $suffix, $lib_extraction = false)
- {
-         // Create a temporary directory to place all the files needed to process
-         // the compile request. This directory is created in $TMPDIR or /tmp by
-         // default and is automatically removed upon execution completion.
-         $cnt = 0;
-         if (!$dir)
-                 do
-                 {
-                         $dir = @System::mktemp("-t $temp_dir/ -d compiler.");
-                         $cnt++;
-                 } while (!$dir && $cnt <= 2);
+    function extractFiles($request, $temp_dir, &$dir, &$files, $suffix, $lib_extraction = false)
+    {
+        // Create a temporary directory to place all the files needed to process
+        // the compile request. This directory is created in $TMPDIR or /tmp by
+        // default and is automatically removed upon execution completion.
+        $cnt = 0;
+        if (!$dir)
+            do
+            {
+                $dir = @System::mktemp("-t $temp_dir/ -d compiler.");
+                $cnt++;
+            } while (!$dir && $cnt <= 2);
 
-         if (!$dir)
-                 return "Failed to create temporary directory.";
+        if (!$dir)
+            return "Failed to create temporary directory.";
 
-         $response = $this->extractFilesUtil("$dir/$suffix", $request, $lib_extraction, $files);
+        $response = $this->extractFilesUtil("$dir/$suffix", $request, $lib_extraction, $files);
 
-         if ($response != null)
-                 return $response;
-         return null;
- }
+        if ($response != null)
+            return $response;
+        return null;
+    }
 
-        /**
-         * \brief Extracts the files included in a compile request.
-         *
-         * \param string $directory The directory to extract the files to.
-         * \param array $request_files The files structure, as taken from the JSON request.
-         * \return A list of files or a reply message in case of error.
-         *
-         * Takes the files structure from a compile request and creates each file in a
-         * specified directory. If requested, it may create additional directories and
-         * have the files placed inside them accordingly.
-         *
-         * Also creates a new structure where each key is the file extension and the
-         * associated value is an array containing the absolute paths of the file, minus
-         * the extension.
-         *
-         * In case of error, the return value is an array that has a key <b>success</b>
-         * and contains the response to be sent back to the user.
-         */
-        function extractFilesUtil($directory, $request_files, $lib_extraction, &$files)
-        {
-                // File extensions used by Arduino projects. They are put in a string,
-                // separated by "|" to be used in regular expressions. They are also
-                // used as keys in an array that will contain the paths of all the
-                // extracted files.
-                $allowedExtensions = array("c", "cpp", "h", "inc", "ino", "o", "S");
-                $files = array();
-                foreach ($allowedExtensions as $ext)
-                        $files[$ext] = array();
+    /**
+     * \brief Extracts the files included in a compile request.
+     *
+     * \param string $directory The directory to extract the files to.
+     * \param array $request_files The files structure, as taken from the JSON request.
+     * \return A list of files or a reply message in case of error.
+     *
+     * Takes the files structure from a compile request and creates each file in a
+     * specified directory. If requested, it may create additional directories and
+     * have the files placed inside them accordingly.
+     *
+     * Also creates a new structure where each key is the file extension and the
+     * associated value is an array containing the absolute paths of the file, minus
+     * the extension.
+     *
+     * In case of error, the return value is an array that has a key <b>success</b>
+     * and contains the response to be sent back to the user.
+     */
+    function extractFilesUtil($directory, $request_files, $lib_extraction, &$files)
+    {
+        // File extensions used by Arduino projects. They are put in a string,
+        // separated by "|" to be used in regular expressions. They are also
+        // used as keys in an array that will contain the paths of all the
+        // extracted files.
+        $allowedExtensions = array("c", "cpp", "h", "inc", "ino", "o", "S");
+        $files = array();
+        foreach ($allowedExtensions as $ext)
+            $files[$ext] = array();
         $allowedExtensions = implode("|", $allowedExtensions);
-                // Matches filename that end with an appropriate extension. The name
-                // without the extension is stored in registerd 1, the extension itself
-                // in register 2.
-                //
-                // Examples: foo.c bar.cpp
+        // Matches filename that end with an appropriate extension. The name
+        // without the extension is stored in registerd 1, the extension itself
+        // in register 2.
+        //
+        // Examples: foo.c bar.cpp
         $extensionsRegex = "/(.*)\.($allowedExtensions)$/";
 
-                if (!file_exists($directory))
-                        mkdir($directory, 0777, true);
+        if (!file_exists($directory))
+            mkdir($directory, 0777, true);
 
-                foreach ($request_files as $file)
-                {
-                        $filename = $file["filename"];
-                        $content = $file["content"];
-                        $ignore = false;
-
-                        $failureResponse = "Failed to extract file '$filename'.";
-
-                        // Filenames may not use the special directory "..". This is a
-                        // serious security risk.
-                        $directories = explode("/", "$directory/$filename");
-                        if (in_array("..", $directories))
-                                return $failureResponse;
-
-                        if (strpos($filename, DIRECTORY_SEPARATOR))
-                        {
-                              $new_directory = pathinfo($filename, PATHINFO_DIRNAME);
-
-                              if (($lib_extraction === true) && ($new_directory !== "utility"))
-                                      $ignore = true;
-                              if (!file_exists("$directory/$new_directory"))
-                                      mkdir("$directory/$new_directory", 0777, true);
-                              // There is no reason to check whether mkdir()
-                              // succeeded, given that the call to
-                              // file_put_contents() that follows would fail
-                              // as well.
-
-                      }
-
-                      if (file_put_contents("$directory/$filename", $content) === false)
-                              return $failureResponse;
-
-                      if ($ignore)
-                              continue;
-
-                      if (preg_match($extensionsRegex, $filename, $matches))
-                              $files[$matches[2]][] = "$directory/$matches[1]";
-                      else
-                              error_log(__FUNCTION__."(): Unhandled file extension '$filename'");
-              }
-
-              // All files were extracted successfully.
-              return null;
-      }
-
-        protected function setLoggingParams($request, &$compiler_config, $temp_dir, $compiler_dir)
+        foreach ($request_files as $file)
         {
-                //Check if $request['logging'] exists and is true, then make the logfile, otherwise set
-                //$compiler_config['logdir'] to false and return to caller
-                if (array_key_exists('logging', $request) && $request['logging'])
-                {
-                        /*
-                        Generate a random part for the log name based on current date and time,
-                        in order to avoid naming different Blink projects for which we need logfiles
-                        */
-                        $randPart = date('YmdHis');
-                        /*
-                        Then find the name of the arduino file which usually is the project name itself
-                        and mix them all together
-                        */
+            $filename = $file["filename"];
+            $content = $file["content"];
+            $ignore = false;
 
-                        foreach ($request['files'] as $file)
-                        {
-                                if (strcmp(pathinfo($file['filename'], PATHINFO_EXTENSION), "ino") == 0)
-                                {
-                                        $basename = pathinfo($file['filename'], PATHINFO_FILENAME);
-                                }
-                        }
-                        if (!isset($basename))
-                        {
-                                $basename = "logfile";
-                        }
+            $failureResponse = "Failed to extract file '$filename'.";
 
-                        $compiler_config['logging'] = true;
-                        $directory = $temp_dir."/".$compiler_config['logdir'];
-                        //The code below was added to ensure that no error will be returned because of multithreaded execution.
-                        if (!file_exists($directory))
-                        {
-                                $make_dir_success = @mkdir($directory, 0777, true);
-                                if (!$make_dir_success && !is_dir($directory))
-                                {
-                                        usleep(rand(5000, 10000));
-                                        $make_dir_success = @mkdir($directory, 0777, true);
-                                }
-                                if (!$make_dir_success)
-                                        return "Failed to create logfiles directory.";
-                        }
+            // Filenames may not use the special directory "..". This is a
+            // serious security risk.
+            $directories = explode("/", "$directory/$filename");
+            if (in_array("..", $directories))
+                return $failureResponse;
 
-                        $compiler_part = str_replace(".", "_", substr($compiler_dir, strpos($compiler_dir, "compiler")));
+            if (strpos($filename, DIRECTORY_SEPARATOR))
+            {
+                $new_directory = pathinfo($filename, PATHINFO_DIRNAME);
 
-                        $compiler_config['logFileName'] = $directory."/".$basename."_".$compiler_part."_".$randPart.".txt";
+                if (($lib_extraction === true) && ($new_directory !== "utility"))
+                    $ignore = true;
+                if (!file_exists("$directory/$new_directory"))
+                    mkdir("$directory/$new_directory", 0777, true);
+                // There is no reason to check whether mkdir()
+                // succeeded, given that the call to
+                // file_put_contents() that follows would fail
+                // as well.
+            }
 
-                        file_put_contents($compiler_config['logFileName'], '');
-                }
-                elseif (!array_key_exists('logging', $request) || (!$request['logging']))
-                        $compiler_config['logging'] = false;
+            if (file_put_contents("$directory/$filename", $content) === false)
+                return $failureResponse;
 
-                return null;
+            if ($ignore)
+                continue;
+
+            if (preg_match($extensionsRegex, $filename, $matches))
+                $files[$matches[2]][] = "$directory/$matches[1]";
+            else
+                error_log(__FUNCTION__."(): Unhandled file extension '$filename'");
         }
+
+        // All files were extracted successfully.
+        return null;
+    }
+
+    protected function setLoggingParams($request, &$compiler_config, $temp_dir, $compiler_dir)
+    {
+        //Check if $request['logging'] exists and is true, then make the logfile, otherwise set
+        //$compiler_config['logdir'] to false and return to caller
+        if (array_key_exists('logging', $request) && $request['logging'])
+        {
+            /*
+            Generate a random part for the log name based on current date and time,
+            in order to avoid naming different Blink projects for which we need logfiles
+            */
+            $randPart = date('YmdHis');
+            /*
+            Then find the name of the arduino file which usually is the project name itself
+            and mix them all together
+            */
+
+            foreach ($request['files'] as $file)
+            {
+                if (strcmp(pathinfo($file['filename'], PATHINFO_EXTENSION), "ino") == 0)
+                {
+                    $basename = pathinfo($file['filename'], PATHINFO_FILENAME);
+                }
+            }
+            if (!isset($basename))
+            {
+                $basename = "logfile";
+            }
+
+            $compiler_config['logging'] = true;
+            $directory = $temp_dir."/".$compiler_config['logdir'];
+            //The code below was added to ensure that no error will be returned because of multithreaded execution.
+            if (!file_exists($directory))
+            {
+                $make_dir_success = @mkdir($directory, 0777, true);
+                if (!$make_dir_success && !is_dir($directory))
+                {
+                    usleep(rand(5000, 10000));
+                    $make_dir_success = @mkdir($directory, 0777, true);
+                }
+                if (!$make_dir_success)
+                    return "Failed to create logfiles directory.";
+            }
+
+            $compiler_part = str_replace(".", "_", substr($compiler_dir, strpos($compiler_dir, "compiler")));
+
+            $compiler_config['logFileName'] = $directory."/".$basename."_".$compiler_part."_".$randPart.".txt";
+
+            file_put_contents($compiler_config['logFileName'], '');
+        }
+        elseif (!array_key_exists('logging', $request) || (!$request['logging']))
+            $compiler_config['logging'] = false;
+
+        return null;
+    }
 }
 
 function makeRequest()
 {
-	// Check for url-form-encoded
-
-//	if (0 === strpos($_SERVER['CONTENT_TYPE'], 'application/x-www-form-urlencoded')) {
-		$content = file_get_contents('php://input');
-		//parse_str($content, $data);
-		//echo "Re-parsed as [[[" . json_encode($data, 15) . "]]]\n";
-		$data = json_decode($content, true);
-		//echo "String [[[$content]]] parsed to [[[$data]]]\n";
-		//echo "Round trip: [[[" . json_encode(json_decode($content), 15) . "]]]\n";
-		return $data;
-//	}
-
-//	phpinfo();
-//	exit(0);
-//	return "";
+    $content = file_get_contents('php://input');
+    $data = json_decode($content, true);
+    return $data;
 }
 
 $compiler = new CompilerV2Handler();
 
 $request = makeRequest();
 $config = array(
-	"archive_dir" => "compiler_archives"
-	,"temp_dir" => "/tmp"
-	,"arduino_cores_dir" => "/opt/codebender/codebender-arduino-core-files"
-	,"external_core_files" => "/opt/codebender/external-core-files"
-	,"objdir" => "codebender_object_files"
-	,"logdir" => "codebender_log"
-	,"archive_dir" => "compiler_archives"
-	,"object_directory" => "/tmp/codebender_object_files"
+    "archive_dir" => "compiler_archives"
+    ,"temp_dir" => "/tmp"
+    ,"arduino_cores_dir" => "/opt/codebender/codebender-arduino-core-files"
+    ,"external_core_files" => "/opt/codebender/external-core-files"
+    ,"objdir" => "codebender_object_files"
+    ,"logdir" => "codebender_log"
+    ,"archive_dir" => "compiler_archives"
+    ,"object_directory" => "/tmp/codebender_object_files"
 );
 
 // 15 === JSON_HEX_TAG | JSON_HEX_APOS | JSON_HEX_AMP | JSON_HEX_QUOT
