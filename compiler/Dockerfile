@@ -16,6 +16,7 @@ RUN apk update && \
     rm -f /v167.zip && \
     mv /opt/codebender/* /opt/codebender/codebender-arduino-core-files && \
     chmod -R a+x /opt/codebender && \
-    apk del .build-deps
+    apk del .build-deps && \
+    mkdir -p /var/cache/filebkp
 
 COPY app.php /
