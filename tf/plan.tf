@@ -56,12 +56,21 @@ resource "null_resource" "ssl_init" {
     # Generate the Certificate Authority
     provisioner "local-exec" {
         command = <<EOF
-            rm -f "client.crt" "client.key.insecure"
+            rm -f "ca.crt" "client.crt" "client.key.insecure" "client.ca.crt" "apiserver.crt" "apiserver.key.insecure" "apiserver.ca.crt"
             rm -rf ".etcd-ca"
             etcd-ca init --passphrase ''
-            etcd-ca new-cert  --passphrase '' client
+
+            etcd-ca chain > ca.crt
+
+            etcd-ca new-cert  --passphrase '' --domain ltc-ns.chibitronics.com,ltc.chibitronics.com,ltc.xobs.io,ltc-cluster.xobs.io client
             etcd-ca sign  --passphrase '' client
             etcd-ca export --insecure  --passphrase '' client | tar xvf -
+            etcd-ca chain client > client.ca.crt
+
+            etcd-ca new-cert  --passphrase '' --domain ltc-ns.chibitronics.com,ltc.chibitronics.com,ltc.xobs.io,ltc-cluster.xobs.io apiserver
+            etcd-ca sign  --passphrase '' apiserver
+            etcd-ca export --insecure  --passphrase '' apiserver | tar xvf -
+            etcd-ca chain apiserver > apiserver.ca.crt
 
             curl 'https://discovery.etcd.io/new?size=${var.etcd_cluster_size}' > ${var.etcd_discovery_url}
 EOF
@@ -84,14 +93,21 @@ resource "digitalocean_droplet" "k8s_worker" {
     provisioner "local-exec" {
         command = <<EOF
             rm -f "${self.name}.ca.crt" "${self.name}.crt" "${self.name}.key.insecure"
-            etcd-ca new-cert --passphrase '' --ip "${self.ipv4_address}" --domain "${self.name}.chibitronics" ${self.name}
+            etcd-ca new-cert --passphrase '' --ip "${self.ipv4_address}" --domain "${self.name}.chibitronics,ltc-ns.chibitronics.com,ltc.chibitronics.com,ltc.xobs.io,ltc-cluster.xobs.io " ${self.name}
             etcd-ca sign ${self.name}
             etcd-ca export --insecure --passphrase '' ${self.name} | tar xvf -
-	    etcd-ca chain ${self.name} > ${self.name}.ca.crt
+            etcd-ca chain ${self.name} > ${self.name}.ca.crt
 EOF
     }
 
     # Provision k8s_etcd server certificate
+    provisioner "file" {
+        source = "./${self.name}.ca.crt"
+        destination = "/home/core/ca.pem"
+        connection {
+            user = "core"
+        }
+    }
     provisioner "file" {
         source = "./${self.name}.ca.crt"
         destination = "/home/core/ca.pem"
@@ -128,6 +144,20 @@ EOF
         }
     }
     provisioner "file" {
+        source = "./apiserver.crt"
+        destination = "/home/core/apiserver.pem"
+        connection {
+            user = "core"
+        }
+    }
+    provisioner "file" {
+        source = "./apiserver.key.insecure"
+        destination = "/home/core/apiserver-key.pem"
+        connection {
+            user = "core"
+        }
+    }
+    provisioner "file" {
         source = "${var.etcd_discovery_url}"
         destination = "/home/core/provider_url"
         connection {
@@ -143,14 +173,22 @@ EOF
             "echo '' >> /tmp/34-discovery.conf",
             "sudo mv /tmp/34-discovery.conf /run/systemd/system/etcd2.service.d/34-discovery.conf",
 
+            "sudo mkdir -p /etc/kubernetes/ssl",
             "sudo mkdir -p /etc/ssl/etcd",
-            "sudo cp /home/core/{ca,etcd,etcd-key,client,client-key}.pem /etc/ssl/etcd/.",
+            "sudo cp /home/core/{ca,apiserver,apiserver-key,etcd,etcd-key,client,client-key}.pem /etc/ssl/etcd/.",
+            "sudo cp /home/core/{ca,apiserver,apiserver-key,etcd,etcd-key,client,client-key}.pem /etc/kubernetes/ssl/.",
+
             "sudo systemctl daemon-reload",
-            "until curl --cacert /home/core/ca.pem --cert /home/core/client.pem --key /home/core/client-key.pem -X PUT -d 'value={\"Network\":\"10.2.0.0/16\",\"Backend\":{\"Type\":\"vxlan\"}}' https://${self.ipv4_address}:2379/v2/keys/coreos.com/network/config; do sleep 1; done",
+
             "sudo systemctl start etcd2",
             "sudo systemctl enable etcd2",
+
+            "until curl --cacert /home/core/ca.pem --cert /home/core/client.pem --key /home/core/client-key.pem -X PUT -d 'value={\"Network\":\"10.2.0.0/16\",\"Backend\":{\"Type\":\"vxlan\"}}' https://${self.ipv4_address}:2379/v2/keys/coreos.com/network/config; do sleep 1; done",
             "sudo systemctl start flanneld",
             "sudo systemctl enable flanneld",
+
+            "sudo systemctl start kubelet",
+            "sudo systemctl enable kubelet",
         ]
         connection {
             user = "core"
@@ -158,7 +196,7 @@ EOF
     }
 }
 
-resource "null_resource" "setup_kubectl" {
+resource "null_resource" "setup_etcdctl" {
     depends_on = ["digitalocean_droplet.k8s_worker"]
     provisioner "local-exec" {
         command = <<EOF
@@ -166,6 +204,27 @@ resource "null_resource" "setup_kubectl" {
             echo export ETCDCTL_KEY_FILE=/home/core/client-key.pem >> setup_etcdctl.sh
             echo export ETCDCTL_CA_FILE=/home/core/ca.pem >> setup_etcdctl.sh
             echo export ETCDCTL_PEERS=${join(",", formatlist("https://%s:2379/", digitalocean_droplet.k8s_worker.*.ipv4_address))} >> setup_etcdctl.sh
+            echo -e 'Servers running:\n${join("\n", formatlist("    ssh core@%s", digitalocean_droplet.k8s_worker.*.ipv4_address))}'
+EOF
+    }
+}
+
+resource "null_resource" "setup_kubectl" {
+#    depends_on = ["null_resource.make_admin_key"]
+    depends_on = ["digitalocean_droplet.k8s_worker"]
+    provisioner "local-exec" {
+        command = <<EOF
+            echo export MASTER_HOST=${digitalocean_droplet.k8s_worker.0.ipv4_address} > $PWD/secrets/setup_kubectl.sh
+            echo export CA_CERT=$PWD/apiserver.ca.crt >> $PWD/secrets/setup_kubectl.sh
+            echo export ADMIN_KEY=$PWD/apiserver.key.insecure >> $PWD/secrets/setup_kubectl.sh
+            echo export ADMIN_CERT=$PWD/apiserver.crt >> $PWD/secrets/setup_kubectl.sh
+            . $PWD/secrets/setup_kubectl.sh
+            kubectl config set-cluster default-cluster \
+                --server=https://$MASTER_HOST --certificate-authority=$CA_CERT
+            kubectl config set-credentials default-admin \
+                 --certificate-authority=$CA_CERT --client-key=$ADMIN_KEY --client-certificate=$ADMIN_CERT
+            kubectl config set-context default-system --cluster=default-cluster --user=default-admin
+            kubectl config use-context default-system
 EOF
     }
 }
