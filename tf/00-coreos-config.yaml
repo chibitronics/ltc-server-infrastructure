@@ -1,6 +1,8 @@
 #cloud-config
 
 coreos:
+  update:
+    reboot-strategy: etcd-lock
   etcd2:
     #initial cluster configuration
     initial-advertise-peer-urls: https://$public_ipv4:2380
@@ -23,7 +25,12 @@ coreos:
     election-timeout: 2500
   fleet:
     public-ip: $public_ipv4   # used for fleetctl ssh command
-    etcd_servers: https://$public_ipv4:2379
+    etcd-endpoints: https://$public_ipv4:2379
+  locksmith:
+    endpoint: https://$public_ipv4:2379
+    etcd-cafile: /home/core/ca.pem
+    etcd-certfile: /home/core/client.pem
+    etcd-keyfile: /home/core/client-key.pem
   units:
     - name: etcd2.service
       command: start
@@ -35,9 +42,9 @@ write_files:
     content: |
       [Service]
       # client auth certs
-      ETCD_CAFILE=/home/core/ca.pem
-      ETCD_CERTFILE=/home/core/etcd.pem
-      ETCD_KEYFILE=/home/core/etcd-key.pem
+      Environment=ETCD_CAFILE=/home/core/ca.pem
+      Environment=ETCD_CERTFILE=/home/core/etcd.pem
+      Environment=ETCD_KEYFILE=/home/core/etcd-key.pem
   - path: "/etc/flannel/options.env"
     permissions: "0755"
     content: |
