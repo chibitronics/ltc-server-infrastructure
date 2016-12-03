@@ -20,7 +20,7 @@ variable "do_region" {
     default = "sgp1"
 }
 variable "ssh_fingerprint" {}
-variable "number_of_workers" {}
+variable "number_of_masters" {}
 variable "hypercube_version" {
     default = "v1.3.6_coreos.0"
 }
@@ -31,6 +31,10 @@ variable "etcd_cluster_size" {
 
 variable "etcd_discovery_url" {
     default = "etcd_discovery_url.txt"
+}
+
+variable "domain" {
+    default = "k8s.xobs.io"
 }
 
 ###############################################################################
@@ -51,6 +55,13 @@ provider "digitalocean" {
 #
 ###############################################################################
 
+resource "digitalocean_tag" "k8s" {
+    name = "k8s"
+}
+
+resource "digitalocean_tag" "k8s_master" {
+    name = "k8s_master"
+}
 
 resource "null_resource" "ssl_init" {
     # Generate the Certificate Authority
@@ -62,28 +73,33 @@ resource "null_resource" "ssl_init" {
 
             etcd-ca chain > ca.crt
 
-            etcd-ca new-cert  --passphrase '' --domain ltc-ns.chibitronics.com,ltc.chibitronics.com,ltc.xobs.io,ltc-cluster.xobs.io client
+            etcd-ca new-cert  --passphrase '' --domain ltc-ns.chibitronics.com,ltc.chibitronics.com,ltc.xobs.io,ltc-cluster.xobs.io,k8s.xobs.io client
             etcd-ca sign  --passphrase '' client
             etcd-ca export --insecure  --passphrase '' client | tar xvf -
             etcd-ca chain client > client.ca.crt
 
-            etcd-ca new-cert  --passphrase '' --domain ltc-ns.chibitronics.com,ltc.chibitronics.com,ltc.xobs.io,ltc-cluster.xobs.io apiserver
+            etcd-ca new-cert  --passphrase '' --ip "10.3.0.1" --domain ltc-ns.chibitronics.com,ltc.chibitronics.com,ltc.xobs.io,ltc-cluster.xobs.io,k8s.xobs.io apiserver
             etcd-ca sign  --passphrase '' apiserver
             etcd-ca export --insecure  --passphrase '' apiserver | tar xvf -
             etcd-ca chain apiserver > apiserver.ca.crt
+
+            dd if=/dev/urandom bs=128 count=1 2>/dev/null | base64 | tr -d "=+/" | dd bs=32 count=1 > cluster_token
+            tr -d '\n' cluster_token > known_tokens.csv
+            echo ',default-user,1000,"default-group,other-group,other-other-group"' >> known_tokens.csv
 
             curl 'https://discovery.etcd.io/new?size=${var.etcd_cluster_size}' > ${var.etcd_discovery_url}
 EOF
     }
 }
 
-resource "digitalocean_droplet" "k8s_worker" {
+resource "digitalocean_droplet" "k8s_master" {
     image = "coreos-stable"
     depends_on = [ "null_resource.ssl_init" ]
-    count = "${var.number_of_workers}"
-    name = "${format("k8s-worker-%02d", count.index + 1)}"
+    count = "${var.number_of_masters}"
+    name = "${format("k8s-master-%02d", count.index + 1)}"
+#    tags   = ["${digitalocean_tag.k8s.id}", "${digitalocean_tag.k8s_master.id}"]
     region = "${var.do_region}"
-    private_networking = true
+    private_networking = false
     size = "512mb"
     user_data = "${file("00-coreos-config.yaml")}"
     ssh_keys = [
@@ -93,7 +109,7 @@ resource "digitalocean_droplet" "k8s_worker" {
     provisioner "local-exec" {
         command = <<EOF
             rm -f "${self.name}.ca.crt" "${self.name}.crt" "${self.name}.key.insecure"
-            etcd-ca new-cert --passphrase '' --ip "${self.ipv4_address}" --domain "${self.name}.chibitronics,ltc-ns.chibitronics.com,ltc.chibitronics.com,ltc.xobs.io,ltc-cluster.xobs.io " ${self.name}
+            etcd-ca new-cert --passphrase '' --ip "${self.ipv4_address}" --domain "${self.name}.chibitronics,ltc-ns.chibitronics.com,ltc.chibitronics.com,ltc.xobs.io,ltc-cluster.xobs.io,k8s.xobs.io " ${self.name}
             etcd-ca sign ${self.name}
             etcd-ca export --insecure --passphrase '' ${self.name} | tar xvf -
             etcd-ca chain ${self.name} > ${self.name}.ca.crt
@@ -102,14 +118,7 @@ EOF
 
     # Provision k8s_etcd server certificate
     provisioner "file" {
-        source = "./${self.name}.ca.crt"
-        destination = "/home/core/ca.pem"
-        connection {
-            user = "core"
-        }
-    }
-    provisioner "file" {
-        source = "./${self.name}.ca.crt"
+        source = "./ca.crt"
         destination = "/home/core/ca.pem"
         connection {
             user = "core"
@@ -164,6 +173,13 @@ EOF
             user = "core"
         }
     }
+    provisioner "file" {
+        source = "./known_tokens.csv"
+        destination = "/home/core/known_tokens.csv"
+        connection {
+            user = "core"
+        }
+    }
 
     provisioner "remote-exec" {
         inline = [
@@ -177,6 +193,12 @@ EOF
             "sudo mkdir -p /etc/ssl/etcd",
             "sudo cp /home/core/{ca,apiserver,apiserver-key,etcd,etcd-key,client,client-key}.pem /etc/ssl/etcd/.",
             "sudo cp /home/core/{ca,apiserver,apiserver-key,etcd,etcd-key,client,client-key}.pem /etc/kubernetes/ssl/.",
+            "sudo cp /home/core/known_tokens.csv /etc/kubernetes/ssl/.",
+
+            "echo '127.0.0.1       localhost' > /home/core/hosts",
+            "echo '::1             localhost' >> /home/core/hosts",
+            "echo '${self.ipv4_address} ${self.name}' >> /home/core/hosts",
+            "sudo mv /home/core/hosts /etc/hosts",
 
             "sudo systemctl daemon-reload",
 
@@ -189,6 +211,9 @@ EOF
 
             "sudo systemctl start kubelet",
             "sudo systemctl enable kubelet",
+
+            # Wait for the machine to start up
+            "until $(curl --output /dev/null --silent --head --fail http://127.0.0.1:8080); do printf '.'; sleep 5; done",
         ]
         connection {
             user = "core"
@@ -196,33 +221,49 @@ EOF
     }
 }
 
+resource "digitalocean_record" "master_a" {
+    count  = "${var.number_of_masters}"
+    domain = "${var.domain}"
+    type   = "A"
+    name   = "master${count.index}"
+    value  = "${element(digitalocean_droplet.k8s_master.*.ipv4_address, count.index)}"
+}
+
+resource "digitalocean_record" "master_root_a" {
+    count  = "${var.number_of_masters}"
+    domain = "${var.domain}"
+    type   = "A"
+    name   = "@"
+    value  = "${element(digitalocean_droplet.k8s_master.*.ipv4_address, count.index)}"
+}
+
 resource "null_resource" "setup_etcdctl" {
-    depends_on = ["digitalocean_droplet.k8s_worker"]
+    depends_on = ["digitalocean_droplet.k8s_master"]
     provisioner "local-exec" {
         command = <<EOF
             echo export ETCDCTL_CERT_FILE=/home/core/client.pem > setup_etcdctl.sh
             echo export ETCDCTL_KEY_FILE=/home/core/client-key.pem >> setup_etcdctl.sh
             echo export ETCDCTL_CA_FILE=/home/core/ca.pem >> setup_etcdctl.sh
-            echo export ETCDCTL_PEERS=${join(",", formatlist("https://%s:2379/", digitalocean_droplet.k8s_worker.*.ipv4_address))} >> setup_etcdctl.sh
-            echo -e 'Servers running:\n${join("\n", formatlist("    ssh core@%s", digitalocean_droplet.k8s_worker.*.ipv4_address))}'
+            echo export ETCDCTL_PEERS=${join(",", formatlist("https://%s:2379/", digitalocean_droplet.k8s_master.*.ipv4_address))} >> setup_etcdctl.sh
+            echo -e 'Servers running:\n${join("\n", formatlist("    ssh core@%s", digitalocean_droplet.k8s_master.*.ipv4_address))}'
 EOF
     }
 }
 
 resource "null_resource" "setup_kubectl" {
-#    depends_on = ["null_resource.make_admin_key"]
-    depends_on = ["digitalocean_droplet.k8s_worker"]
+    depends_on = ["digitalocean_droplet.k8s_master"]
     provisioner "local-exec" {
         command = <<EOF
-            echo export MASTER_HOST=${digitalocean_droplet.k8s_worker.0.ipv4_address} > $PWD/secrets/setup_kubectl.sh
-            echo export CA_CERT=$PWD/apiserver.ca.crt >> $PWD/secrets/setup_kubectl.sh
-            echo export ADMIN_KEY=$PWD/apiserver.key.insecure >> $PWD/secrets/setup_kubectl.sh
-            echo export ADMIN_CERT=$PWD/apiserver.crt >> $PWD/secrets/setup_kubectl.sh
-            . $PWD/secrets/setup_kubectl.sh
+            echo export MASTER_HOST=k8s.xobs.io > $PWD/setup_kubectl.sh
+            echo export CA_CERT=$PWD/ca.crt >> $PWD/setup_kubectl.sh
+            echo export ADMIN_KEY=$PWD/client.key.insecure >> $PWD/setup_kubectl.sh
+            echo export ADMIN_CERT=$PWD/client.crt >> $PWD/setup_kubectl.sh
+            . $PWD/setup_kubectl.sh
             kubectl config set-cluster default-cluster \
                 --server=https://$MASTER_HOST --certificate-authority=$CA_CERT
             kubectl config set-credentials default-admin \
-                 --certificate-authority=$CA_CERT --client-key=$ADMIN_KEY --client-certificate=$ADMIN_CERT
+                 --certificate-authority=$CA_CERT --client-key=$ADMIN_KEY --client-certificate=$ADMIN_CERT \
+                 --token=$(cat cluster_token)
             kubectl config set-context default-system --cluster=default-cluster --user=default-admin
             kubectl config use-context default-system
 EOF
@@ -360,7 +401,7 @@ EOF
 ###############################################################################
 
 
-#data "template_file" "worker_yaml" {
+#data "template_file" "master_yaml" {
 #    template = "${file("02-worker.yaml")}"
 #    vars {
 #        DNS_SERVICE_IP = "10.3.0.10"
