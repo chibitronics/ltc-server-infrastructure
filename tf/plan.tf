@@ -213,6 +213,7 @@ EOF
             "sudo chmod 0600 /swap",
             "sudo mkswap /swap",
             "sudo swapon /swap",
+            "sudo systemctl enable extraswap",
 
             "until curl --cacert /home/core/ca.pem --cert /home/core/client.pem --key /home/core/client-key.pem -X PUT -d 'value={\"Network\":\"10.2.0.0/16\",\"Backend\":{\"Type\":\"vxlan\"}}' https://${self.ipv4_address}:2379/v2/keys/coreos.com/network/config; do sleep 1; done",
             "sudo systemctl start flanneld",
@@ -358,6 +359,7 @@ EOF
             "sudo swapon /swap",
 
             "sudo systemctl daemon-reload",
+            "sudo systemctl enable extraswap",
             "sudo systemctl restart systemd-resolved",
             "sudo systemctl start flanneld",
             "sudo systemctl enable flanneld",

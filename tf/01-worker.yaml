@@ -24,18 +24,31 @@ write_files:
         FLANNELD_ETCD_CERTFILE=/etc/ssl/etcd/worker.pem
         FLANNELD_ETCD_KEYFILE=/etc/ssl/etcd/worker-key.pem
   - path: "/etc/systemd/system/flanneld.service.d/40-ExecStartPre-symlink.conf"
-    permissions: "0755"
+    permissions: "0644"
     content: |
         [Service]
         ExecStartPre=/usr/bin/ln -sf /etc/flannel/options.env /run/flannel/options.env
   - path: "/etc/systemd/system/docker.service.d/40-flannel.conf"
-    permissions: "0755"
+    permissions: "0644"
     content: |
         [Unit]
         Requires=flanneld.service
         After=flanneld.service
+  - path: "/etc/systemd/system/extraswap.service"
+    permissions: "0644"
+    content: |
+      [Unit]
+      Description=Turn on swap
+
+      [Service]
+      Type=oneshot
+      ExecStart=/sbin/swapon /swap
+      RemainAfterExit=true
+
+      [Install]
+      WantedBy=multi-user.target
   - path: "/etc/systemd/system/kubelet.service"
-    permissions: "0755"
+    permissions: "0644"
     content: |
         [Service]
         ExecStartPre=/usr/bin/mkdir -p /etc/kubernetes/manifests
