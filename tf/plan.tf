@@ -376,7 +376,7 @@ resource "digitalocean_record" "worker_a" {
     domain = "${var.domain}"
     type   = "A"
     name   = "${element(digitalocean_droplet.k8s_worker.*.name, count.index)}"
-    value  = "${element(digitalocean_droplet.k8s_master.*.ipv4_address, count.index)}"
+    value  = "${element(digitalocean_droplet.k8s_worker.*.ipv4_address, count.index)}"
 }
 
 
