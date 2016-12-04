@@ -21,6 +21,9 @@ variable "do_region" {
 }
 variable "ssh_fingerprint" {}
 variable "number_of_masters" {}
+variable "number_of_workers" {
+    default = "1"
+}
 variable "hypercube_version" {
     default = "v1.3.6_coreos.0"
 }
@@ -78,7 +81,7 @@ resource "null_resource" "ssl_init" {
             etcd-ca export --insecure  --passphrase '' client | tar xvf -
             etcd-ca chain client > client.ca.crt
 
-            etcd-ca new-cert  --passphrase '' --ip "10.3.0.1" --domain ltc-ns.chibitronics.com,ltc.chibitronics.com,ltc.xobs.io,ltc-cluster.xobs.io,k8s.xobs.io apiserver
+            etcd-ca new-cert  --passphrase '' --domain ltc-ns.chibitronics.com,ltc.chibitronics.com,ltc.xobs.io,ltc-cluster.xobs.io,k8s.xobs.io apiserver
             etcd-ca sign  --passphrase '' apiserver
             etcd-ca export --insecure  --passphrase '' apiserver | tar xvf -
             etcd-ca chain apiserver > apiserver.ca.crt
@@ -109,7 +112,7 @@ resource "digitalocean_droplet" "k8s_master" {
     provisioner "local-exec" {
         command = <<EOF
             rm -f "${self.name}.ca.crt" "${self.name}.crt" "${self.name}.key.insecure"
-            etcd-ca new-cert --passphrase '' --ip "${self.ipv4_address}" --domain "${self.name}.chibitronics,ltc-ns.chibitronics.com,ltc.chibitronics.com,ltc.xobs.io,ltc-cluster.xobs.io,k8s.xobs.io " ${self.name}
+            etcd-ca new-cert --passphrase '' --ip "${self.ipv4_address}" --domain "${self.name}.chibitronics,ltc-ns.chibitronics.com,ltc.chibitronics.com,ltc.xobs.io,ltc-cluster.xobs.io,k8s.xobs.io" ${self.name}
             etcd-ca sign ${self.name}
             etcd-ca export --insecure --passphrase '' ${self.name} | tar xvf -
             etcd-ca chain ${self.name} > ${self.name}.ca.crt
@@ -201,9 +204,15 @@ EOF
             "sudo mv /home/core/hosts /etc/hosts",
 
             "sudo systemctl daemon-reload",
+            "sudo systemctl restart systemd-resolved",
 
             "sudo systemctl start etcd2",
             "sudo systemctl enable etcd2",
+
+            "sudo dd if=/dev/zero of=/swap bs=1M count=2048",
+            "sudo chmod 0600 /swap",
+            "sudo mkswap /swap",
+            "sudo swapon /swap",
 
             "until curl --cacert /home/core/ca.pem --cert /home/core/client.pem --key /home/core/client-key.pem -X PUT -d 'value={\"Network\":\"10.2.0.0/16\",\"Backend\":{\"Type\":\"vxlan\"}}' https://${self.ipv4_address}:2379/v2/keys/coreos.com/network/config; do sleep 1; done",
             "sudo systemctl start flanneld",
@@ -225,7 +234,7 @@ resource "digitalocean_record" "master_a" {
     count  = "${var.number_of_masters}"
     domain = "${var.domain}"
     type   = "A"
-    name   = "master${count.index}"
+    name   = "${element(digitalocean_droplet.k8s_master.*.name, count.index)}"
     value  = "${element(digitalocean_droplet.k8s_master.*.ipv4_address, count.index)}"
 }
 
@@ -268,6 +277,106 @@ resource "null_resource" "setup_kubectl" {
             kubectl config use-context default-system
 EOF
     }
+}
+
+
+data "template_file" "worker_yaml" {
+    template = "${file("01-worker.yaml")}"
+    vars {
+        DNS_SERVICE_IP = "10.3.0.10"
+        ETCD_ENDPOINTS = "${join(",", formatlist("https://%s:2379/", digitalocean_droplet.k8s_master.*.ipv4_address))}"
+        MASTER_HOSTS = "${join(",", formatlist("https://%s/", digitalocean_droplet.k8s_master.*.ipv4_address))}"
+        HYPERCUBE_VERSION = "${var.hypercube_version}"
+    }
+}
+
+resource "digitalocean_droplet" "k8s_worker" {
+    count = "${var.number_of_workers}"
+    image = "coreos-stable"
+    name = "${format("k8s-worker-%02d", count.index + 1)}"
+    region = "${var.do_region}"
+    size = "512mb"
+    private_networking = false
+    user_data = "${data.template_file.worker_yaml.rendered}"
+    ssh_keys = [
+        "${var.ssh_fingerprint}"
+    ]
+
+
+    # Create client certificate
+    provisioner "local-exec" {
+        command = <<EOF
+            rm -f "${self.name}.ca.crt" "${self.name}.crt" "${self.name}.key.insecure"
+            etcd-ca new-cert --passphrase '' --ip "${self.ipv4_address}" --domain "${self.name}.chibitronics,ltc-ns.chibitronics.com,ltc.chibitronics.com,ltc.xobs.io,ltc-cluster.xobs.io,k8s.xobs.io" ${self.name}
+            etcd-ca sign ${self.name}
+            etcd-ca export --insecure --passphrase '' ${self.name} | tar xvf -
+            etcd-ca chain ${self.name} > ${self.name}.ca.crt
+EOF
+    }
+
+    provisioner "file" {
+        source = "./ca.crt"
+        destination = "/home/core/ca.pem"
+        connection {
+            user = "core"
+        }
+    }
+    provisioner "file" {
+        source = "./${self.name}.crt"
+        destination = "/home/core/worker.pem"
+        connection {
+            user = "core"
+        }
+    }
+    provisioner "file" {
+        source = "./${self.name}.key.insecure"
+        destination = "/home/core/worker-key.pem"
+        connection {
+            user = "core"
+        }
+    }
+
+    # TODO: permissions on these keys
+    provisioner "remote-exec" {
+        inline = [
+            "sudo mkdir -p /etc/kubernetes/ssl",
+            "sudo cp /home/core/{ca,worker,worker-key}.pem /etc/kubernetes/ssl/.",
+            "sudo mkdir -p /etc/ssl/etcd/",
+            "sudo mv /home/core/{ca,worker,worker-key}.pem /etc/ssl/etcd/."
+        ]
+        connection {
+            user = "core"
+        }
+    }
+
+    # Start kubelet
+    provisioner "remote-exec" {
+        inline = [
+            "sudo dd if=/dev/zero of=/swap bs=1M count=2048",
+            "sudo chmod 0600 /swap",
+            "sudo mkswap /swap",
+            "sudo swapon /swap",
+
+            "sudo systemctl daemon-reload",
+            "sudo systemctl restart systemd-resolved",
+            "sudo systemctl start flanneld",
+            "sudo systemctl enable flanneld",
+            "sudo systemctl start kubelet",
+            "sudo systemctl enable kubelet"
+        ]
+        connection {
+            user = "core"
+        }
+    }
+}
+
+
+resource "digitalocean_record" "worker_a" {
+    count  = "${var.number_of_workers}"
+    domain = "${var.domain}"
+    type   = "A"
+    name   = "${element(digitalocean_droplet.k8s_worker.*.name, count.index)}"
+    value  = "${element(digitalocean_droplet.k8s_master.*.ipv4_address, count.index)}"
 }
 
 

@@ -1,0 +1,125 @@
+#cloud-config
+
+manage-resolv-conf: true
+resolv_conf:
+  nameservers:
+    - '8.8.8.8'
+    - '8.8.4.4'
+  searchdomains:
+    - k8s.xobs.io
+  domain: xobs.io
+write_files:
+  - path: /run/systemd/resolved.conf.d/99-search.conf
+    permissions: "0644"
+    owner: "root"
+    content: |
+      [Resolve]
+      Domains=k8s.xobs.io
+  - path: "/etc/flannel/options.env"
+    permissions: "0755"
+    content: |
+        FLANNELD_IFACE=$private_ipv4
+        FLANNELD_ETCD_ENDPOINTS=${ETCD_ENDPOINTS}
+        FLANNELD_ETCD_CAFILE=/etc/ssl/etcd/ca.pem
+        FLANNELD_ETCD_CERTFILE=/etc/ssl/etcd/worker.pem
+        FLANNELD_ETCD_KEYFILE=/etc/ssl/etcd/worker-key.pem
+  - path: "/etc/systemd/system/flanneld.service.d/40-ExecStartPre-symlink.conf"
+    permissions: "0755"
+    content: |
+        [Service]
+        ExecStartPre=/usr/bin/ln -sf /etc/flannel/options.env /run/flannel/options.env
+  - path: "/etc/systemd/system/docker.service.d/40-flannel.conf"
+    permissions: "0755"
+    content: |
+        [Unit]
+        Requires=flanneld.service
+        After=flanneld.service
+  - path: "/etc/systemd/system/kubelet.service"
+    permissions: "0755"
+    content: |
+        [Service]
+        ExecStartPre=/usr/bin/mkdir -p /etc/kubernetes/manifests
+        ExecStartPre=/usr/bin/mkdir -p /var/log/containers
+
+        Environment=KUBELET_VERSION=${HYPERCUBE_VERSION}
+        Environment="RKT_OPTS=--volume var-log,kind=host,source=/var/log \
+          --mount volume=var-log,target=/var/log \
+          --volume dns,kind=host,source=/etc/resolv.conf \
+          --mount volume=dns,target=/etc/resolv.conf"
+
+        ExecStart=/usr/lib/coreos/kubelet-wrapper \
+          --api-servers=${MASTER_HOSTS} \
+          --network-plugin-dir=/etc/kubernetes/cni/net.d \
+          --register-node=true \
+          --allow-privileged=true \
+          --config=/etc/kubernetes/manifests \
+          --hostname-override=$private_ipv4 \
+          --cluster-dns=${DNS_SERVICE_IP} \
+          --cluster-domain=cluster.local \
+          --kubeconfig=/etc/kubernetes/worker-kubeconfig.yaml \
+          --tls-cert-file=/etc/kubernetes/ssl/worker.pem \
+          --tls-private-key-file=/etc/kubernetes/ssl/worker-key.pem
+        Restart=always
+        RestartSec=10
+        [Install]
+        WantedBy=multi-user.target
+  - path: "/etc/kubernetes/manifests/kube-proxy.yaml"
+    permissions: "0755"
+    content: |
+        apiVersion: v1
+        kind: Pod
+        metadata:
+          name: kube-proxy
+          namespace: kube-system
+        spec:
+          hostNetwork: true
+          containers:
+          - name: kube-proxy
+            image: quay.io/coreos/hyperkube:${HYPERCUBE_VERSION}
+            command:
+            - /hyperkube
+            - proxy
+            - --master=${MASTER_HOSTS}
+            - --kubeconfig=/etc/kubernetes/worker-kubeconfig.yaml
+            - --proxy-mode=iptables
+            securityContext:
+              privileged: true
+            volumeMounts:
+              - mountPath: /etc/ssl/certs
+                name: "ssl-certs"
+              - mountPath: /etc/kubernetes/worker-kubeconfig.yaml
+                name: "kubeconfig"
+                readOnly: true
+              - mountPath: /etc/kubernetes/ssl
+                name: "etc-kube-ssl"
+                readOnly: true
+          volumes:
+            - name: "ssl-certs"
+              hostPath:
+                path: "/usr/share/ca-certificates"
+            - name: "kubeconfig"
+              hostPath:
+                path: "/etc/kubernetes/worker-kubeconfig.yaml"
+            - name: "etc-kube-ssl"
+              hostPath:
+                path: "/etc/kubernetes/ssl"
+  - path: "/etc/kubernetes/worker-kubeconfig.yaml"
+    permissions: "0755"
+    content: |
+        apiVersion: v1
+        kind: Config
+        clusters:
+        - name: local
+          cluster:
+            certificate-authority: /etc/kubernetes/ssl/ca.pem
+        users:
+        - name: kubelet
+          user:
+            client-certificate: /etc/kubernetes/ssl/worker.pem
+            client-key: /etc/kubernetes/ssl/worker-key.pem
+        contexts:
+        - context:
+            cluster: local
+            user: kubelet
+          name: kubelet-context
+        current-context: kubelet-context

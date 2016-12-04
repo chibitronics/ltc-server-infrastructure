@@ -21,7 +21,7 @@ coreos:
     peer-key-file: /home/core/etcd-key.pem
     peer-client-cert-auth: 1
     #tuning see https://github.com/coreos/etcd/blob/master/Documentation/tuning.md
-    heartbeat-interval: 100
+    heartbeat-interval: 300
     election-timeout: 2500
   fleet:
     public-ip: $public_ipv4   # used for fleetctl ssh command
@@ -37,6 +37,12 @@ coreos:
     - name: fleet.service
       command: start
 write_files:
+  - path: /run/systemd/resolved.conf.d/99-search.conf
+    permissions: "0644"
+    owner: "root"
+    content: |
+      [Resolve]
+      Domains=k8s.xobs.io
   - path: /run/systemd/system/fleet.service.d/30-certificates.conf
     permissions: 0644
     content: |
@@ -109,18 +115,18 @@ write_files:
             - --bind-address=0.0.0.0
             - --etcd-servers=https://$public_ipv4:2379
             - --etcd-cafile=/etc/kubernetes/ssl/ca.pem
-            - --etcd-certfile=/etc/kubernetes/ssl/apiserver.pem
-            - --etcd-keyfile=/etc/kubernetes/ssl/apiserver-key.pem
+            - --etcd-certfile=/etc/kubernetes/ssl/etcd.pem
+            - --etcd-keyfile=/etc/kubernetes/ssl/etcd-key.pem
             - --allow-privileged=true
             - --service-cluster-ip-range=10.3.0.0/24
             - --secure-port=443
             - --advertise-address=$public_ipv4
             - --admission-control=NamespaceLifecycle,LimitRanger,ServiceAccount,ResourceQuota
-            - --tls-cert-file=/etc/kubernetes/ssl/apiserver.pem
-            - --tls-private-key-file=/etc/kubernetes/ssl/apiserver-key.pem
+            - --tls-cert-file=/etc/kubernetes/ssl/etcd.pem
+            - --tls-private-key-file=/etc/kubernetes/ssl/etcd-key.pem
             - --client-ca-file=/etc/kubernetes/ssl/ca.pem
             - --token-auth-file=/etc/kubernetes/ssl/known_tokens.csv
-            - --service-account-key-file=/etc/kubernetes/ssl/apiserver-key.pem
+            - --service-account-key-file=/etc/kubernetes/ssl/etcd-key.pem
             - --runtime-config=extensions/v1beta1=true,extensions/v1beta1/networkpolicies=true
             ports:
             - containerPort: 443
@@ -189,7 +195,7 @@ write_files:
             - controller-manager
             - --master=http://127.0.0.1:8080
             - --leader-elect=true
-            - --service-account-private-key-file=/etc/kubernetes/ssl/apiserver-key.pem
+            - --service-account-private-key-file=/etc/kubernetes/ssl/etcd-key.pem
             - --root-ca-file=/etc/kubernetes/ssl/ca.pem
             livenessProbe:
               httpGet:
