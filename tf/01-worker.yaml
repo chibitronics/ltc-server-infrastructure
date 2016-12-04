@@ -1,13 +1,36 @@
 #cloud-config
 
-manage-resolv-conf: true
-resolv_conf:
-  nameservers:
-    - '8.8.8.8'
-    - '8.8.4.4'
-  searchdomains:
-    - k8s.xobs.io
-  domain: xobs.io
+coreos:
+  update:
+    reboot-strategy: etcd-lock
+  etcd2:
+    #initial cluster configuration
+    initial-advertise-peer-urls: https://$public_ipv4:2380
+    listen-peer-urls: https://$public_ipv4:2380
+    listen-client-urls: https://$public_ipv4:2379
+    advertise-client-urls: https://$public_ipv4:2379
+    initial-advertise-client-urls: https://$public_ipv4:2379
+    initial-cluster-state: new
+    #security
+    trusted-ca-file: /home/core/ca.pem
+    cert-file: /home/core/etcd.pem
+    key-file: /home/core/etcd-key.pem
+    client-cert-auth: 1
+    peer-trusted-ca-file: /home/core/ca.pem
+    peer-cert-file: /home/core/etcd.pem
+    peer-key-file: /home/core/etcd-key.pem
+    peer-client-cert-auth: 1
+    #tuning see https://github.com/coreos/etcd/blob/master/Documentation/tuning.md
+    heartbeat-interval: 300
+    election-timeout: 2500
+  fleet:
+    public-ip: $public_ipv4   # used for fleetctl ssh command
+    etcd-endpoints: https://$public_ipv4:2379
+  locksmith:
+    endpoint: https://$public_ipv4:2379
+    etcd-cafile: /home/core/ca.pem
+    etcd-certfile: /home/core/client.pem
+    etcd-keyfile: /home/core/client-key.pem
 write_files:
   - path: /run/systemd/resolved.conf.d/99-search.conf
     permissions: "0644"
@@ -21,8 +44,8 @@ write_files:
         FLANNELD_IFACE=$private_ipv4
         FLANNELD_ETCD_ENDPOINTS=${ETCD_ENDPOINTS}
         FLANNELD_ETCD_CAFILE=/etc/ssl/etcd/ca.pem
-        FLANNELD_ETCD_CERTFILE=/etc/ssl/etcd/worker.pem
-        FLANNELD_ETCD_KEYFILE=/etc/ssl/etcd/worker-key.pem
+        FLANNELD_ETCD_CERTFILE=/etc/ssl/etcd/etcd.pem
+        FLANNELD_ETCD_KEYFILE=/etc/ssl/etcd/etcd-key.pem
   - path: "/etc/systemd/system/flanneld.service.d/40-ExecStartPre-symlink.conf"
     permissions: "0644"
     content: |
@@ -70,8 +93,8 @@ write_files:
           --cluster-dns=${DNS_SERVICE_IP} \
           --cluster-domain=cluster.local \
           --kubeconfig=/etc/kubernetes/worker-kubeconfig.yaml \
-          --tls-cert-file=/etc/kubernetes/ssl/worker.pem \
-          --tls-private-key-file=/etc/kubernetes/ssl/worker-key.pem
+          --tls-cert-file=/etc/kubernetes/ssl/etcd.pem \
+          --tls-private-key-file=/etc/kubernetes/ssl/etcd-key.pem
         Restart=always
         RestartSec=10
         [Install]
@@ -128,8 +151,8 @@ write_files:
         users:
         - name: kubelet
           user:
-            client-certificate: /etc/kubernetes/ssl/worker.pem
-            client-key: /etc/kubernetes/ssl/worker-key.pem
+            client-certificate: /etc/kubernetes/ssl/etcd.pem
+            client-key: /etc/kubernetes/ssl/etcd-key.pem
         contexts:
         - context:
             cluster: local

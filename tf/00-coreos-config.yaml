@@ -103,7 +103,7 @@ write_files:
           --allow-privileged=true \
           --config=/etc/kubernetes/manifests \
           --hostname-override=$public_ipv4 \
-          --cluster-dns=10.3.0.10 \
+          --cluster-dns=192.168.3.10 \
           --cluster-domain=cluster.local
         Restart=always
         RestartSec=10
@@ -131,7 +131,7 @@ write_files:
             - --etcd-certfile=/etc/kubernetes/ssl/etcd.pem
             - --etcd-keyfile=/etc/kubernetes/ssl/etcd-key.pem
             - --allow-privileged=true
-            - --service-cluster-ip-range=10.3.0.0/24
+            - --service-cluster-ip-range=192.168.3.0/24
             - --secure-port=443
             - --advertise-address=$public_ipv4
             - --admission-control=NamespaceLifecycle,LimitRanger,ServiceAccount,ResourceQuota

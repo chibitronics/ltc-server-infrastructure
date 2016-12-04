@@ -112,7 +112,7 @@ resource "digitalocean_droplet" "k8s_master" {
     provisioner "local-exec" {
         command = <<EOF
             rm -f "${self.name}.ca.crt" "${self.name}.crt" "${self.name}.key.insecure"
-            etcd-ca new-cert --passphrase '' --ip "${self.ipv4_address}" --domain "${self.name}.chibitronics,ltc-ns.chibitronics.com,ltc.chibitronics.com,ltc.xobs.io,ltc-cluster.xobs.io,k8s.xobs.io" ${self.name}
+            etcd-ca new-cert --passphrase '' --ip "${self.ipv4_address},192.168.3.1" --domain "${self.name}.chibitronics,ltc-ns.chibitronics.com,ltc.chibitronics.com,ltc.xobs.io,ltc-cluster.xobs.io,k8s.xobs.io" ${self.name}
             etcd-ca sign ${self.name}
             etcd-ca export --insecure --passphrase '' ${self.name} | tar xvf -
             etcd-ca chain ${self.name} > ${self.name}.ca.crt
@@ -206,7 +206,7 @@ EOF
             "sudo systemctl daemon-reload",
             "sudo systemctl restart systemd-resolved",
 
-            "sudo systemctl start etcd2",
+            "sudo systemctl start etcd2 &",
             "sudo systemctl enable etcd2",
 
             "sudo dd if=/dev/zero of=/swap bs=1M count=2048",
@@ -215,15 +215,15 @@ EOF
             "sudo swapon /swap",
             "sudo systemctl enable extraswap",
 
-            "until curl --cacert /home/core/ca.pem --cert /home/core/client.pem --key /home/core/client-key.pem -X PUT -d 'value={\"Network\":\"10.2.0.0/16\",\"Backend\":{\"Type\":\"vxlan\"}}' https://${self.ipv4_address}:2379/v2/keys/coreos.com/network/config; do sleep 1; done",
-            "sudo systemctl start flanneld",
+            "sudo systemctl start flanneld &",
             "sudo systemctl enable flanneld",
 
-            "sudo systemctl start kubelet",
+            "sudo systemctl start kubelet &",
             "sudo systemctl enable kubelet",
 
             # Wait for the machine to start up
-            "until $(curl --output /dev/null --silent --head --fail http://127.0.0.1:8080); do printf '.'; sleep 5; done",
+#            "until $(curl --output /dev/null --silent --head --fail http://127.0.0.1:8080); do printf '.'; sleep 5; done",
+            "true"
         ]
         connection {
             user = "core"
@@ -284,7 +284,7 @@ EOF
 data "template_file" "worker_yaml" {
     template = "${file("01-worker.yaml")}"
     vars {
-        DNS_SERVICE_IP = "10.3.0.10"
+        DNS_SERVICE_IP = "192.168.3.10"
         ETCD_ENDPOINTS = "${join(",", formatlist("https://%s:2379/", digitalocean_droplet.k8s_master.*.ipv4_address))}"
         MASTER_HOSTS = "${join(",", formatlist("https://%s/", digitalocean_droplet.k8s_master.*.ipv4_address))}"
         HYPERCUBE_VERSION = "${var.hypercube_version}"
@@ -324,14 +324,35 @@ EOF
     }
     provisioner "file" {
         source = "./${self.name}.crt"
-        destination = "/home/core/worker.pem"
+        destination = "/home/core/etcd.pem"
         connection {
             user = "core"
         }
     }
     provisioner "file" {
         source = "./${self.name}.key.insecure"
-        destination = "/home/core/worker-key.pem"
+        destination = "/home/core/etcd-key.pem"
+        connection {
+            user = "core"
+        }
+    }
+    provisioner "file" {
+        source = "./client.crt"
+        destination = "/home/core/client.pem"
+        connection {
+            user = "core"
+        }
+    }
+    provisioner "file" {
+        source = "./client.key.insecure"
+        destination = "/home/core/client-key.pem"
+        connection {
+            user = "core"
+        }
+    }
+    provisioner "file" {
+        source = "${var.etcd_discovery_url}"
+        destination = "/home/core/provider_url"
         connection {
             user = "core"
         }
@@ -341,9 +362,9 @@ EOF
     provisioner "remote-exec" {
         inline = [
             "sudo mkdir -p /etc/kubernetes/ssl",
-            "sudo cp /home/core/{ca,worker,worker-key}.pem /etc/kubernetes/ssl/.",
+            "sudo cp /home/core/{ca,etcd,etcd-key}.pem /etc/kubernetes/ssl/.",
             "sudo mkdir -p /etc/ssl/etcd/",
-            "sudo mv /home/core/{ca,worker,worker-key}.pem /etc/ssl/etcd/."
+            "sudo cp /home/core/{ca,etcd,etcd-key}.pem /etc/ssl/etcd/."
         ]
         connection {
             user = "core"
@@ -353,6 +374,13 @@ EOF
     # Start kubelet
     provisioner "remote-exec" {
         inline = [
+            "echo -e '[Service]\nEnvironment=ETCD_NAME=${self.name}' | sudo tee /run/systemd/system/etcd2.service.d/35-name.conf",
+            "echo -ne '[Service]\nEnvironment=ETCD_DISCOVERY=' > /tmp/34-discovery.conf",
+            "cat /home/core/provider_url >> /tmp/34-discovery.conf",
+            "echo '' >> /tmp/34-discovery.conf",
+            "sudo mv /tmp/34-discovery.conf /run/systemd/system/etcd2.service.d/34-discovery.conf",
+
+            # Enable swap
             "sudo dd if=/dev/zero of=/swap bs=1M count=2048",
             "sudo chmod 0600 /swap",
             "sudo mkswap /swap",
@@ -361,6 +389,11 @@ EOF
             "sudo systemctl daemon-reload",
             "sudo systemctl enable extraswap",
             "sudo systemctl restart systemd-resolved",
+
+            "sudo systemctl start etcd2",
+            "sudo systemctl enable etcd2",
+            "until curl --cacert /home/core/ca.pem --cert /home/core/client.pem --key /home/core/client-key.pem -X PUT -d 'value={\"Network\":\"10.2.0.0/16\",\"Backend\":{\"Type\":\"vxlan\"}}' https://${self.ipv4_address}:2379/v2/keys/coreos.com/network/config; do sleep 1; done",
+
             "sudo systemctl start flanneld",
             "sudo systemctl enable flanneld",
             "sudo systemctl start kubelet",
