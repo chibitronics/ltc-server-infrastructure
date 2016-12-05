@@ -17,8 +17,6 @@ class CompilerV2Handler
     {
         $log = [];
 
-        error_reporting(E_ALL & ~E_STRICT);
-
         // The tmp folder where logfiles and object files are placed
         $temporaryDirectory = $config['temp_dir'];
 
