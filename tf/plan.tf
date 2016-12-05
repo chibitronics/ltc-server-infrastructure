@@ -54,25 +54,25 @@ resource "digitalocean_droplet" "ltc_worker" {
         "${var.ssh_fingerprint}"
     ]
 
-    provisioner "remote-exec" {
-        inline = [
-            "sudo systemctl daemon-reload",
-            "sudo systemctl restart systemd-resolved",
-
-            "sudo dd if=/dev/zero of=/swap bs=1M count=4096",
-            "sudo chmod 0600 /swap",
-            "sudo mkswap /swap",
-            "sudo swapon /swap",
-            "sudo systemctl enable extraswap",
-
-            "sudo systemctl start ltc-network ltc-compiler ltc-ux ltc-compiler-frontend ltc-frontend",
-            "sudo systemctl enable ltc-network ltc-compiler ltc-ux ltc-compiler-frontend ltc-frontend",
-            "true"
-        ]
-        connection {
-            user = "core"
-        }
-    }
+#    provisioner "remote-exec" {
+#        inline = [
+#            "sudo systemctl daemon-reload",
+#            "sudo systemctl restart systemd-resolved",
+#
+#            "sudo dd if=/dev/zero of=/swap bs=1M count=4096",
+#            "sudo chmod 0600 /swap",
+#            "sudo mkswap /swap",
+#            "sudo swapon /swap",
+#            "sudo systemctl enable extraswap",
+#
+#            "sudo systemctl start ltc-network ltc-compiler ltc-ux ltc-compiler-frontend ltc-frontend",
+#            "sudo systemctl enable ltc-network ltc-compiler ltc-ux ltc-compiler-frontend ltc-frontend",
+#            "true"
+#        ]
+#        connection {
+#            user = "core"
+#        }
+#    }
 }
 
 resource "digitalocean_record" "worker_a" {
