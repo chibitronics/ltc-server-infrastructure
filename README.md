@@ -11,10 +11,19 @@ Quickstart
 Install Docker.  Then run:
 
     docker network create ltc-network
-    docker run -d --network ltc-network --name ltc-compiler xobs/ltc-compiler:1.6
-    docker run -d --network ltc-network --name ltc-compiler-frontend xobs/ltc-compiler-frontend:1.6
-    docker run -d --network ltc-network --name ltc-ux xobs/ltc-ux:1.4
-    docker run -p 8080:80 -d --network ltc-network --name ltc-frontend xobs/ltc-frontend:1.1
+    docker run -d --net=ltc-network --name ltc-compiler xobs/ltc-compiler:1.10
+    docker run -d --net=ltc-network --name ltc-compiler-frontend xobs/ltc-compiler-frontend:1.6
+    docker run -d --net=ltc-network --name ltc-ux xobs/ltc-ux:1.5
+    docker run -p 8080:80 -d --net=ltc-network --name ltc-frontend xobs/ltc-frontend:1.1
+
+
+Hosted
+======
+
+If you want to run a server on Digital Ocean, you can use Terraform to spin up a server.
+
+    cd tf
+    terraform apply
 
 
 Building Containers
@@ -35,15 +44,15 @@ The compiler is based on a reduced set of the Arduino toolchain with a simplifie
 
 Build the compiler container with:
 
-    docker build -t xobs/ltc-compiler:1.8 compiler/
+    docker build -t xobs/ltc-compiler:1.10 compiler/
 
 Run the compiler with the following Docker arguments:
 
-    docker run -d --network ltc-network --name ltc-compiler xobs/ltc-compiler:1.8
+    docker run -d --net=ltc-network --name ltc-compiler xobs/ltc-compiler:1.10
 
 To save build files, bind /tmp/cache/filebkp/ to a local path:
 
-    docker run -d --network ltc-network -v $(pwd)/filebkp:/var/cache/filebkp --name ltc-compiler xobs/ltc-compiler:1.8
+    docker run -d --net=ltc-network -v $(pwd)/filebkp:/var/cache/filebkp --name ltc-compiler xobs/ltc-compiler:1.10
 
 The compiler will now be listening on ltc-compiler:9000.
 
@@ -59,7 +68,7 @@ Build the container with:
 
 Run the container with:
 
-    docker run -d --network ltc-network --name ltc-compiler-frontend xobs/ltc-compiler-frontend:1.6
+    docker run -d --net=ltc-network --name ltc-compiler-frontend xobs/ltc-compiler-frontend:1.6
 
 UX
 ------
@@ -72,12 +81,12 @@ Build:
 
 Run:
 
-    docker run -d --network ltc-network --name ltc-ux xobs/ltc-ux:1.5
+    docker run -d --net=ltc-network --name ltc-ux xobs/ltc-ux:1.5
 
 To do development on the frontend, check out the web page locally, and run ltc-ux with a local volume:
 
     git clone git@github.com:xobs/codebender-test-shell.git
-    docker run -d --network ltc-network -v $(pwd)/codebender-test-shell/app:/usr/share/nginx/html --name ltc-ux xobs/ltc-ux:1.4
+    docker run -d --net=ltc-network -v $(pwd)/codebender-test-shell/app:/usr/share/nginx/html --name ltc-ux xobs/ltc-ux:1.4
 
 Frontend
 ----------
@@ -88,6 +97,6 @@ This server acts as a frontend to the compiler, UX, and API servers.
 
     docker build -t xobs/ltc-frontend:1.1 frontend/
 
- Run:
+ Run the command, binding to port 8080, or replace "8080" with something else:
 
-    docker run -p 8080:80 -d --network ltc-network --name ltc-frontend xobs/ltc-frontend:1.1
+    docker run -p 8080:80 -d --net=ltc-network --name ltc-frontend xobs/ltc-frontend:1.1
