@@ -1,0 +1,89 @@
+#cloud-config
+
+write_files:
+  - path: "/etc/systemd/system/ltc-network.service"
+    permissions: "0644"
+    content: |
+      [Unit]
+      Description=LtC network creation
+      After=docker.service
+
+      [Service]
+      Type=oneshot
+      RemainAfterExit=true
+      TimeoutStartSec=0
+      ExecStart=-/usr/bin/docker network create ltc-network
+      ExecStop=/usr/bin/docker network rm ltc-network
+  - path: "/etc/systemd/system/ltc-ux.service"
+    permissions: "0644"
+    content: |
+      [Unit]
+      Description=LtC web page
+      After=docker.service ltc-network.service
+      Requires=ltc-network.service
+
+      [Service]
+      TimeoutStartSec=0
+      ExecStartPre=-/usr/bin/docker kill ltc-ux
+      ExecStartPre=-/usr/bin/docker rm ltc-ux
+      ExecStartPre=/usr/bin/docker pull xobs/ltc-ux:1.5
+      ExecStart=/usr/bin/docker run --net=ltc-network --name ltc-ux xobs/ltc-ux:1.5
+      ExecStop=/usr/bin/docker stop ltc-ux
+  - path: "/etc/systemd/system/ltc-compiler.service"
+    permissions: "0644"
+    content: |
+      [Unit]
+      Description=LtC backend compiler
+      After=docker.service ltc-network.service
+      Requires=ltc-network.service
+
+      [Service]
+      TimeoutStartSec=0
+      ExecStartPre=-/usr/bin/docker kill ltc-compiler
+      ExecStartPre=-/usr/bin/docker rm ltc-compiler
+      ExecStartPre=/usr/bin/docker pull xobs/ltc-compiler:1.9
+      ExecStart=/usr/bin/docker run --net=ltc-network --name ltc-compiler xobs/ltc-compiler:1.9
+      ExecStop=/usr/bin/docker stop ltc-compiler
+  - path: "/etc/systemd/system/ltc-compiler-frontend.service"
+    permissions: "0644"
+    content: |
+      [Unit]
+      Description=LtC frontend for backend compiler
+      After=docker.service ltc-compiler.service ltc-network.service
+      Requires=ltc-compiler.service ltc-network.service
+
+      [Service]
+      TimeoutStartSec=0
+      ExecStartPre=-/usr/bin/docker kill ltc-compiler-frontend
+      ExecStartPre=-/usr/bin/docker rm ltc-compiler-frontend
+      ExecStartPre=/usr/bin/docker pull xobs/ltc-compiler-frontend:1.6
+      ExecStart=/usr/bin/docker run --net=ltc-network --name ltc-compiler-frontend xobs/ltc-compiler-frontend:1.6
+      ExecStop=/usr/bin/docker stop ltc-compiler-frontend
+  - path: "/etc/systemd/system/ltc-frontend.service"
+    permissions: "0644"
+    content: |
+      [Unit]
+      Description=LtC frontend for the entire service
+      After=docker.service ltc-compiler-frontend.service ltc-ux.service ltc-network.service
+      Requires=ltc-compiler-frontend.service ltc-ux.service ltc-network.service
+
+      [Service]
+      TimeoutStartSec=0
+      ExecStartPre=-/usr/bin/docker kill ltc-frontend
+      ExecStartPre=-/usr/bin/docker rm ltc-frontend
+      ExecStartPre=/usr/bin/docker pull xobs/ltc-frontend:1.1
+      ExecStart=/usr/bin/docker run --net=ltc-network --name ltc-frontend -p 80:80 xobs/ltc-frontend:1.1
+      ExecStop=/usr/bin/docker stop ltc-frontend
+  - path: "/etc/systemd/system/extraswap.service"
+    permissions: "0644"
+    content: |
+      [Unit]
+      Description=Turn on swap
+
+      [Service]
+      Type=oneshot
+      ExecStart=/sbin/swapon /swap
+      RemainAfterExit=true
+
+      [Install]
+      WantedBy=multi-user.target
