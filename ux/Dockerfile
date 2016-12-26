@@ -17,3 +17,5 @@ RUN \
     cd / && \
     rm -rf /build && \
     apk del .build-deps
+
+COPY nginx.conf /etc/nginx/conf.d/default.conf
