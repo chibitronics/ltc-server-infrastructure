@@ -44,11 +44,11 @@ The compiler is based on a reduced set of the Arduino toolchain with a simplifie
 
 Build the compiler container with:
 
-    docker build -t xobs/ltc-compiler:1.10 compiler/
+    docker build -t xobs/ltc-compiler:1.11 compiler/
 
 Run the compiler with the following Docker arguments:
 
-    docker run -d --net=ltc-network --name ltc-compiler xobs/ltc-compiler:1.10
+    docker run -d --net=ltc-network --name ltc-compiler xobs/ltc-compiler:1.11
 
 To save build files, bind /tmp/cache/filebkp/ to a local path:
 
@@ -57,19 +57,6 @@ To save build files, bind /tmp/cache/filebkp/ to a local path:
 The compiler will now be listening on ltc-compiler:9000.
 
 
-Compiler Frontend
------------------
-
-Because the compiler exposes a FastCGI interface, we need a small web server to go from FastCGI to http.  We use an nginx server running in a contianer called ltc-compiler-frontend.
-
-Build the container with:
-
-    docker build -t xobs/ltc-compiler-frontend:1.6 compiler-frontend/
-
-Run the container with:
-
-    docker run -d --net=ltc-network --name ltc-compiler-frontend xobs/ltc-compiler-frontend:1.6
-
 UX
 ------
 
@@ -77,26 +64,13 @@ This is the server that hosts files the users see.  It runs an nginx server that
 
 Build:
 
-    docker build -t xobs/ltc-ux:1.5 ux/
+    docker build -t xobs/ltc-ux:1.6 ux/
 
 Run:
 
-    docker run -d --net=ltc-network --name ltc-ux xobs/ltc-ux:1.5
+    docker run -d --net=ltc-network --name ltc-ux xobs/ltc-ux:1.6
 
 To do development on the frontend, check out the web page locally, and run ltc-ux with a local volume:
 
     git clone git@github.com:xobs/codebender-test-shell.git
     docker run -d --net=ltc-network -v $(pwd)/codebender-test-shell/app:/usr/share/nginx/html --name ltc-ux xobs/ltc-ux:1.4
-
-Frontend
-----------
-
-This server acts as a frontend to the compiler, UX, and API servers.
-
- Build:
-
-    docker build -t xobs/ltc-frontend:1.1 frontend/
-
- Run the command, binding to port 8080, or replace "8080" with something else:
-
-    docker run -p 8080:80 -d --net=ltc-network --name ltc-frontend xobs/ltc-frontend:1.1
