@@ -1,15 +1,15 @@
 apiVersion: v1
 kind: Service
 metadata:
-  name: ltc-compiler
+  name: ltc-server
   namespace: chibitronics
 spec:
   selector:
-    k8s-app: ltc-compiler
+    k8s-app: ltc-server
   ports:
-  - name: fastcgi
-    port: 9000
-    protocol: UDP
+  - name: http
+    port: 80
+    protocol: TCP
   - name: fastcgi-tcp
     port: 9000
     protocol: TCP
@@ -17,7 +17,7 @@ spec:
 apiVersion: v1
 kind: ReplicationController
 metadata:
-  name: ltc-compiler
+  name: ltc-server
   namespace: chibitronics
   labels:
     version: "1.9"
@@ -56,3 +56,27 @@ spec:
         - containerPort: 9000
           name: fastcgi-udp
           protocol: UDP
+      - name: ltc-ux
+        image: xobs/ltc-ux:k8s
+        resources:
+          limits:
+            memory: 170Mi
+          requests:
+            cpu: 100m
+            memory: 70Mi
+        livenessProbe:
+          httpGet:
+            port: 80
+            path: /
+          initialDelaySeconds: 60
+          timeoutSeconds: 5
+        readinessProbe:
+          httpGet:
+            port: 80
+            path: /
+          initialDelaySeconds: 3
+          timeoutSeconds: 5
+        ports:
+        - containerPort: 80
+          name: http
+          protocol: TCP
