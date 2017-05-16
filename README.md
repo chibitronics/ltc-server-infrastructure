@@ -55,7 +55,7 @@ CoreOS Setup
         --network ltc \
         --restart always \
         chibitronics/ltc-compiler-amd64
-3. Run the frontend:
+3. Run the webview:
     docker run 
         -d \
         --name ltc-webview \
