@@ -1,0 +1,40 @@
+#cloud-config
+
+coreos:
+  units:
+    - name: "docker-ltc-webview.service"
+      command: "start"
+      content: |
+        [Unit]
+        Description=LtC Webview
+        After=docker-ltc-network.service
+
+        [Service]
+        Restart=always
+        ExecStartPre=-/usr/bin/docker network create ltc
+        ExecStart=/usr/bin/docker run --name ltc-webview --restart always --network ltc -e COMPILE_URL=/compile chibitronics/ltc-webview-amd64
+        ExecStop=/usr/bin/docker rm -f ltc-webview
+    - name: "docker-ltc-compiler.service"
+      command: "start"
+      content: |
+        [Unit]
+        Description=LtC Compiler
+        After=docker-ltc-network.service
+
+        [Service]
+        Restart=always
+        ExecStartPre=-/usr/bin/docker network create ltc
+        ExecStart=/usr/bin/docker run --name ltc-compiler --restart always --network ltc chibitronics/ltc-compiler-amd64
+        ExecStop=/usr/bin/docker rm -f ltc-compiler
+    - name: "docker-ltc-frontend.service"
+      command: "start"
+      content: |
+        [Unit]
+        Description=LtC Frontend
+        After=docker-ltc-compiler.service, docker-ltc-webview.service
+
+        [Service]
+        Restart=always
+        ExecStartPre=-/usr/bin/docker network create ltc
+        ExecStart=/usr/bin/docker run --name ltc-frontend --restart always --network ltc -p 80:80 -p 443:443 chibitronicsd/ltc-frontend-amd64
+        ExecStop=/usr/bin/docker rm -f ltc-frontend
