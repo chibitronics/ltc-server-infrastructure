@@ -36,5 +36,5 @@ coreos:
         [Service]
         Restart=always
         ExecStartPre=-/usr/bin/docker network create ltc
-        ExecStart=/usr/bin/docker run --name ltc-frontend --restart always --network ltc -p 80:80 -p 443:443 chibitronicsd/ltc-frontend-amd64
+        ExecStart=/usr/bin/docker run -d --name ltc-frontend --restart always --network ltc -p 80:80 -p 443:443 -e DOMAIN=ltc.chibitronics.com -v /opt/certs:/etc/certs --add-host acme-renewal:188.166.197.248 chibitronics/ltc-frontend-amd64
         ExecStop=/usr/bin/docker rm -f ltc-frontend
