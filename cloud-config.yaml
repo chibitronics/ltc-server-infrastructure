@@ -2,16 +2,31 @@
 
 coreos:
   units:
+    - name: "docker-ltc-network.service"
+      command: "start"
+      content: |
+        [Unit]
+        Description=Create the ltc network
+        After=docker.service
+        Requires=docker.service
+        StartLimitIntervalSec=0
+
+        [Service]
+        Type=oneshot
+        RemainAfterExit=yes
+        ExecStart=/usr/bin/docker network create ltc
+        ExecStop=/usr/bin/docker network rm ltc
     - name: "docker-ltc-webview.service"
       command: "start"
       content: |
         [Unit]
         Description=LtC Webview
         After=docker-ltc-network.service
+        Requires=docker-ltc-network.service
+        StartLimitIntervalSec=0
 
         [Service]
         Restart=always
-        ExecStartPre=-/usr/bin/docker network create ltc
         ExecStart=/usr/bin/docker run --name ltc-webview --restart always --network ltc -e COMPILE_URL=/compile chibitronics/ltc-webview-amd64
         ExecStop=/usr/bin/docker rm -f ltc-webview
     - name: "docker-ltc-compiler.service"
@@ -20,10 +35,11 @@ coreos:
         [Unit]
         Description=LtC Compiler
         After=docker-ltc-network.service
+        Requires=docker-ltc-network.service
+        StartLimitIntervalSec=0
 
         [Service]
         Restart=always
-        ExecStartPre=-/usr/bin/docker network create ltc
         ExecStart=/usr/bin/docker run --name ltc-compiler --restart always --network ltc chibitronics/ltc-compiler-amd64
         ExecStop=/usr/bin/docker rm -f ltc-compiler
     - name: "docker-ltc-frontend.service"
@@ -31,10 +47,11 @@ coreos:
       content: |
         [Unit]
         Description=LtC Frontend
-        After=docker-ltc-compiler.service, docker-ltc-webview.service
+        After=docker-ltc-compiler.service docker-ltc-webview.service docker-ltc-network.service
+        Requires=docker-ltc-compiler.service docker-ltc-webview.service docker-ltc-network.service
+        StartLimitIntervalSec=0
 
         [Service]
         Restart=always
-        ExecStartPre=-/usr/bin/docker network create ltc
-        ExecStart=/usr/bin/docker run -d --name ltc-frontend --restart always --network ltc -p 80:80 -p 443:443 -e DOMAIN=ltc.chibitronics.com -v /opt/certs:/etc/certs --add-host acme-renewal:188.166.197.248 chibitronics/ltc-frontend-amd64
+        ExecStart=/usr/bin/docker run --name ltc-frontend --restart always --network ltc -p 80:80 -p 443:443 -e DOMAIN=ltc.chibitronics.com -v /opt/certs:/etc/certs --add-host acme-renewal:188.166.197.248 chibitronics/ltc-frontend-amd64
         ExecStop=/usr/bin/docker rm -f ltc-frontend
