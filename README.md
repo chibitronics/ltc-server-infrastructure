@@ -43,7 +43,6 @@ There is a file in the root called cloud-config.yaml.  It can be pasted into you
 
 If you already have the access keys, you can add a "write_files" directive.  Append cloud-config-extra.yaml to cloud-config.yaml and paste in your actual keys.
 
-
 Renewing / Configuring Encryption
 =================================
 
