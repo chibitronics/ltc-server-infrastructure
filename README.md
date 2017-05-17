@@ -8,32 +8,25 @@ server infrastructure.
 Quickstart
 ==========
 
-Install Docker.  Then run:
+If you would simply like to spin up the infrastructure, install Docker and run:
 
-    docker network create ltc-network
-    docker run -d --net=ltc-network --name ltc-compiler xobs/ltc-compiler
-    docker run -p 8080:80 -d --net=ltc-network --name ltc-ux xobs/ltc-ux
+    docker network create ltc
+    docker run -d --net=ltc --name=ltc-compiler chibitronics/ltc-compiler-amd64
+    docker run -d --net=ltc --name=ltc-webview chibitronics/ltc-webview-amd64
+    docker run -p 8080:80 -d --net=ltc --name=ltc-frontend chibitronics/ltc-frontend-amd64
 
 Then open a web browser connect to localhost:8080
-
-Hosted
-======
-
-If you want to run a server on Digital Ocean, you can use Terraform to spin up a server.
-
-    cd tf
-    terraform apply
-
 
 Building Containers
 ===================
 
 The containers are hosted in their own repos.
 
-
 Website: https://github.com/chibitronics/ltc-webview-layer/
 
 Compiler: https://github.com/chibitronics/ltc-compiler-layer
+
+Frontend: frontend/
 
 Network
 -------
@@ -46,35 +39,9 @@ Containers refer to each other using their names.  Be sure to put everything on 
 CoreOS Setup
 ============
 
-1. Set up a docker network:
-    docker network create ltc
-2. Run the compiler:
-    docker run \
-        -d \
-        --name ltc-compiler \
-        --network ltc \
-        --restart always \
-        chibitronics/ltc-compiler-amd64
-3. Run the frontend:
-    docker run 
-        -d \
-        --name ltc-webview \
-        --network ltc \
-        --restart always \
-        -e COMPILE_URL=/compile \
-        chibitronics/ltc-webview-amd64
-4. Run the frontend:
-   docker run \
-        -d \
-        --name ltc-frontend \
-        --restart always \
-        --network ltc \
-        -p 80:80 \
-        -p 443:443 \
-        -e DOMAIN=ltc.chibitronics.com \
-        -v /opt/certs:/etc/certs \
-        --add-host acme-renewal:188.166.197.248 \
-        chibitronics/ltc-frontend-amd64
+There is a file in the root called cloud-config.yaml.  It can be pasted into your cloud provider's "User Data" section, causing it to spin up an instance on its own.
+
+If you already have the access keys, you can add a "write_files" directive.  Append cloud-config-extra.yaml to cloud-config.yaml and paste in your actual keys.
 
 
 Renewing / Configuring Encryption
